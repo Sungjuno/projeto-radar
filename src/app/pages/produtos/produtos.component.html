@@ -1,4 +1,4 @@
-<div formGroupName="cadastroProduto">
+<div [formGroup]="cadastroProduto">
 
   <h1>Cadastro de produto</h1>
 
@@ -23,6 +23,6 @@
     <label for="quantidade">Quantidade </label>
     <input id="quantidade" type="text" formControlName="quantidade">
   </div>
-  <button>Cadastrar</button>
+  <button (click)="onSubmit()">Cadastrar</button>
   </div>
 </div>

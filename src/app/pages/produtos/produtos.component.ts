@@ -11,17 +11,18 @@ export class ProdutosComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+
   }
 
     cadastroProduto = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      address: this.fb.group({
-        street: [''],
-        city: [''],
-        state: [''],
-        zip: ['']
-      }),
-    });
+      id: [0],
+      nome: [''],
+      descricao: [''],
+      valor: [0],
+      quantidade: [0]
+    })
 
+    onSubmit(){
+      console.log(this.cadastroProduto.value)
+    }
 }
