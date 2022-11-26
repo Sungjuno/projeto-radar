@@ -9,6 +9,7 @@ import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { FluxoCaixaComponent } from './pages/fluxo-caixa/fluxo-caixa.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FluxoCaixaComponent } from './pages/fluxo-caixa/fluxo-caixa.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

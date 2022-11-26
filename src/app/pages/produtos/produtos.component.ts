@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-produtos',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdutosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
+
+    cadastroProduto = this.fb.group({
+      firstName: [''],
+      lastName: [''],
+      address: this.fb.group({
+        street: [''],
+        city: [''],
+        state: [''],
+        zip: ['']
+      }),
+    });
 
 }
