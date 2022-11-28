@@ -9,6 +9,7 @@ import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { FluxoCaixaComponent } from './pages/fluxo-caixa/fluxo-caixa.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
@@ -29,7 +30,11 @@ registerLocaleData(localePt, 'pt')
   imports: [
     BrowserModule,
     AppRoutingModule,
+<<<<<<< HEAD:Angular - FrontEnd/src/app/app.module.ts
     FormsModule
+=======
+    ReactiveFormsModule
+>>>>>>> Sung:src/app/app.module.ts
   ],
   providers: [{
     provide: LOCALE_ID,

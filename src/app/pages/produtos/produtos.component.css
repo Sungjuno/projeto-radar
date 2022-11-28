@@ -1,0 +1,18 @@
+h1{
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.input-individual{
+  display: flex;
+  flex-direction: column;
+}

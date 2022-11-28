@@ -1,1 +1,61 @@
-<p>clientes works!</p>
+<h1>Cadastro de cliente</h1>
+<div [formGroup]="cadastroCliente" class="container-cadastro-cliente">
+
+<div class="container-cliente">
+  <div class="inputs">
+    <div class="input-individual">
+      <label for="id">Id </label>
+      <input id="id" type="text" formControlName="id">
+    </div>
+    <div class="input-individual">
+      <label for="nome">Nome </label>
+      <input id="nome" type="text" formControlName="nome">
+    </div>
+    <div class="input-individual">
+    <label for="telefone">Telefone </label>
+    <input id="telefone" type="text" formControlName="telefone">
+  </div>
+  <div class="input-individual">
+    <label for="email">Email </label>
+    <input id="email" type="text" formControlName="email">
+  </div>
+  <div class="input-individual">
+    <label for="cpf">Cpf </label>
+    <input id="cpf" type="text" formControlName="cpf">
+  </div>
+</div>
+<div class="container-cadastro-cliente-local">
+  <div class="inputs">
+  <div class="input-individual">
+    <label for="cep">Cep </label>
+    <input id="cep" type="text" formControlName="cep">
+  </div>
+  <div class="input-individual">
+    <label for="logradouro">Logradouro </label>
+    <input id="logradouro" type="text" formControlName="logradouro">
+  </div>
+  <div class="input-individual">
+    <label for="numero">Número </label>
+    <input id="numero" type="text" formControlName="numero">
+  </div>
+  <div class="input-individual">
+    <label for="bairro">Bairro </label>
+    <input id="bairro" type="text" formControlName="bairro">
+  </div>
+  <div class="input-individual">
+    <label for="cidade">Cidade </label>
+    <input id="cidade" type="text" formControlName="cidade">
+  </div>
+  <div class="input-individual">
+    <label for="estado">Estado </label>
+    <input id="estado" type="text" formControlName="estado">
+  </div>
+  <div class="input-individual">
+    <label for="complemento">Complemento </label>
+    <input id="complemento" type="text" formControlName="complemento">
+  </div>
+</div>
+</div>
+  <button (click)="onSubmit()">Cadastrar</button>
+  </div>
+</div>

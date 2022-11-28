@@ -1,0 +1,38 @@
+.container-cadastro-cliente{
+  display: flex;
+}
+
+.container-cadastro-cliente-local{
+  display: flex;
+}
+
+.container-cliente{
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+}
+
+h1{
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.inputs{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.input-individual{
+  display: flex;
+  flex-direction: column;
+}
+
+input{
+  border: 2px solid gray;
+  border-radius: 10px;
+}

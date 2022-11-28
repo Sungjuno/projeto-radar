@@ -1,1 +1,15 @@
-<p>login works!</p>
+<div class="div">
+
+  <form [formGroup]="loginForm">
+
+    <label for="login">Login: </label>
+    <input id="login" type="text" formControlName="login">
+
+    <label for="senha">Senha: </label>
+    <input id="senha" type="password" formControlName="senha">
+
+    <button type="submit" (click)="verificaLogin()">Login</button>
+
+  </form>
+</div>
+
