@@ -1,0 +1,11 @@
+.secao {
+    margin: 20px auto;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    max-width: 780px;
+}
+
+.form-pedidos {
+    max-width: 380px;
+}

@@ -1,1 +1,55 @@
-<p>pedidos works!</p>
+<section class="secao">
+
+    <!-- INÍCIO do form -->
+    <div *ngIf="telaPedido" class="form-pedidos text-center">
+        <table *ngIf="carrinho.length > 0" class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Valor</th>
+                    <th>Quantidade</th>
+                    <th>Remover</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of carrinho">
+                    <td>{{ item.nome }}</td>
+                    <td>{{ item.valor }}</td>
+                    <td><button class="btn btn-danger" (click)="diminuiQtd()">-</button> {{ quantidade }} <button class="btn btn-success" (click)="aumentaQtd()">+</button></td>
+                    <td><button class="btn btn-secondary" (click)="removeCarrinho(item)">🚯</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="button" (click)="alterarTela()" class="btn btn-primary">Ver Catálogo</button>
+    </div>
+    <!-- FIM do form -->
+
+    <!-- INÍCIO do catálogo -->
+    <div *ngIf="!telaPedido" class="tabela-pedidos text-center">
+        <table class="table table-dark text-left">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Quantidade no Estoque</th>
+                    <th scope="col">Adicionar Produto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let produto of pedidos">
+                    <th scope="row">{{ produto.id }}</th>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.valor.toString() | currency:'BRL' }}</td>
+                    <td>{{ produto.qtd_estoque }}</td>
+                    <td><button type="button" class="btn btn-primary" (click)="adicionarCarrinho(produto)">+</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="button" class="btn btn-primary" (click)="alterarTela()">Voltar</button>
+    </div>
+    <!-- FIM do catálogo -->
+
+</section>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,12 @@ import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { FluxoCaixaComponent } from './pages/fluxo-caixa/fluxo-caixa.component';
+
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+registerLocaleData(localePt, 'pt')
 
 @NgModule({
   declarations: [
@@ -22,9 +28,13 @@ import { FluxoCaixaComponent } from './pages/fluxo-caixa/fluxo-caixa.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: LOCALE_ID,
+    useValue: 'pt'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
