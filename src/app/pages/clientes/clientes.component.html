@@ -1,20 +1,7 @@
-<div [formGroup]="cadastroCliente">
+<h1>Cadastro de cliente</h1>
+<div [formGroup]="cadastroCliente" class="container-cadastro-cliente">
 
-  <h1>Cadastro de cliente</h1>
-
-  <!-- id: [0],
-  nome: [''],
-  telefone: [0],
-  email: [''],
-  cpf: [0],
-  cep: [0],
-  logradouro: [''],
-  numero: [0],
-  bairro: [''],
-  cidade: [''],
-  estado: [''],
-  complemento: [''] -->
-
+<div class="container-cliente">
   <div class="inputs">
     <div class="input-individual">
       <label for="id">Id </label>
@@ -36,6 +23,9 @@
     <label for="cpf">Cpf </label>
     <input id="cpf" type="text" formControlName="cpf">
   </div>
+</div>
+<div class="container-cadastro-cliente-local">
+  <div class="inputs">
   <div class="input-individual">
     <label for="cep">Cep </label>
     <input id="cep" type="text" formControlName="cep">
@@ -64,6 +54,8 @@
     <label for="complemento">Complemento </label>
     <input id="complemento" type="text" formControlName="complemento">
   </div>
+</div>
+</div>
   <button (click)="onSubmit()">Cadastrar</button>
   </div>
 </div>
