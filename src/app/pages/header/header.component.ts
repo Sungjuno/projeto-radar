@@ -10,7 +10,8 @@ import { Component, inject, Injectable, OnChanges, OnInit, SimpleChanges } from 
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    public auth: AuthService
     ) { }
 
     mostraHeader = true
@@ -20,8 +21,10 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    localStorage.clear()
-    this.router.navigate(['login'])
+    if(confirm("Deseja mesmo sair?")){
+      localStorage.clear()
+      this.router.navigate(['login'])
+    }
   }
 
 }
