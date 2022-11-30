@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" *ngIf="auth.verificaLogado()">
     <ul>
       <img src="../../../assets/logo-fixo.png" alt="" routerLink="">
       <li routerLink="home" *ngIf="mostraHeader">Home</li>
@@ -6,6 +6,6 @@
       <li routerLink="clientes" *ngIf="mostraHeader">Clientes</li>
       <li routerLink="pedidos" *ngIf="mostraHeader">Pedidos</li>
       <li routerLink="fluxos" *ngIf="mostraHeader">Fluxo</li>
-      <li (click)="logout()" *ngIf="mostraHeader">Logout</li>
+      <li (click)="logout()" *ngIf="mostraHeader && auth.verificaLogado()">Logout</li>
     </ul>
 </div>

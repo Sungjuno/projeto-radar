@@ -32,3 +32,17 @@ img:hover{
 *{
   font-family: 'Rubik', sans-serif;
 }
+
+.sidebar .nav-item .nav-link .img-profile, .topbar .nav-item .nav-link .img-profile {
+  height: 2rem;
+  width: 2rem;
+}
+
+.rounded-circle {
+  border-radius: 50%!important;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
