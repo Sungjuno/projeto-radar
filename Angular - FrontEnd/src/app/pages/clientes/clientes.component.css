@@ -1,0 +1,30 @@
+.inputs{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  height: calc(100vh - 14rem);
+  padding: 1rem 3rem .5rem 3rem;
+}
+
+.textbox{
+  width: 20rem;
+}
+
+.botao{
+  background-color: #ff6900;
+  width: 9rem;
+  align-self: center;
+}
+
+h2{
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

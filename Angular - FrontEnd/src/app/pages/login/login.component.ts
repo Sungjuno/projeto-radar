@@ -1,7 +1,7 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../../shared/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     private router: Router
     ) { }
 
-    loginUsuario = { login: 'teste', senha: '123'}
+    loginUsuario = { login: 'teste@teste.com', senha: '123'}
 
     loginForm = this.fb.group({
       login: (''),
@@ -33,5 +33,4 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['home'])
      }
     }
-
 }

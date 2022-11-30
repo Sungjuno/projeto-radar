@@ -1,1 +1,26 @@
-<p>home works!</p>
+<div>
+  <h5>Lista de clientes</h5>
+  <ul  *ngFor="let cliente of listaClientes" class="lista-cliente">
+    <li>Nome: {{cliente.nome}}</li>
+    <li>Tel: {{cliente.telefone}}</li>
+    <li>Email: {{cliente.email}}</li>
+    <li>CPF: {{cliente.cpf}}</li>
+    <li>CEP: {{cliente.cep}}</li>
+    <li>Logradouro: {{cliente.logradouro}}</li>
+    <li>Numero: {{cliente.numero}}</li>
+    <li>Bairro: {{cliente.bairro}}</li>
+    <li>Cidade: {{cliente.cidade}}</li>
+    <li>Estado: {{cliente.estado}}</li>
+    <li>Complemento: {{cliente.complemento}}</li>
+  </ul>
+</div>
+
+<div>
+  <h5>Lista de Produtos</h5>
+  <ul  *ngFor="let produto of listaProduto" class="lista-cliente">
+    <li>Nome: {{produto.nome}}</li>
+    <li>descricao: {{produto.descricao}}</li>
+    <li>valor: {{produto.valor}}</li>
+    <li>Estoque: {{produto.qtdEstoque}}</li>
+  </ul>
+</div>

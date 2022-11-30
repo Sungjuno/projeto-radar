@@ -2,13 +2,28 @@
 
   <form [formGroup]="loginForm">
 
-    <label for="login">Login: </label>
-    <input id="login" type="text" formControlName="login">
+    <!-- <label for="login" >Login: </label>
+    <input id="login" type="email" formControlName="login" class="form-label" placeholder="cadastro@email.com"> -->
+<!--
+        <label for="senha">Senha: </label>
+        <input id="senha" type="password" formControlName="senha"> -->
 
-    <label for="senha">Senha: </label>
-    <input id="senha" type="password" formControlName="senha">
+    <div class="inputs">
 
-    <button type="submit" (click)="verificaLogin()">Login</button>
+    <div class="mb-3">
+      <label for="login" class="form-label">Login:</label>
+      <input type="email" class="form-control textbox" id="login" placeholder="name@example.com" formControlName="login">
+    </div>
+
+    <div class="mb-3">
+      <label for="senha" class="form-label">Senha:</label>
+      <input type="password" class="form-control textbox" id="senha" formControlName="senha">
+    </div>
+
+
+    <button type="submit" (click)="verificaLogin()" class="btn botao">Login</button>
+
+  </div>
 
   </form>
 </div>

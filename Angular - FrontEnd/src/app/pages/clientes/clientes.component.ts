@@ -1,5 +1,7 @@
+import { ICliente, IClienteForm } from './../../models/cliente.interface';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { RequestService } from 'src/app/shared/request/request.service';
 
 @Component({
   selector: 'app-clientes',
@@ -8,31 +10,33 @@ import { FormBuilder } from '@angular/forms';
 })
 export class ClientesComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb:FormBuilder,
+    private request: RequestService
+    ) { }
+
+  clienteForm :IClienteForm = this.fb.group({
+    id: [0],
+    nome: [''],
+    telefone: [0],
+    email: [''],
+    cpf: [0],
+    cep: [0],
+    logradouro:[''],
+    numero: [0],
+    bairro:[''],
+    cidade: [''],
+    estado: [''],
+    complemento: ['']
+  }) as IClienteForm
 
   ngOnInit(): void {
-
   }
 
-  // Clientes (id, nome, telefone, email, cpf, cep, logradouro, numero, bairro, cidade, estado, complemento)
+  cadastrarCliente(){
+    console.log(this.clienteForm.value)
+    this.request.postCliente(this.clienteForm.value)
+    .subscribe(res => console.log(res))
+  }
 
-
-    cadastroCliente = this.fb.group({
-      id: [0],
-      nome: [''],
-      telefone: [0],
-      email: [''],
-      cpf: [0],
-      cep: [0],
-      logradouro: [''],
-      numero: [0],
-      bairro: [''],
-      cidade: [''],
-      estado: [''],
-      complemento: ['']
-    })
-
-    onSubmit(){
-      console.log(this.cadastroCliente.value)
-    }
 }

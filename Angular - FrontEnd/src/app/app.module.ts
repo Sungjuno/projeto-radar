@@ -1,45 +1,38 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
+import { HeaderComponent } from './pages/header/header.component';
+import { FooterComponent } from './pages/footer/footer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
-import { ClientesComponent } from './pages/clientes/clientes.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
-import { FluxoCaixaComponent } from './pages/fluxo-caixa/fluxo-caixa.component';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import localePt from '@angular/common/locales/pt';
-import { registerLocaleData } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-registerLocaleData(localePt, 'pt')
+import { ClientesComponent } from './pages/clientes/clientes.component';
+import { FluxosComponent } from './pages/fluxos/fluxos.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    HeaderComponent,
+    FooterComponent,
     HomeComponent,
     ProdutosComponent,
     ClientesComponent,
     PedidosComponent,
-    FluxoCaixaComponent
+    FluxosComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-<<<<<<< HEAD:Angular - FrontEnd/src/app/app.module.ts
-    FormsModule
-=======
     ReactiveFormsModule
->>>>>>> Sung:src/app/app.module.ts
   ],
-  providers: [{
-    provide: LOCALE_ID,
-    useValue: 'pt'
-  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

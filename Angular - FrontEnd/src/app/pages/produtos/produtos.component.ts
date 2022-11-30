@@ -1,5 +1,7 @@
+import { IProdutoForm } from './../../models/produto.interface';
+import { RequestService } from 'src/app/shared/request/request.service';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-produtos',
@@ -8,21 +10,24 @@ import { FormBuilder } from '@angular/forms';
 })
 export class ProdutosComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private request: RequestService) { }
 
   ngOnInit(): void {
-
   }
 
-    cadastroProduto = this.fb.group({
-      id: [0],
-      nome: [''],
-      descricao: [''],
-      valor: [0],
-      quantidade: [0]
-    })
+  produtoForm = this.fb.group ({
+    id: [0],
+    nome: [''],
+    descricao: [''],
+    valor: [0],
+    qtdEstoque: [0]
+  }) as IProdutoForm
 
-    onSubmit(){
-      console.log(this.cadastroProduto.value)
-    }
+  cadastrarProduto(){
+    console.log(this.produtoForm.value)
+    this.request.postProduto(this.produtoForm.value)
+    .subscribe(res => console.log(res))
+  }
 }

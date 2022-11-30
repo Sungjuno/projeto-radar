@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
+import { RequestService } from 'src/app/shared/request/request.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor( private req: RequestService) { }
 
   ngOnInit(): void {
+    this.chamaCliente()
+    this.chamaProduto()
+  }
+
+  listaClientes:any;
+  listaProduto:any
+
+  chamaCliente(){
+    this.req.getCliente()
+    .pipe(
+      take(1)
+      )
+    .subscribe(
+      res => this.listaClientes = res )
+  }
+
+  chamaProduto(){
+    this.req.getProduto()
+    .pipe(take(1))
+    .subscribe(res => this.listaProduto = res)
   }
 
 }
