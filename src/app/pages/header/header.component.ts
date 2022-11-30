@@ -21,8 +21,10 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    localStorage.clear()
-    this.router.navigate(['login'])
+    if(confirm("Deseja mesmo sair?")){
+      localStorage.clear()
+      this.router.navigate(['login'])
+    }
   }
 
 }
