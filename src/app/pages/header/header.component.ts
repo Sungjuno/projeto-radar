@@ -10,7 +10,8 @@ import { Component, inject, Injectable, OnChanges, OnInit, SimpleChanges } from 
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private auth: AuthService
     ) { }
 
     mostraHeader = true

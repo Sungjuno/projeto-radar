@@ -6,6 +6,6 @@
       <li routerLink="clientes" *ngIf="mostraHeader">Clientes</li>
       <li routerLink="pedidos" *ngIf="mostraHeader">Pedidos</li>
       <li routerLink="fluxos" *ngIf="mostraHeader">Fluxo</li>
-      <li (click)="logout()" *ngIf="mostraHeader">Logout</li>
+      <li (click)="logout()" *ngIf="mostraHeader && auth.verificaLogado()">Logout</li>
     </ul>
 </div>
