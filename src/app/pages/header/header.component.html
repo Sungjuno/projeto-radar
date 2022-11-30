@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" *ngIf="auth.verificaLogado()">
     <ul>
       <img src="../../../assets/logo-fixo.png" alt="" routerLink="">
       <li routerLink="home" *ngIf="mostraHeader">Home</li>

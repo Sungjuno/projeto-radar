@@ -13,16 +13,17 @@
       <div class="mb-3">
         <label for="login" class="form-label">Login:</label>
         <input type="email" class="form-control textbox" id="login" placeholder="name@example.com"
-          formControlName="login">
+          formControlName="login" [ngClass]="mensagemErro ? 'is-invalid' : ''">
       </div>
 
       <div class="mb-3">
         <label for="senha" class="form-label">Senha:</label>
-        <input type="password" class="form-control textbox" id="senha" formControlName="senha">
+        <input type="password" class="form-control textbox" id="senha" formControlName="senha"
+          [ngClass]="mensagemErro ? 'is-invalid' : ''">
       </div>
 
-      <div *ngIf="mensagemErro">
-
+      <div *ngIf="mensagemErro" class="alert alert-danger">
+        <span>Email ou senha incorretos.</span>
       </div>
 
       <button type="submit" (click)="verificaLogin()" class="btn botao">Login</button>

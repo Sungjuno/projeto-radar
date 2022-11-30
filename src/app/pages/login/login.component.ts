@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   loginUsuario = { login: 'teste@teste.com', senha: '123' }
+  loginAdm = { login: 'adm@adm.com', senha: '123' }
   mensagemErro = false;
 
   loginForm = this.fb.group({
@@ -32,7 +33,12 @@ export class LoginComponent implements OnInit {
     if (this.loginUsuario.login == this.loginForm.value.login && this.loginUsuario.senha == this.loginForm.value.senha) {
       this.auth.setLogin(this.loginForm.value.login)
       this.router.navigate(['home'])
-    } else {
+    } else if(this.loginAdm.login == this.loginForm.value.login && this.loginAdm.senha == this.loginForm.value.senha) {
+      this.auth.setLogin(this.loginForm.value.login)
+      this.auth.setAdm(this.loginForm.value.login)
+      this.router.navigate(['home'])
+    } 
+    else {
       this.mensagemErro = true;
     }
   }

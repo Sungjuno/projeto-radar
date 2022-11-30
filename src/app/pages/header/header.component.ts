@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private auth: AuthService
+    public auth: AuthService
     ) { }
 
     mostraHeader = true

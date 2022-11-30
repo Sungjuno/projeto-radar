@@ -13,6 +13,11 @@ export class AuthService {
     console.log(usuario)
   }
 
+  setAdm(adm:string){
+    localStorage.setItem('adm',adm)
+    console.log(adm)
+  }
+
   getLogin(){
     let usuario = localStorage.getItem('usuario')
     if(usuario){
