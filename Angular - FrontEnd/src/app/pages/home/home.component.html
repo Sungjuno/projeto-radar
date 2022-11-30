@@ -1,6 +1,7 @@
 <div>
   <h5>Lista de clientes</h5>
   <ul  *ngFor="let cliente of listaClientes" class="lista-cliente">
+    <li>Id: {{cliente.id}}</li>
     <li>Nome: {{cliente.nome}}</li>
     <li>Tel: {{cliente.telefone}}</li>
     <li>Email: {{cliente.email}}</li>
@@ -18,6 +19,7 @@
 <div>
   <h5>Lista de Produtos</h5>
   <ul  *ngFor="let produto of listaProduto" class="lista-cliente">
+    <li>Id: {{produto.id}}</li>
     <li>Nome: {{produto.nome}}</li>
     <li>descricao: {{produto.descricao}}</li>
     <li>valor: {{produto.valor}}</li>
