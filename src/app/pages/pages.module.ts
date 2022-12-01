@@ -14,6 +14,7 @@ import { ProdutoPedidoComponent } from '../pages/pedidos/pedido-produto/produto-
 import { PedidosClientesComponent } from '../pages/pedidos/pedidos-clientes/pedidos-clientes.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormatarTelefonePipe } from '../shared/pipes/formatar-telefone.pipe';
+import { FormatarCpfPipe } from '../shared/pipes/formatar-cpf.pipe';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { FormatarTelefonePipe } from '../shared/pipes/formatar-telefone.pipe';
     LoginComponent,
     NotFoundComponent,
     FormatarTelefonePipe,
+    FormatarCpfPipe,
   ],
   imports: [
     CommonModule,
