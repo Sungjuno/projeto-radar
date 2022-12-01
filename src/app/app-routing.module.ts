@@ -5,8 +5,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponent } from './pages/clientes/clientes.component';
-import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { FluxosComponent } from './pages/fluxos/fluxos.component';
+import { PedidosComponent } from './pages/pedidos/pedido/pedidos.component';
 
 const routes: Routes = [
   {path:'login', component: LoginComponent},

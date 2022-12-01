@@ -1,26 +1,55 @@
 <div>
   <h5>Lista de clientes</h5>
+  <div class="div-lista-cliente">
   <ul  *ngFor="let cliente of listaClientes" class="lista-cliente">
-    <li>Nome: {{cliente.nome}}</li>
-    <li>Tel: {{cliente.telefone}}</li>
-    <li>Email: {{cliente.email}}</li>
-    <li>CPF: {{cliente.cpf}}</li>
-    <li>CEP: {{cliente.cep}}</li>
-    <li>Logradouro: {{cliente.logradouro}}</li>
-    <li>Numero: {{cliente.numero}}</li>
-    <li>Bairro: {{cliente.bairro}}</li>
-    <li>Cidade: {{cliente.cidade}}</li>
-    <li>Estado: {{cliente.estado}}</li>
-    <li>Complemento: {{cliente.complemento}}</li>
-  </ul>
+      <li>Id: {{cliente.id}}</li>
+      <li>Nome: {{cliente.nome}}</li>
+      <li>Tel: {{cliente.telefone}}</li>
+      <li>Email: {{cliente.email}}</li>
+      <li>CPF: {{cliente.cpf}}</li>
+      <li>CEP: {{cliente.cep}}</li>
+      <li>Logradouro: {{cliente.logradouro}}</li>
+      <li>Numero: {{cliente.numero}}</li>
+      <li>Bairro: {{cliente.bairro}}</li>
+      <li>Cidade: {{cliente.cidade}}</li>
+      <li>Estado: {{cliente.estado}}</li>
+      <li>Complemento: {{cliente.complemento}}</li>
+    </ul>
+  </div>
 </div>
 
 <div>
   <h5>Lista de Produtos</h5>
+  <div class="div-lista-cliente">
   <ul  *ngFor="let produto of listaProduto" class="lista-cliente">
+    <li>Id: {{produto.id}}</li>
     <li>Nome: {{produto.nome}}</li>
     <li>descricao: {{produto.descricao}}</li>
     <li>valor: {{produto.valor}}</li>
     <li>Estoque: {{produto.qtdEstoque}}</li>
   </ul>
+</div>
+
+<div>
+  <h5>Lista de Pedido Cliente</h5>
+  <div class="div-lista-cliente">
+    <ul  *ngFor="let pedido of listaPedidoCliente" class="lista-cliente">
+      <li>Id: {{pedido.id}}</li>
+      <li>Id do cliente: {{pedido.cliente_id}}</li>
+      <li>Valor total: {{pedido.valor_total}}</li>
+      <li>Data: {{pedido.data}}</li>
+    </ul>
+  </div>
+</div>
+<div>
+  <h5>Lista de Pedido Produto</h5>
+  <div class="div-lista-cliente">
+    <ul  *ngFor="let pedidoProduto of listaPedidoProduto" class="lista-cliente">
+      <li>Id: {{pedidoProduto.id}}</li>
+      <li>pedidoId: {{pedidoProduto.pedidoId}}</li>
+      <li>produtoId: {{pedidoProduto.produtoId}}</li>
+      <li>valor: {{pedidoProduto.valor}}</li>
+      <li>quantidade: {{pedidoProduto.quantidade}}</li>
+    </ul>
+  </div>
 </div>

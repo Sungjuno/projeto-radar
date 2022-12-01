@@ -1,5 +1,7 @@
+import { IProduto } from './../../models/produto.interface';
+import { ICliente } from './../../models/cliente.interface';
 import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { RequestService } from 'src/app/shared/request/request.service';
 
 @Component({
@@ -14,24 +16,38 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.chamaCliente()
     this.chamaProduto()
+    this.chamaPedidoCliente()
+    this.chamaPedidoProduto()
   }
 
-  listaClientes:any;
-  listaProduto:any
+  listaClientes:ICliente[] = [];
+  listaProduto:IProduto[] = [];
+  listaPedidoCliente:any[] = [];
+  listaPedidoProduto:any[] = [];
 
   chamaCliente(){
     this.req.getCliente()
-    .pipe(
-      take(1)
-      )
+    .pipe(take(1))
     .subscribe(
-      res => this.listaClientes = res )
+      res => this.listaClientes = <Array<ICliente>>res )
   }
 
   chamaProduto(){
     this.req.getProduto()
     .pipe(take(1))
-    .subscribe(res => this.listaProduto = res)
+    .subscribe(res => this.listaProduto = <Array<IProduto>>res)
+  }
+
+    chamaPedidoCliente(){
+    this.req.getPedidoCliente()
+    .pipe(take(1))
+    .subscribe(res => this.listaPedidoCliente = <Array<any>>res)
+  }
+
+  chamaPedidoProduto(){
+    this.req.getPedidoProduto()
+    .pipe(take(1))
+    .subscribe(res => this.listaPedidoProduto = <Array<any>>res)
   }
 
 }
