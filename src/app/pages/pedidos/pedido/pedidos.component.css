@@ -1,0 +1,4 @@
+.div-pedidos{
+  display: flex;
+  justify-content: space-evenly;
+}
