@@ -1,6 +1,7 @@
 import { IProdutoForm } from './../../models/produto.interface';
 import { RequestService } from 'src/app/shared/request/request.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { take } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -28,6 +29,7 @@ export class ProdutosComponent implements OnInit {
   cadastrarProduto(){
     console.log(this.produtoForm.value)
     this.request.postProduto(this.produtoForm.value)
-    .subscribe(res => console.log(res))
+    .pipe(take(1))
+    .subscribe()
   }
 }

@@ -9,10 +9,14 @@ import { FooterComponent } from './pages/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
-import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { FluxosComponent } from './pages/fluxos/fluxos.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PedidosComponent } from './pages/pedidos/pedido/pedidos.component';
+import { ProdutoPedidoComponent } from './pages/pedidos/pedido-produto/produto-pedido.component';
+import { PedidosClientesComponent } from './pages/pedidos/pedidos-clientes/pedidos-clientes.component';
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +28,9 @@ import { HttpClientModule } from '@angular/common/http';
     ProdutosComponent,
     ClientesComponent,
     PedidosComponent,
-    FluxosComponent
+    FluxosComponent,
+    ProdutoPedidoComponent,
+    PedidosClientesComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,16 +16,18 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.chamaCliente()
     this.chamaProduto()
+    this.chamaPedidoCliente()
+    this.chamaPedidoProduto()
   }
 
   listaClientes:ICliente[] = [];
   listaProduto:IProduto[] = [];
+  listaPedidoCliente:any[] = [];
+  listaPedidoProduto:any[] = [];
 
   chamaCliente(){
     this.req.getCliente()
-    .pipe(
-      take(1)
-      )
+    .pipe(take(1))
     .subscribe(
       res => this.listaClientes = <Array<ICliente>>res )
   }
@@ -34,6 +36,18 @@ export class HomeComponent implements OnInit {
     this.req.getProduto()
     .pipe(take(1))
     .subscribe(res => this.listaProduto = <Array<IProduto>>res)
+  }
+
+    chamaPedidoCliente(){
+    this.req.getPedidoCliente()
+    .pipe(take(1))
+    .subscribe(res => this.listaPedidoCliente = <Array<any>>res)
+  }
+
+  chamaPedidoProduto(){
+    this.req.getPedidoProduto()
+    .pipe(take(1))
+    .subscribe(res => this.listaPedidoProduto = <Array<any>>res)
   }
 
 }

@@ -1,5 +1,15 @@
+.div-lista-cliente{
+  display: flex;
+  flex-wrap: wrap;
+}
 .lista-cliente{
   list-style: none;
-  display: flex;
-  justify-content: space-evenly;
+}
+
+li{
+  padding-right: .5rem;
+}
+
+h5{
+  padding: 1rem 0 .5rem 1rem;
 }

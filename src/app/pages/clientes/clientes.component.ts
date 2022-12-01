@@ -1,6 +1,7 @@
-import { ICliente, IClienteForm } from './../../models/cliente.interface';
+import { IClienteForm } from './../../models/cliente.interface';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { take } from 'rxjs';
 import { RequestService } from 'src/app/shared/request/request.service';
 
 @Component({
@@ -30,13 +31,13 @@ export class ClientesComponent implements OnInit {
     complemento: ['']
   }) as IClienteForm
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   cadastrarCliente(){
     console.log(this.clienteForm.value)
     this.request.postCliente(this.clienteForm.value)
-    .subscribe(res => console.log(res))
+    .pipe(take(1))
+    .subscribe()
   }
 
 }
