@@ -1,3 +1,4 @@
+import { FilterPipe } from './pages/pedidos/pedidos-clientes/pedidos-filtro.pipe';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PedidosComponent } from './pages/pedidos/pedido/pedidos.component';
 import { ProdutoPedidoComponent } from './pages/pedidos/pedido-produto/produto-pedido.component';
 import { PedidosClientesComponent } from './pages/pedidos/pedidos-clientes/pedidos-clientes.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -31,12 +33,14 @@ import { PedidosClientesComponent } from './pages/pedidos/pedidos-clientes/pedid
     FluxosComponent,
     ProdutoPedidoComponent,
     PedidosClientesComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

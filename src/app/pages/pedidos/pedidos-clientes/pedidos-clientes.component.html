@@ -18,6 +18,10 @@
         <button type="submit" (click)="cadastrarPedidoCliente()" class="btn botao" >Cadastrar</button>
       </div>
     </form>
+
+  <ul>
+    <li *ngFor="let cliente of listaDeClientes | filter : 'cliente_id' : getSearchCtrl(pedidoClienteForm.value.cliente_id)?.value">{{cliente.email}}</li>
+  </ul>
 </div>
 
 

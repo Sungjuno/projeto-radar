@@ -16,13 +16,12 @@ export class PedidosClientesComponent implements OnInit {
     private req: RequestService
     ) { }
 
-    valotTotalPedido = 1200
     listaDeClientes:any = []
-    listaFiltrado:any = []
-    filterText = ''
+    listaFiltrado:any[] = []
 
   ngOnInit(): void {
-    // this.listaFiltrado = this.listaDeClientes
+    this.getListaClientes()
+    this.pedidoClienteForm.valueChanges.subscribe(value => value.cliente_id)
   }
 
 
@@ -33,13 +32,21 @@ export class PedidosClientesComponent implements OnInit {
     data: [Date]
   })
 
-  cadastrarPedidoCliente(){
-    console.log(this.pedidoClienteForm.value)
-    this.req.postPedidoCliente(this.pedidoClienteForm.value)
-    .subscribe(res => console.log(res))
-    // console.log(this.pedidoClienteForm.value )
+  public getSearchCtrl(accountNumber:any) {
+    return this.pedidoClienteForm.get(accountNumber)
   }
 
+  cadastrarPedidoCliente(){
+    this.req.postPedidoCliente(this.pedidoClienteForm.value)
+    .subscribe(res => console.log(res))
+  }
+
+  getListaClientes(){
+    this.req.getCliente()
+    // .pipe( finalize( () => this.listaFiltrado = this.listaDeClientes))
+    .subscribe(
+      res => this.listaDeClientes = res)
+  }
 
   // listaClientes(){
   //   this.req.getCliente()
