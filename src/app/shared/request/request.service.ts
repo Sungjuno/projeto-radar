@@ -13,8 +13,8 @@ export class RequestService {
   constructor( private http: HttpClient ) { }
 
   getCliente(){
-    let a = this.http.get(environment.url + 'clientes')
-    return a
+    return this.http.get(environment.url + 'clientes')
+
   }
   postCliente(cliente:ICliente){
     return this.http.post<ICliente>(environment.url + 'clientes/',cliente)
@@ -37,5 +37,31 @@ export class RequestService {
 
   updateProduto(produto:IProduto){
     return this.http.put<IProduto>(environment.url + 'produtos/',produto)
+  }
+
+  getPedidoCliente(){
+    let a = this.http.get(environment.url + 'pedidos')
+    return a
+  }
+  postPedidoCliente(pedidoCliente:any){
+    console.log('post no request ' + pedidoCliente )
+    return this.http.post<any>(environment.url + 'pedidos/',pedidoCliente)
+  }
+
+  updatePedidoCliente(pedidoCliente:any){
+    return this.http.put<any>(environment.url + 'pedidos/',pedidoCliente)
+  }
+
+  getPedidoProduto(){
+    let a = this.http.get(environment.url + 'pedidosProdutos')
+    return a
+  }
+  postPedidoProduto(pedidoProduto:any){
+    console.log('post no request ' + pedidoProduto )
+    return this.http.post<any>(environment.url + 'pedidosProdutos/',pedidoProduto)
+  }
+
+  updatePedidoProduto(pedidoProduto:any){
+    return this.http.put<any>(environment.url + 'pedidosProdutos/',pedidoProduto)
   }
 }

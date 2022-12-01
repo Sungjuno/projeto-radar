@@ -1,0 +1,27 @@
+
+    <h2>Pedido do produto</h2>
+    <!-- PedidosProdutos (id, pedido_id, produto_id, valor, quantidade) -->
+
+    <form [formGroup]="pedidoProdutoForm">
+
+      <div class="inputs">
+        <div class="mb-3">
+          <label for="pedidoId" class="form-label">Id do pedido do cliente:</label>
+          <input type="text" class="form-control textbox" id="pedidoId"   formControlName="pedidoId">
+        </div>
+        <div class="mb-3">
+          <label for="produtoId" class="form-label">Id do produto:</label>
+          <input type="text" class="form-control textbox" id="produtoId"   formControlName="produtoId">
+        </div>
+        <div class="mb-3">
+          <label for="valor" class="form-label">Valor:</label>
+          <input type="number" class="form-control textbox" id="valor"   formControlName="valor">
+        </div>
+        <div class="mb-3">
+          <label for="quantidade" class="form-label">Quantidade:</label>
+          <input type="number" class="form-control textbox" id="quantidade" formControlName="quantidade">
+        </div>
+        <button class="btn botao">Cadastrar</button>
+
+      </div>
+    </form>
