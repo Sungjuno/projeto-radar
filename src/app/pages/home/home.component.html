@@ -4,7 +4,7 @@
   <ul  *ngFor="let cliente of listaClientes" class="lista-cliente">
       <li>Id: {{cliente.id}}</li>
       <li>Nome: {{cliente.nome}}</li>
-      <li>Tel: {{cliente.telefone}}</li>
+      <li>Tel: {{cliente.telefone | formatarTelefone}}</li>
       <li>Email: {{cliente.email}}</li>
       <li>CPF: {{cliente.cpf}}</li>
       <li>CEP: {{cliente.cep}}</li>
@@ -53,3 +53,5 @@
     </ul>
   </div>
 </div>
+
+
