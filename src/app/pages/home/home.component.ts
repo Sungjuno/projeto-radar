@@ -1,5 +1,5 @@
-import { IProduto } from './../../models/produto.interface';
-import { ICliente } from './../../models/cliente.interface';
+import { IProduto } from '../../shared/models/produto.interface';
+import { ICliente } from '../../shared/models/cliente.interface';
 import { Component, OnInit } from '@angular/core';
 import { Observable, take } from 'rxjs';
 import { RequestService } from 'src/app/shared/request/request.service';

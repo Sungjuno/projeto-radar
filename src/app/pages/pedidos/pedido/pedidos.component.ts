@@ -1,5 +1,5 @@
-import { IPedido } from './../../models/pedido.interface';
-import { PedidosService } from './../../shared/request/pedidos.service';
+import { PedidosService } from './../../../shared/request/pedidos.service';
+import { IPedido } from '../../../shared/models/pedido.interface';
 import { Component, OnInit } from '@angular/core';
 import { mergeMap, take, finalize } from 'rxjs/operators';
 

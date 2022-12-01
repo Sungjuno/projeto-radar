@@ -1,4 +1,4 @@
-import { IProdutoForm } from './../../models/produto.interface';
+import { IProdutoForm } from '../../shared/models/produto.interface';
 import { RequestService } from 'src/app/shared/request/request.service';
 import { FormBuilder } from '@angular/forms';
 import { take } from 'rxjs';

@@ -1,4 +1,4 @@
-import { IClienteForm } from './../../models/cliente.interface';
+import { IClienteForm } from '../../shared/models/cliente.interface';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { take } from 'rxjs';
