@@ -59,7 +59,7 @@
 <div>
   <h5>Lista de clientes</h5>
   <div class="div-lista-cliente">
-    <table class="table">
+    <table class="table text-center">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Id</th>
@@ -101,7 +101,7 @@
 <div>
   <h5>Lista de Produtos</h5>
   <div class="div-lista-cliente">
-    <table class="table">
+    <table class="table text-center">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Id</th>
@@ -129,7 +129,7 @@
 <div>
   <h5>Lista de Pedido Cliente</h5>
   <div class="div-lista-cliente">
-    <table class="table">
+    <table class="table text-center">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Id</th>
@@ -143,7 +143,7 @@
           <th scope="row">{{ pedido.id }}</th>
           <td>{{ pedido.cliente_id }}</td>
           <td>{{ pedido.valor_total | currency:'BRL' }}</td>
-          <td>{{ pedido.data | date:'fullDate' }}</td>
+          <td>{{ pedido.data | date:'shortDate' }}</td>
         </tr>
       </tbody>
     </table>
@@ -155,7 +155,7 @@
 <div>
   <h5>Lista de Pedido Produto</h5>
   <div class="div-lista-cliente">
-    <table class="table">
+    <table class="table text-center">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Id</th>
