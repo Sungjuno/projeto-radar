@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartOptions , Chart} from "chart.js";
 import { RequestService } from 'src/app/shared/request/request.service';
 import { BaseChartDirective } from 'ng2-charts';
+import { take } from 'rxjs';
 
 
 @Component({
@@ -78,10 +79,9 @@ export class FluxosComponent implements OnInit {
     this.fluxoPedidoClienteApi()
   }
 
-
   fluxoPedidoClienteApi(){
     this.req.getPedidoCliente()
-    .pipe()
+    .pipe(take(1))
     .subscribe( res => this.filtraPorMes(res) )
   }
 
