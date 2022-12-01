@@ -2,7 +2,7 @@ import { take, finalize } from 'rxjs';
 import { RequestService } from 'src/app/shared/request/request.service';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ICliente } from 'src/app/models/cliente.interface';
+import { ICliente } from 'src/app/shared/models/cliente.interface';
 
 @Component({
   selector: 'app-pedidos-clientes',

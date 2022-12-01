@@ -1,4 +1,4 @@
-import { IProdutoForm } from './../../models/produto.interface';
+import { IProdutoForm } from '../../shared/models/produto.interface';
 import { RequestService } from 'src/app/shared/request/request.service';
 import { FormBuilder } from '@angular/forms';
 import { take } from 'rxjs';
@@ -23,7 +23,7 @@ export class ProdutosComponent implements OnInit {
     nome: [''],
     descricao: [''],
     valor: [0],
-    qtdEstoque: [0]
+    qtd_estoque: [0]
   }) as IProdutoForm
 
   cadastrarProduto(){
