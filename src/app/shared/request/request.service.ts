@@ -1,9 +1,9 @@
-import { ICliente } from './../../models/cliente.interface';
+import { ICliente } from '../models/cliente.interface';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { IProduto } from 'src/app/models/produto.interface';
+import { IProduto } from 'src/app/shared/models/produto.interface';
 
 @Injectable({
   providedIn: 'root'

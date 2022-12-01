@@ -1,3 +1,4 @@
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { EstaLogadoGuard } from './shared/guards/esta-logado.guard';
 import { HomeComponent } from './pages/home/home.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'pedidos', component: PedidosComponent, canActivate:[EstaLogadoGuard]},
   {path:'fluxos', component: FluxosComponent, canActivate:[EstaLogadoGuard]},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '**', component: NotFoundComponent},
 ];
 
 @NgModule({
