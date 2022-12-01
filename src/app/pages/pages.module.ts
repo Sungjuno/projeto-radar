@@ -15,6 +15,7 @@ import { PedidosClientesComponent } from '../pages/pedidos/pedidos-clientes/pedi
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormatarTelefonePipe } from '../shared/pipes/formatar-telefone.pipe';
 import { FormatarCpfPipe } from '../shared/pipes/formatar-cpf.pipe';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { FormatarCpfPipe } from '../shared/pipes/formatar-cpf.pipe';
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    NgChartsModule
   ],
   exports: [
     HomeComponent,
