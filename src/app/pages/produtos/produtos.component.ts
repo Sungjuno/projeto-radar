@@ -23,7 +23,7 @@ export class ProdutosComponent implements OnInit {
     nome: [''],
     descricao: [''],
     valor: [0],
-    qtdEstoque: [0]
+    qtd_estoque: [0]
   }) as IProdutoForm
 
   cadastrarProduto(){
