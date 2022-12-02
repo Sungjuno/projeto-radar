@@ -214,7 +214,6 @@ export class FluxoCaixaComponent implements OnInit {
       }else {this.valorMes = 0}
       if(this.dateSelected.toString().slice(5, -3) == '12'){
         this.valorMes = this.fluxoDezembro
-        console.log(this.valorMes, this.fluxoDezembro, "entrou if dezembro")
         return
       } else {this.valorMes = 0}
     }

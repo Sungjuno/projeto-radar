@@ -11,6 +11,7 @@
 }
 .cards{
   display: flex;
+  gap: 1rem;
 }
 .receita-container{
   padding: 2rem 2rem 2rem 2rem;
@@ -33,17 +34,14 @@
   box-shadow: 5px 5px 5px #a7abaf;
   border-radius: 75px;
   padding-bottom: 0;
+  background-color: white;
+  text-align: center;
 }
 
 .num{
   padding: 0 2rem 0 2rem;
   font-size: 2rem;
   font-weight: bold;
-}
-
-.titulo-card{
-  padding-left: .5rem;
-  border-left: solid 3px black;
 }
 
 .mostra-receita{
