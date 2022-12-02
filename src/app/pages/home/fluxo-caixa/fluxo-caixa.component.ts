@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { take, tap } from 'rxjs';
 import { RequestService } from 'src/app/shared/request/request.service';
@@ -8,11 +9,15 @@ import { BaseChartDirective } from 'ng2-charts';
 @Component({
   selector: 'app-fluxo-caixa',
   templateUrl: './fluxo-caixa.component.html',
-  styleUrls: ['./fluxo-caixa.component.css']
+  styleUrls: ['./fluxo-caixa.component.css'],
+  providers: [DatePipe]
 })
 export class FluxoCaixaComponent implements OnInit {
 
-  constructor( private req: RequestService) { }
+  constructor(
+    private req: RequestService,
+    private datePipe: DatePipe
+    ) { }
 
   ngOnInit(): void {
     this.fluxoPedidoClienteApi()
@@ -39,10 +44,8 @@ export class FluxoCaixaComponent implements OnInit {
     this.fluxoSetembro, this.fluxoOutubro, this.fluxoNovembro, this.fluxoDezembro]
 
   totalAnual = 0
-  mesAtual = Intl.DateTimeFormat("pt-br", {month: 'long'}).format()
-  mesesEscrito = new Date()
   totalMensal = 0
-  dateSelected:any
+  dateSelected:any = this.datePipe.transform(new Date(), "yyyy-MM-dd")
   valorDiario:any
   valorMes: any
 
@@ -146,6 +149,7 @@ export class FluxoCaixaComponent implements OnInit {
       this.totalAnual = this.fluxoJaneiro + this.fluxoFevereiro + this.fluxoMarco + this.fluxoAbril + this.fluxoMaio + this.fluxoJulho + this.fluxoJunho + this.fluxoAgosto + this.fluxoSetembro + this.fluxoNovembro + this.fluxoDezembro
 
       this.chart?.update()
+      this.comparaDia()
   }
 
   comparaDia(){

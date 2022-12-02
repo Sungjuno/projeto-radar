@@ -13,9 +13,11 @@ export class FluxoClientesComponent implements OnInit {
 
   ngOnInit(): void {
     this.chamaApiClientes()
+    this.chamaApiProduto()
   }
 
-  clientes: any
+  clientes: number = 0
+  produtos: number = 0
 
   chamaApiClientes(){
     this.req.getCliente()
@@ -23,7 +25,17 @@ export class FluxoClientesComponent implements OnInit {
     .subscribe( res => this.quantidadeClientes(res))
   }
 
+  chamaApiProduto(){
+    this.req.getProduto()
+    .pipe(take(1))
+    .subscribe( res => this.quantidadeProduto(res))
+  }
+
   quantidadeClientes(res:any){
    this.clientes = res.length
+  }
+
+  quantidadeProduto(res:any){
+    this.produtos = res.length
   }
 }
