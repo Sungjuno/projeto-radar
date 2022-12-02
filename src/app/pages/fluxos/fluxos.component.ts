@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartOptions} from "chart.js";
 import { RequestService } from 'src/app/shared/request/request.service';
 import { BaseChartDirective } from 'ng2-charts';
-import { take } from 'rxjs';
+import { take, finalize } from 'rxjs';
+import { IPedido } from 'src/app/shared/models/pedido.interface';
 
 
 @Component({
