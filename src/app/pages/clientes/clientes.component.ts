@@ -1,3 +1,4 @@
+import { AuthService } from './../../shared/auth/auth.service';
 import { IClienteForm } from '../../shared/models/cliente.interface';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -13,7 +14,8 @@ export class ClientesComponent implements OnInit {
 
   constructor(
     private fb:FormBuilder,
-    private request: RequestService
+    private request: RequestService,
+    public auth: AuthService
     ) { }
 
   clienteForm :IClienteForm = this.fb.group({

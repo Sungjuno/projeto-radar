@@ -1,6 +1,12 @@
 <h2>Cadastro Produto</h2>
 
-<form [formGroup]="produtoForm">
+<div *ngIf="!auth.verificaAdm()" class="d-flex justify-content-center">
+  <div class="alert alert-warning text-center mt-4 w-25">
+    <p><strong>Você não tem permissão para cadastrar novos produtos.</strong></p>
+  </div>
+</div>
+
+<form [formGroup]="produtoForm" *ngIf="auth.verificaAdm()">
 
   <div class="inputs">
     <div class="mb-3">

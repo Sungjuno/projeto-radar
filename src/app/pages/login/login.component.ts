@@ -27,6 +27,9 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(this.auth.verificaLogado()){
+      this.router.navigateByUrl("/home");
+    }
   }
 
   verificaLogin() {

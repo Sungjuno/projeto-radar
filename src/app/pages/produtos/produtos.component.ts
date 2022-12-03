@@ -1,3 +1,4 @@
+import { AuthService } from './../../shared/auth/auth.service';
 import { IProdutoForm } from '../../shared/models/produto.interface';
 import { RequestService } from 'src/app/shared/request/request.service';
 import { FormBuilder } from '@angular/forms';
@@ -13,7 +14,8 @@ export class ProdutosComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private request: RequestService) { }
+    private request: RequestService,
+    public auth: AuthService) { }
 
   ngOnInit(): void {
   }

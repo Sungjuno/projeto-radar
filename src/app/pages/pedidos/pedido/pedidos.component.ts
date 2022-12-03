@@ -1,3 +1,4 @@
+import { AuthService } from './../../../shared/auth/auth.service';
 import { PedidosService } from './../../../shared/request/pedidos.service';
 import { IPedido } from '../../../shared/models/pedido.interface';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,9 @@ import { mergeMap, take, finalize } from 'rxjs/operators';
 })
 export class PedidosComponent implements OnInit {
 
-  constructor(private pedidosService: PedidosService) {
+  constructor(
+    private pedidosService: PedidosService,
+    public auth: AuthService) {
     
   }
 

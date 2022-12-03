@@ -16,6 +16,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FormatarTelefonePipe } from '../shared/pipes/formatar-telefone.pipe';
 import { FormatarCpfPipe } from '../shared/pipes/formatar-cpf.pipe';
 import { NgChartsModule } from 'ng2-charts';
+import { BarChartComponent } from './home/bar-chart/bar-chart.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { NgChartsModule } from 'ng2-charts';
     NotFoundComponent,
     FormatarTelefonePipe,
     FormatarCpfPipe,
+    BarChartComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +51,7 @@ import { NgChartsModule } from 'ng2-charts';
     ProdutoPedidoComponent,
     PedidosClientesComponent,
     LoginComponent,
+    BarChartComponent,
   ]
 })
 export class PagesModule { }
