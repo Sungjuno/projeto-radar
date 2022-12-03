@@ -6,27 +6,44 @@
   </div>
 </div>
 
-<form [formGroup]="produtoForm" *ngIf="auth.verificaAdm()">
-
-  <div class="inputs">
-    <div class="mb-3">
-      <label for="nome" class="form-label">Nome:</label>
-      <input type="text" class="form-control textbox" id="nome" formControlName="nome">
+<div class="container-produto">
+  <form [formGroup]="produtoForm" *ngIf="auth.verificaAdm()">
+    <div class="inputs">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome:</label>
+        <input type="text" class="form-control textbox" id="nome" formControlName="nome">
+      </div>
+      <div class="mb-3">
+        <label for="descricao" class="form-label">Descrição:</label>
+        <input type="text" class="form-control textbox" id="descricao" formControlName="descricao">
+      </div>
+      <div class="mb-3">
+        <label for="valor" class="form-label">Valor:</label>
+        <input type="number" class="form-control textbox" id="valor" formControlName="valor">
+      </div>
+      <div class="mb-3">
+        <label for="qtd_estoque" class="form-label">Estoque:</label>
+        <input type="number" class="form-control textbox" id="qtd_estoque" formControlName="qtd_estoque">
+      </div>
+      <button type="submit" (click)="cadastrarProduto()" class="btn botao">Cadastrar</button>
     </div>
-    <div class="mb-3">
-      <label for="descricao" class="form-label">Descrição:</label>
-      <input type="text" class="form-control textbox" id="descricao" formControlName="descricao">
-    </div>
-    <div class="mb-3">
-      <label for="valor" class="form-label">Valor:</label>
-      <input type="number" class="form-control textbox" id="valor" formControlName="valor">
-    </div>
-    <div class="mb-3">
-      <label for="qtd_estoque" class="form-label">Estoque:</label>
-      <input type="number" class="form-control textbox" id="qtd_estoque" formControlName="qtd_estoque">
-    </div>
-
-    <button type="submit" (click)="cadastrarProduto()" class="btn botao">Cadastrar</button>
-
+  </form>
+  <div #tabela class="tabela">
+    <table>
+      <thead>
+          <tr>
+              <th>Nome</th>
+              <th>Valor</th>
+              <th>Estoque</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let produto of listaProduto" class="produto">
+              <td>{{produto.nome}} </td>
+              <td>{{produto.valor | currency: 'BRL'}}</td>
+              <td>{{produto.qtd_estoque}}</td>
+          </tr>
+      </tbody>
+  </table>
   </div>
-</form>
+</div>

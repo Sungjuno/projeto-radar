@@ -1,6 +1,7 @@
 import { AuthService } from './../../shared/auth/auth.service';
+import { ICliente } from 'src/app/shared/models/cliente.interface';
 import { IClienteForm } from '../../shared/models/cliente.interface';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { take } from 'rxjs';
 import { RequestService } from 'src/app/shared/request/request.service';
@@ -48,6 +49,8 @@ listaEstados = [
       'Tocantins'
 ]
 
+listaCliente: ICliente[] = []
+
   clienteForm :IClienteForm = this.fb.group({
     id: [0],
     nome: [''],
@@ -63,13 +66,28 @@ listaEstados = [
     complemento: ['']
   }) as IClienteForm
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCliente()
+  }
+
+  @ViewChild('tabela') list?: ElementRef<HTMLDivElement>;
+
+  ngAfterViewInit() {
+    const maxScroll = this.list?.nativeElement.scrollHeight;
+    this.list?.nativeElement.scrollTo({ top: maxScroll, behavior: 'smooth' });
+  }
 
   cadastrarCliente(){
-    console.log(this.clienteForm.value)
     this.request.postCliente(this.clienteForm.value)
     .pipe(take(1))
     .subscribe()
+    this.getCliente()
+  }
+
+  getCliente(){
+    this.request.getCliente()
+    .pipe(take(1))
+    .subscribe( res => this.listaCliente = <ICliente[]>res)
   }
 
 }
