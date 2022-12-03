@@ -23,6 +23,7 @@ li:hover{
   box-shadow: 2px 2px 2px 1px #ff6900;
   opacity: 90%;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 img:hover{

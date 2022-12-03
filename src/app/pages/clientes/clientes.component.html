@@ -47,7 +47,9 @@
     </div>
     <div class="mb-3">
       <label for="estado" class="form-label">Estado:</label>
-      <input type="string" class="form-control textbox" id="estado" formControlName="estado">
+      <select name="estados" id="" formControlName="estado" class="form-select seleciona-estado">
+        <option [ngValue]="estadoSelect" *ngFor="let estadoSelect of listaEstados" >{{estadoSelect}}</option>
+      </select>
     </div>
     <div class="mb-3">
       <label for="complemento" class="form-label">Complemento:</label>

@@ -1,10 +1,10 @@
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HomeComponent } from '../pages/home/home.component';
 import { ProdutosComponent } from '../pages/produtos/produtos.component';
 import { ClientesComponent } from '../pages/clientes/clientes.component';
@@ -40,7 +40,8 @@ import { BarChartComponent } from './home/bar-chart/bar-chart.component';
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgChartsModule
+    NgChartsModule,
+    FormsModule
   ],
   exports: [
     HomeComponent,

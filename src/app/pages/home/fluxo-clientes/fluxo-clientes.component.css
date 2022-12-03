@@ -1,0 +1,66 @@
+
+.div-fluxo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 505px;
+  padding-top: 3rem;
+  box-shadow: 5px 5px 5px #a7abaf;
+  border-radius: 25px;
+}
+.cards{
+  display: flex;
+  gap: 1rem;
+}
+.receita-container{
+  padding: 2rem 2rem 2rem 2rem;
+  gap: 2rem;
+}
+
+.receita-box{
+  display: flex;
+  flex-direction: column;
+}
+
+.receita-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 11rem;
+  color: black;
+  padding: 1rem;
+  box-shadow: 5px 5px 5px #a7abaf;
+  border-radius: 75px;
+  padding-bottom: 0;
+  background-color: white;
+  text-align: center;
+}
+
+.num{
+  padding: 0 2rem 0 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.mostra-receita{
+  height: 3rem;
+}
+
+.box{
+  border: none;
+  border-left: solid 3px black;
+  color: black ;
+  background-color: #e0e6ed;
+  padding: .4rem;
+  margin-bottom: 1rem;
+}
+
+.total-ano{
+  font-size: larger;
+  font-weight: bold;
+  border-bottom: solid 2px rgb(63, 233, 63);
+}
+
+/* 343a40 */
