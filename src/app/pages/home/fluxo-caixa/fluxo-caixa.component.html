@@ -13,7 +13,7 @@
       </div>
     </div>
     <div  class="div-fluxo">
-      <h5>Fluxo de caixa de 2022</h5>
+      <h5>Fluxo de Caixa {{ fluxoAno }}</h5>
       <canvas baseChart width="500" height="300"
         [type]="'line'"
         [data]="lineChartData"
@@ -21,8 +21,8 @@
         [legend]="lineChartLegend">
       </canvas>
       <div class="botoes">
-        <button type="button" (click)="fluxoPedidoClienteApi(21)" class="btn btn-success mb-2 mt-1">2021</button>
-        <button type="button" (click)="fluxoPedidoClienteApi(22)" class="btn btn-success mb-2 mt-1">2022</button>
+        <button type="button" (click)="fluxoPedidoClienteApi('2021')" class="btn btn-success mb-2 mt-1">2021</button>
+        <button type="button" (click)="fluxoPedidoClienteApi('2022')" class="btn btn-success mb-2 mt-1">2022</button>
       </div>
     </div>
   </div>

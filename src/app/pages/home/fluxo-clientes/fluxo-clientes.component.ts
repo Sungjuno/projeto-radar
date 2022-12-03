@@ -14,7 +14,7 @@ export class FluxoClientesComponent implements OnInit {
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  fluxoAno = 0;
+  fluxoAno = "";
 
   fluxoJaneiro = 0
   fluxoFevereiro = 0
@@ -108,7 +108,7 @@ export class FluxoClientesComponent implements OnInit {
       .subscribe(res => this.quantidadeProduto(res))
   }
 
-  fluxoPedidoClienteApi(ano: number) {
+  fluxoPedidoClienteApi(ano: string) {
     this.fluxoJaneiro = 0;
     this.fluxoFevereiro = 0;
     this.fluxoMarco = 0;
@@ -137,10 +137,10 @@ export class FluxoClientesComponent implements OnInit {
     this.produtos = res.length
   }
 
-  filtraPorMes(arr: any, ano: number) {
+  filtraPorMes(arr: any, ano: string) {
 
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i].data.toString().slice(2, -6) == ano.toString()) {
+      if (arr[i].data.toString().slice(0, -6) == ano.toString()) {
         if (arr[i].data.toString().slice(5, -3) == '01') {
           this.fluxoJaneiro += 1
           this.barChartData.datasets[0].data[0] = this.fluxoJaneiro
