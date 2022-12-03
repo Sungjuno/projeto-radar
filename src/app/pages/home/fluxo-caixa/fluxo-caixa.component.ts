@@ -14,13 +14,15 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class FluxoCaixaComponent implements OnInit {
 
+  dateInicial = new Date()
+
   constructor(
     private req: RequestService,
     private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
-
+    this.fluxoPedidoClienteApi(this.dateInicial.getFullYear().toString())
   }
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
