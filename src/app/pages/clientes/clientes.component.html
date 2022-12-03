@@ -1,7 +1,7 @@
 <h2>Cadastro Cliente</h2>
 
+<div class="container-cliente">
 <form [formGroup]="clienteForm" class="form">
-
   <div class="inputs">
     <div class="mb-3">
       <label for="nome" class="form-label">Nome:</label>
@@ -52,3 +52,20 @@
   </div>
   <button type="submit" (click)="cadastrarCliente()" class="btn botao">Cadastrar</button>
 </form>
+<div #tabela class="tabela">
+  <table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cliente of listaCliente" class="cliente">
+            <td>{{cliente.nome}} </td>
+            <td>{{cliente.email}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>

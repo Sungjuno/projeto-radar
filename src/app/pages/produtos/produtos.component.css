@@ -20,3 +20,25 @@ h2{
   margin-top: 1rem;
   text-align: center;
 }
+
+.container-produto{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem 0 7rem;
+}
+
+.tabela{
+  height: 20rem;
+  overflow-y: scroll;
+}
+
+td{
+  width: 9rem;
+}
+
+.produto-p{
+  display: flex;
+  justify-content: space-evenly;
+  gap: 5rem;
+}
