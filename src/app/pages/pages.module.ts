@@ -1,3 +1,5 @@
+import { FluxoClientesComponent } from './home/fluxo-clientes/fluxo-clientes.component';
+import { FluxoCaixaComponent } from './home/fluxo-caixa/fluxo-caixa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,6 +35,8 @@ import { BarChartComponent } from './home/bar-chart/bar-chart.component';
     FormatarTelefonePipe,
     FormatarCpfPipe,
     BarChartComponent,
+    FluxoCaixaComponent,
+    FluxoClientesComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +57,8 @@ import { BarChartComponent } from './home/bar-chart/bar-chart.component';
     PedidosClientesComponent,
     LoginComponent,
     BarChartComponent,
+    FluxoCaixaComponent,
+    FluxoClientesComponent,
   ]
 })
 export class PagesModule { }

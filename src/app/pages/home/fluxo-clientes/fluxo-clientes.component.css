@@ -4,10 +4,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 505px;
-  padding-top: 3rem;
+  width: 605px;
+  padding-top: 1rem;
   box-shadow: 5px 5px 5px #a7abaf;
   border-radius: 25px;
+  background-color: white;
 }
 .cards{
   display: flex;
@@ -21,6 +22,7 @@
 .receita-box{
   display: flex;
   flex-direction: column;
+  gap: 7rem;
 }
 
 .receita-card{
