@@ -20,7 +20,8 @@ export class FluxoCaixaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    const dataInicial = new Date()
+    this.fluxoPedidoClienteApi(dataInicial.getFullYear().toString())
   }
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
@@ -100,19 +101,6 @@ export class FluxoCaixaComponent implements OnInit {
   objetoApi: any
 
   fluxoPedidoClienteApi(ano: string) {
-    this.fluxoJaneiro = 0;
-    this.fluxoFevereiro = 0;
-    this.fluxoMarco = 0;
-    this.fluxoAbril = 0;
-    this.fluxoMaio = 0;
-    this.fluxoJunho = 0;
-    this.fluxoJulho = 0;
-    this.fluxoAgosto = 0;
-    this.fluxoSetembro = 0;
-    this.fluxoOutubro = 0;
-    this.fluxoNovembro = 0;
-    this.fluxoDezembro = 0;
-
     this.fluxoAno = ano;
 
     this.req.getPedidoCliente()
