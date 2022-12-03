@@ -24,6 +24,12 @@
   gap: 7rem;
 }
 
+.botoes {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
 .receita-card{
   display: flex;
   flex-direction: column;

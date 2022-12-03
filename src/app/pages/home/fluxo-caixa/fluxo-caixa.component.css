@@ -59,4 +59,10 @@
   border-bottom: solid 2px rgb(63, 233, 63);
 }
 
+.botoes {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
 /* 343a40 */
