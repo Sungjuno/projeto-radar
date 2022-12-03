@@ -1,3 +1,4 @@
+import { AuthService } from './../../shared/auth/auth.service';
 import { ICliente } from 'src/app/shared/models/cliente.interface';
 import { IClienteForm } from '../../shared/models/cliente.interface';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
@@ -14,7 +15,8 @@ export class ClientesComponent implements OnInit {
 
   constructor(
     private fb:FormBuilder,
-    private request: RequestService
+    private request: RequestService,
+    public auth: AuthService
     ) { }
 
 listaEstados = [

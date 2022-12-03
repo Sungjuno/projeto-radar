@@ -16,7 +16,6 @@
 .receita-container{
   padding: 2rem 2rem 2rem 2rem;
   gap: 2rem;
-
 }
 
 .receita-box{
@@ -27,7 +26,7 @@
 
 .receita-card{
   margin-right: 1rem;
-  width: 11rem;
+  width: 13rem;
   color: black;
   padding: 1rem;
   box-shadow: 5px 5px 5px #a7abaf;

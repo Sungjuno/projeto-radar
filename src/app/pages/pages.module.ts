@@ -1,3 +1,5 @@
+import { FluxoClientesComponent } from './home/fluxo-clientes/fluxo-clientes.component';
+import { FluxoCaixaComponent } from './home/fluxo-caixa/fluxo-caixa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,8 +18,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FormatarTelefonePipe } from '../shared/pipes/formatar-telefone.pipe';
 import { FormatarCpfPipe } from '../shared/pipes/formatar-cpf.pipe';
 import { NgChartsModule } from 'ng2-charts';
-import { FluxoCaixaComponent } from './home/fluxo-caixa/fluxo-caixa.component';
-import { FluxoClientesComponent } from './home/fluxo-clientes/fluxo-clientes.component';
+import { BarChartComponent } from './home/bar-chart/bar-chart.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { FluxoClientesComponent } from './home/fluxo-clientes/fluxo-clientes.com
     NotFoundComponent,
     FormatarTelefonePipe,
     FormatarCpfPipe,
+    BarChartComponent,
     FluxoCaixaComponent,
     FluxoClientesComponent,
   ],
@@ -54,6 +56,9 @@ import { FluxoClientesComponent } from './home/fluxo-clientes/fluxo-clientes.com
     ProdutoPedidoComponent,
     PedidosClientesComponent,
     LoginComponent,
+    BarChartComponent,
+    FluxoCaixaComponent,
+    FluxoClientesComponent,
   ]
 })
 export class PagesModule { }

@@ -1,71 +1,77 @@
 <h2>Cadastro Cliente</h2>
 
-<div class="container-cliente">
-<form [formGroup]="clienteForm" class="form">
-  <div class="inputs">
-    <div class="mb-3">
-      <label for="nome" class="form-label">Nome:</label>
-      <input type="text" class="form-control textbox" id="nome" formControlName="nome">
-    </div>
-    <div class="mb-3">
-      <label for="telefone" class="form-label">Telefone:</label>
-      <input type="number" class="form-control textbox" id="telefone" formControlName="telefone">
-    </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email:</label>
-      <input type="email" class="form-control textbox" id="email" formControlName="email">
-    </div>
-    <div class="mb-3">
-      <label for="cpf" class="form-label">CPF:</label>
-      <input type="number" class="form-control textbox" id="cpf" formControlName="cpf">
-    </div>
-    <div class="mb-3">
-      <label for="cep" class="form-label">CEP:</label>
-      <input type="number" class="form-control textbox" id="cep" formControlName="cep">
-    </div>
-    <div class="mb-3">
-      <label for="logradouro" class="form-label">Logradouro:</label>
-      <input type="string" class="form-control textbox" id="logradouro" formControlName="logradouro">
-    </div>
-    <div class="mb-3">
-      <label for="numero" class="form-label">Número:</label>
-      <input type="number" class="form-control textbox" id="numero" formControlName="numero">
-    </div>
-    <div class="mb-3">
-      <label for="bairro" class="form-label">Bairro:</label>
-      <input type="string" class="form-control textbox" id="bairro" formControlName="bairro">
-    </div>
-    <div class="mb-3">
-      <label for="cidade" class="form-label">Cidade:</label>
-      <input type="string" class="form-control textbox" id="cidade" formControlName="cidade">
-    </div>
-    <div class="mb-3">
-      <label for="estado" class="form-label">Estado:</label>
-      <select name="estados" id="" formControlName="estado" class="form-select seleciona-estado">
-        <option [ngValue]="estadoSelect" *ngFor="let estadoSelect of listaEstados" >{{estadoSelect}}</option>
-      </select>
-    </div>
-    <div class="mb-3">
-      <label for="complemento" class="form-label">Complemento:</label>
-      <input type="string" class="form-control textbox" id="complemento" formControlName="complemento">
-    </div>
+<div *ngIf="!auth.verificaAdm()" class="d-flex justify-content-center">
+  <div class="alert alert-warning text-center mt-4 w-25">
+    <p><strong>Você não tem permissão para cadastrar novos clientes.</strong></p>
   </div>
-  <button type="submit" (click)="cadastrarCliente()" class="btn botao">Cadastrar</button>
-</form>
-<div #tabela class="tabela">
-  <table>
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Email</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let cliente of listaCliente" class="cliente">
-            <td>{{cliente.nome}} </td>
-            <td>{{cliente.email}}</td>
-        </tr>
-    </tbody>
-</table>
 </div>
+
+<div class="container-cliente">
+  <form [formGroup]="clienteForm" class="form" *ngIf="auth.verificaAdm()">
+    <div class="inputs">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome:</label>
+        <input type="text" class="form-control textbox" id="nome" formControlName="nome">
+      </div>
+      <div class="mb-3">
+        <label for="telefone" class="form-label">Telefone:</label>
+        <input type="number" class="form-control textbox" id="telefone" formControlName="telefone">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" class="form-control textbox" id="email" formControlName="email">
+      </div>
+      <div class="mb-3">
+        <label for="cpf" class="form-label">CPF:</label>
+        <input type="number" class="form-control textbox" id="cpf" formControlName="cpf">
+      </div>
+      <div class="mb-3">
+        <label for="cep" class="form-label">CEP:</label>
+        <input type="number" class="form-control textbox" id="cep" formControlName="cep">
+      </div>
+      <div class="mb-3">
+        <label for="logradouro" class="form-label">Logradouro:</label>
+        <input type="string" class="form-control textbox" id="logradouro" formControlName="logradouro">
+      </div>
+      <div class="mb-3">
+        <label for="numero" class="form-label">Número:</label>
+        <input type="number" class="form-control textbox" id="numero" formControlName="numero">
+      </div>
+      <div class="mb-3">
+        <label for="bairro" class="form-label">Bairro:</label>
+        <input type="string" class="form-control textbox" id="bairro" formControlName="bairro">
+      </div>
+      <div class="mb-3">
+        <label for="cidade" class="form-label">Cidade:</label>
+        <input type="string" class="form-control textbox" id="cidade" formControlName="cidade">
+      </div>
+      <div class="mb-3">
+        <label for="estado" class="form-label">Estado:</label>
+        <select name="estados" id="" formControlName="estado" class="form-select seleciona-estado">
+          <option [ngValue]="estadoSelect" *ngFor="let estadoSelect of listaEstados">{{estadoSelect}}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="complemento" class="form-label">Complemento:</label>
+        <input type="string" class="form-control textbox" id="complemento" formControlName="complemento">
+      </div>
+    </div>
+    <button type="submit" (click)="cadastrarCliente()" class="btn botao">Cadastrar</button>
+  </form>
+  <div #tabela class="tabela">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of listaCliente" class="cliente">
+          <td>{{cliente.nome}} </td>
+          <td>{{cliente.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -1,17 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {  ChartConfiguration, ChartOptions} from "chart.js";
-import { RequestService } from 'src/app/shared/request/request.service';
+import { take } from 'rxjs';
+import { RequestService } from './../../../shared/request/request.service';
+import { ChartOptions } from 'chart.js';
+import { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { take, finalize } from 'rxjs';
-import { IPedido } from 'src/app/shared/models/pedido.interface';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-fluxos',
-  templateUrl: './fluxos.component.html',
-  styleUrls: ['./fluxos.component.css']
+  selector: 'app-bar-chart',
+  templateUrl: './bar-chart.component.html',
+  styleUrls: ['./bar-chart.component.css']
 })
-export class FluxosComponent implements OnInit {
+export class BarChartComponent implements OnInit {
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
@@ -28,7 +27,13 @@ export class FluxosComponent implements OnInit {
   fluxoNovembro = 0
   fluxoDezembro = 0
 
-  lineChartData: ChartConfiguration<'line'>['data'] = {
+  constructor( private req: RequestService ) { }
+
+  ngOnInit(): void {
+    this.fluxoPedidoClienteApi()
+  }
+
+  barChartData: ChartConfiguration<'bar'>['data'] = {
     labels: [
       'Janeiro',
       'Fevereiro',
@@ -60,25 +65,17 @@ export class FluxosComponent implements OnInit {
           this.fluxoDezembro
         ],
         label: 'Ganho Mensal',
-        fill: false,
-        tension: .5,
         borderColor: 'black',
-        backgroundColor: 'rgba(255,0,0,0.3)',
+        backgroundColor: 'rgba(0,125,0,0.7)'
       }
     ]
-  };
-  public lineChartOptions: ChartOptions<'line'> = {
+  }
+
+  public barChartOptions: ChartOptions<'bar'> = {
     responsive: false
   };
-  public lineChartLegend = true;
 
-  constructor(
-    private req: RequestService,
-    ) { }
-
-  ngOnInit(): void {
-    this.fluxoPedidoClienteApi()
-  }
+  public barChartLegend = true;
 
   fluxoPedidoClienteApi(){
     this.req.getPedidoCliente()
@@ -91,47 +88,44 @@ export class FluxosComponent implements OnInit {
     for(let i = 0; i < arr.length; i++){
       if(arr[i].data.toString().slice(5, -3) == '01'){
         this.fluxoJaneiro += arr[i].valor_total
-        this.lineChartData.datasets[0].data[0] = this.fluxoJaneiro
+        this.barChartData.datasets[0].data[0] = this.fluxoJaneiro
       }else if(arr[i].data.toString().slice(5, -3) == '02'){
         this.fluxoFevereiro += arr[i].valor_total
-        this.lineChartData.datasets[0].data[1] = this.fluxoFevereiro
+        this.barChartData.datasets[0].data[1] = this.fluxoFevereiro
       }else if(arr[i].data.toString().slice(5, -3) == '03'){
         this.fluxoMarco += arr[i].valor_total
-        this.lineChartData.datasets[0].data[2] = this.fluxoMarco
+        this.barChartData.datasets[0].data[2] = this.fluxoMarco
       }else if(arr[i].data.toString().slice(5, -3) == '04'){
         this.fluxoAbril += arr[i].valor_total
-        this.lineChartData.datasets[0].data[3] = this.fluxoAbril
+        this.barChartData.datasets[0].data[3] = this.fluxoAbril
       }else if(arr[i].data.toString().slice(5, -3) == '05'){
         this.fluxoMaio += arr[i].valor_total
-        this.lineChartData.datasets[0].data[4] = this.fluxoMaio
+        this.barChartData.datasets[0].data[4] = this.fluxoMaio
       }else if(arr[i].data.toString().slice(5, -3) == '06'){
         this.fluxoJunho += arr[i].valor_total
-        this.lineChartData.datasets[0].data[5] = this.fluxoJunho
+        this.barChartData.datasets[0].data[5] = this.fluxoJunho
       }else if(arr[i].data.toString().slice(5, -3) == '07'){
         this.fluxoJulho += arr[i].valor_total
-        this.lineChartData.datasets[0].data[6] = this.fluxoJulho
+        this.barChartData.datasets[0].data[6] = this.fluxoJulho
       }else if(arr[i].data.toString().slice(5, -3) == '08'){
         this.fluxoAgosto += arr[i].valor_total
-        this.lineChartData.datasets[0].data[7] = this.fluxoAgosto
+        this.barChartData.datasets[0].data[7] = this.fluxoAgosto
       }else if(arr[i].data.toString().slice(5, -3) == '09'){
         this.fluxoSetembro += arr[i].valor_total
-        this.lineChartData.datasets[0].data[8] = this.fluxoSetembro
+        this.barChartData.datasets[0].data[8] = this.fluxoSetembro
       }else if(arr[i].data.toString().slice(5, -3) == '10'){
         this.fluxoOutubro += arr[i].valor_total
-        this.lineChartData.datasets[0].data[9] = this.fluxoOutubro
+        this.barChartData.datasets[0].data[9] = this.fluxoOutubro
       }else if(arr[i].data.toString().slice(5, -3) == '11'){
         this.fluxoNovembro += arr[i].valor_total
-        this.lineChartData.datasets[0].data[10] = this.fluxoNovembro
+        this.barChartData.datasets[0].data[10] = this.fluxoNovembro
       }else if(arr[i].data.toString().slice(5, -3) == '12'){
         this.fluxoDezembro += arr[i].valor_total
-        this.lineChartData.datasets[0].data[11] = this.fluxoDezembro
+        this.barChartData.datasets[0].data[11] = this.fluxoDezembro
       }
     }
     this.chart?.update()
 
   }
 
-
-
 }
-

@@ -1,9 +1,9 @@
+import { AuthService } from './../../shared/auth/auth.service';
 import { IProduto } from 'src/app/shared/models/produto.interface';
 import { IProdutoForm } from '../../shared/models/produto.interface';
 import { RequestService } from 'src/app/shared/request/request.service';
 import { FormBuilder } from '@angular/forms';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { p } from 'chart.js/dist/chunks/helpers.core';
 import { take, tap } from 'rxjs';
 
 
@@ -16,7 +16,8 @@ export class ProdutosComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private request: RequestService) { }
+    private request: RequestService,
+    public auth: AuthService) { }
 
   ngOnInit(): void {
     this.getProduto()
