@@ -17,14 +17,15 @@ export class FluxoCaixaComponent implements OnInit {
   constructor(
     private req: RequestService,
     private datePipe: DatePipe
-    ) { }
+  ) { }
 
   ngOnInit(): void {
-    this.fluxoPedidoClienteApi()
 
   }
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+
+  fluxoAno = 0;
 
   fluxoJaneiro = 0
   fluxoFevereiro = 0
@@ -41,14 +42,14 @@ export class FluxoCaixaComponent implements OnInit {
 
   meses = [
     this.fluxoJaneiro, this.fluxoFevereiro, this.fluxoMarco, this.fluxoAbril,
-    this.fluxoMaio,this.fluxoJunho, this.fluxoJulho, this.fluxoAgosto,
+    this.fluxoMaio, this.fluxoJunho, this.fluxoJulho, this.fluxoAgosto,
     this.fluxoSetembro, this.fluxoOutubro, this.fluxoNovembro, this.fluxoDezembro]
 
   totalAnual = 0
   totalMensal = 0
-  dateSelected:any = this.datePipe.transform(new Date(), "yyyy-MM-dd")
+  dateSelected: any = this.datePipe.transform(new Date(), "yyyy-MM-dd")
   dateChoose = this.dateSelected
-  valorDiario:any
+  valorDiario: any
   valorMes: any
 
   lineChartData: ChartConfiguration<'line'>['data'] = {
@@ -98,124 +99,141 @@ export class FluxoCaixaComponent implements OnInit {
 
   objetoApi: any
 
-  fluxoPedidoClienteApi(){
-      this.req.getPedidoCliente()
-      .pipe(take(1), tap(res => this.objetoApi = res ))
-      .subscribe( res =>{
-        this.filtraPorMes(res);
-      } )
-    }
+  fluxoPedidoClienteApi(ano: number) {
+    this.fluxoJaneiro = 0;
+    this.fluxoFevereiro = 0;
+    this.fluxoMarco = 0;
+    this.fluxoAbril = 0;
+    this.fluxoMaio = 0;
+    this.fluxoJunho = 0;
+    this.fluxoJulho = 0;
+    this.fluxoAgosto = 0;
+    this.fluxoSetembro = 0;
+    this.fluxoOutubro = 0;
+    this.fluxoNovembro = 0;
+    this.fluxoDezembro = 0;
 
-  filtraPorMes(arr:any){
-      for(let i = 0; i < arr.length; i++){
-        if(arr[i].data.toString().slice(5, -3) == '01'){
+    this.fluxoAno = ano;
+
+    this.req.getPedidoCliente()
+      .pipe(take(1), tap(res => this.objetoApi = res))
+      .subscribe(res => {
+        this.filtraPorMes(res, this.fluxoAno);
+      })
+  }
+
+  filtraPorMes(arr: any, ano: number) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].data.toString().slice(2, -6) == ano.toString()) {
+        if (arr[i].data.toString().slice(5, -3) == '01') {
           this.fluxoJaneiro += arr[i].valor_total
           this.lineChartData.datasets[0].data[0] = this.fluxoJaneiro
-        }else if(arr[i].data.toString().slice(5, -3) == '02'){
+        } else if (arr[i].data.toString().slice(5, -3) == '02') {
           this.fluxoFevereiro += arr[i].valor_total
           this.lineChartData.datasets[0].data[1] = this.fluxoFevereiro
-        }else if(arr[i].data.toString().slice(5, -3) == '03'){
+        } else if (arr[i].data.toString().slice(5, -3) == '03') {
           this.fluxoMarco += arr[i].valor_total
           this.lineChartData.datasets[0].data[2] = this.fluxoMarco
-        }else if(arr[i].data.toString().slice(5, -3) == '04'){
+        } else if (arr[i].data.toString().slice(5, -3) == '04') {
           this.fluxoAbril += arr[i].valor_total
           this.lineChartData.datasets[0].data[3] = this.fluxoAbril
-        }else if(arr[i].data.toString().slice(5, -3) == '05'){
+        } else if (arr[i].data.toString().slice(5, -3) == '05') {
           this.fluxoMaio += arr[i].valor_total
           this.lineChartData.datasets[0].data[4] = this.fluxoMaio
-        }else if(arr[i].data.toString().slice(5, -3) == '06'){
+        } else if (arr[i].data.toString().slice(5, -3) == '06') {
           this.fluxoJunho += arr[i].valor_total
           this.lineChartData.datasets[0].data[5] = this.fluxoJunho
-        }else if(arr[i].data.toString().slice(5, -3) == '07'){
+        } else if (arr[i].data.toString().slice(5, -3) == '07') {
           this.fluxoJulho += arr[i].valor_total
           this.lineChartData.datasets[0].data[6] = this.fluxoJulho
-        }else if(arr[i].data.toString().slice(5, -3) == '08'){
+        } else if (arr[i].data.toString().slice(5, -3) == '08') {
           this.fluxoAgosto += arr[i].valor_total
           this.lineChartData.datasets[0].data[7] = this.fluxoAgosto
-        }else if(arr[i].data.toString().slice(5, -3) == '09'){
+        } else if (arr[i].data.toString().slice(5, -3) == '09') {
           this.fluxoSetembro += arr[i].valor_total
           this.lineChartData.datasets[0].data[8] = this.fluxoSetembro
-        }else if(arr[i].data.toString().slice(5, -3) == '10'){
+        } else if (arr[i].data.toString().slice(5, -3) == '10') {
           this.fluxoOutubro += arr[i].valor_total
           this.lineChartData.datasets[0].data[9] = this.fluxoOutubro
-        }else if(arr[i].data.toString().slice(5, -3) == '11'){
+        } else if (arr[i].data.toString().slice(5, -3) == '11') {
           this.fluxoNovembro += arr[i].valor_total
           this.lineChartData.datasets[0].data[10] = this.fluxoNovembro
-        }else if(arr[i].data.toString().slice(5, -3) == '12'){
+        } else if (arr[i].data.toString().slice(5, -3) == '12') {
           this.fluxoDezembro += arr[i].valor_total
           this.lineChartData.datasets[0].data[11] = this.fluxoDezembro
         }
       }
+    }
 
-      this.totalAnual = this.fluxoJaneiro + this.fluxoFevereiro + this.fluxoMarco + this.fluxoAbril + this.fluxoMaio + this.fluxoJulho + this.fluxoJunho + this.fluxoAgosto + this.fluxoSetembro + this.fluxoNovembro + this.fluxoDezembro
-      this.comparaDia()
-      this.chart?.update()
+    this.totalAnual = this.fluxoJaneiro + this.fluxoFevereiro + this.fluxoMarco + this.fluxoAbril + this.fluxoMaio + this.fluxoJulho + this.fluxoJunho + this.fluxoAgosto + this.fluxoSetembro + this.fluxoNovembro + this.fluxoDezembro
+    this.comparaDia()
+    this.chart?.update()
   }
 
-  comparaDia(){
+  comparaDia() {
     this.comparaMes()
     let retornaValor;
     for (let i = 0; i < this.objetoApi.length; i++) {
-      if(this.objetoApi[i].data == this.dateSelected ){
+      if (this.objetoApi[i].data == this.dateSelected) {
         retornaValor = this.objetoApi[i].valor_total
         this.valorDiario = retornaValor
         return
-      }else{
+      } else {
         this.valorDiario = 0
       }
     }
   }
 
-  comparaMes(){
+  comparaMes() {
     for (let i = 0; i < 11; i++) {
-      if(this.dateSelected.toString().slice(5, -3) == '01'){
+      if (this.dateSelected.toString().slice(5, -3) == '01') {
         this.valorMes = this.fluxoJaneiro
         return
-      }else {this.valorMes = 0}
-      if(this.dateSelected.toString().slice(5, -3) == '02'){
+      } else { this.valorMes = 0 }
+      if (this.dateSelected.toString().slice(5, -3) == '02') {
         this.valorMes = this.fluxoFevereiro
         return
-      }else {this.valorMes = 0}
-      if(this.dateSelected.toString().slice(5, -3) == '03'){
+      } else { this.valorMes = 0 }
+      if (this.dateSelected.toString().slice(5, -3) == '03') {
         this.valorMes = this.fluxoMarco
         return
-      }else {this.valorMes = 0}
-      if(this.dateSelected.toString().slice(5, -3) == '04'){
+      } else { this.valorMes = 0 }
+      if (this.dateSelected.toString().slice(5, -3) == '04') {
         this.valorMes = this.fluxoAbril
         return
-      }else {this.valorMes = 0}
-      if(this.dateSelected.toString().slice(5, -3) == '05'){
+      } else { this.valorMes = 0 }
+      if (this.dateSelected.toString().slice(5, -3) == '05') {
         this.valorMes = this.fluxoMaio
         return
-      }else {this.valorMes = 0}
-      if(this.dateSelected.toString().slice(5, -3) == '06'){
+      } else { this.valorMes = 0 }
+      if (this.dateSelected.toString().slice(5, -3) == '06') {
         this.valorMes = this.fluxoJunho
         return
-      }else {this.valorMes = 0}
-      if(this.dateSelected.toString().slice(5, -3) == '07'){
+      } else { this.valorMes = 0 }
+      if (this.dateSelected.toString().slice(5, -3) == '07') {
         this.valorMes = this.fluxoJulho
         return
-      }else {this.valorMes = 0}
-      if(this.dateSelected.toString().slice(5, -3) == '08'){
+      } else { this.valorMes = 0 }
+      if (this.dateSelected.toString().slice(5, -3) == '08') {
         this.valorMes = this.fluxoAgosto
         return
-      }else {this.valorMes = 0}
-      if(this.dateSelected.toString().slice(5, -3) == '09'){
+      } else { this.valorMes = 0 }
+      if (this.dateSelected.toString().slice(5, -3) == '09') {
         this.valorMes = this.fluxoSetembro
         return
-      }else {this.valorMes = 0}
-      if(this.dateSelected.toString().slice(5, -3) == '10'){
+      } else { this.valorMes = 0 }
+      if (this.dateSelected.toString().slice(5, -3) == '10') {
         this.valorMes = this.fluxoOutubro
         return
-      }else {this.valorMes = 0}
-      if(this.dateSelected.toString().slice(5, -3) == '11'){
+      } else { this.valorMes = 0 }
+      if (this.dateSelected.toString().slice(5, -3) == '11') {
         this.valorMes = this.fluxoNovembro
         return
-      }else {this.valorMes = 0}
-      if(this.dateSelected.toString().slice(5, -3) == '12'){
+      } else { this.valorMes = 0 }
+      if (this.dateSelected.toString().slice(5, -3) == '12') {
         this.valorMes = this.fluxoDezembro
         return
-      } else {this.valorMes = 0}
+      } else { this.valorMes = 0 }
     }
   }
 
