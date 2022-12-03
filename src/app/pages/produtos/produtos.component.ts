@@ -1,8 +1,11 @@
+import { IProduto } from 'src/app/shared/models/produto.interface';
 import { IProdutoForm } from '../../shared/models/produto.interface';
 import { RequestService } from 'src/app/shared/request/request.service';
 import { FormBuilder } from '@angular/forms';
-import { take } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { p } from 'chart.js/dist/chunks/helpers.core';
+import { take, tap } from 'rxjs';
+
 
 @Component({
   selector: 'app-produtos',
@@ -16,7 +19,10 @@ export class ProdutosComponent implements OnInit {
     private request: RequestService) { }
 
   ngOnInit(): void {
+    this.getProduto()
   }
+
+  listaProduto:IProduto[] = []
 
   produtoForm = this.fb.group ({
     id: [0],
@@ -26,10 +32,22 @@ export class ProdutosComponent implements OnInit {
     qtd_estoque: [0]
   }) as IProdutoForm
 
+  @ViewChild('tabela') list?: ElementRef<HTMLDivElement>;
+
+  ngAfterViewInit() {
+    const maxScroll = this.list?.nativeElement.scrollHeight;
+    this.list?.nativeElement.scrollTo({ top: maxScroll, behavior: 'smooth' });
+  }
+
   cadastrarProduto(){
-    console.log(this.produtoForm.value)
     this.request.postProduto(this.produtoForm.value)
-    .pipe(take(1))
     .subscribe()
+    this.getProduto()
+  }
+
+  getProduto(){
+    this.request.getProduto()
+    .pipe(take(1))
+    .subscribe(res => this.listaProduto = <IProduto[]>res)
   }
 }

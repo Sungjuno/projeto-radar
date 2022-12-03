@@ -30,4 +30,5 @@ export class AuthService {
   verificaLogado(): boolean{
     return localStorage.getItem('usuario') ? true : false
   }
+
 }
