@@ -1,0 +1,26 @@
+<div class="receita-container">
+  <div class="receita-box">
+    <div class="cards">
+      <div class="receita-card">
+        <p class="titulo-card">Receita total de 2022</p>
+        <p class="titulo-card total-ano">{{totalAnual | currency : 'BRL'}}</p>
+      </div>
+      <div class="receita-card" >
+        <p class="titulo-card"> Receita mensal </p>
+        <input type="date" [(ngModel)] ="dateSelected"  (ngModelChange)="comparaDia()"  class="box">
+        <p class="titulo-card mostra-receita">Receita do mês: {{valorMes | currency: 'BRL'}}</p>
+        <p class="titulo-card mostra-receita">Receita do dia: {{valorDiario | currency: 'BRL'}}</p>
+      </div>
+    </div>
+    <div  class="div-fluxo">
+      <h5>Fluxo de caixa de 2022</h5>
+      <canvas baseChart width="500" height="300"
+        [type]="'line'"
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [legend]="lineChartLegend">
+      </canvas>
+    </div>
+  </div>
+</div>
+

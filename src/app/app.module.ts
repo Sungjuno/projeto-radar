@@ -25,7 +25,7 @@ registerLocaleData(localePt, 'pt');
     AppRoutingModule,
     ReactiveFormsModule,
     PagesModule,
-    ComponentsModule,
+    ComponentsModule
   ],
   providers: [{
     provide: LOCALE_ID,

@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
 
     mostraHeader = true
 
+
+
   ngOnInit(): void {
 
   }
@@ -26,5 +28,4 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['login'])
     }
   }
-
 }
