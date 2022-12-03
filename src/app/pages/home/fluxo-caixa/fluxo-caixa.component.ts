@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { take, tap } from 'rxjs';
+import { finalize, take, tap } from 'rxjs';
 import { RequestService } from 'src/app/shared/request/request.service';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
@@ -21,6 +21,7 @@ export class FluxoCaixaComponent implements OnInit {
 
   ngOnInit(): void {
     this.fluxoPedidoClienteApi()
+
   }
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
@@ -46,6 +47,7 @@ export class FluxoCaixaComponent implements OnInit {
   totalAnual = 0
   totalMensal = 0
   dateSelected:any = this.datePipe.transform(new Date(), "yyyy-MM-dd")
+  dateChoose = this.dateSelected
   valorDiario:any
   valorMes: any
 
@@ -100,12 +102,11 @@ export class FluxoCaixaComponent implements OnInit {
       this.req.getPedidoCliente()
       .pipe(take(1), tap(res => this.objetoApi = res ))
       .subscribe( res =>{
-        this.filtraPorMes(res)
+        this.filtraPorMes(res);
       } )
     }
 
   filtraPorMes(arr:any){
-
       for(let i = 0; i < arr.length; i++){
         if(arr[i].data.toString().slice(5, -3) == '01'){
           this.fluxoJaneiro += arr[i].valor_total
@@ -147,12 +148,12 @@ export class FluxoCaixaComponent implements OnInit {
       }
 
       this.totalAnual = this.fluxoJaneiro + this.fluxoFevereiro + this.fluxoMarco + this.fluxoAbril + this.fluxoMaio + this.fluxoJulho + this.fluxoJunho + this.fluxoAgosto + this.fluxoSetembro + this.fluxoNovembro + this.fluxoDezembro
-
-      this.chart?.update()
       this.comparaDia()
+      this.chart?.update()
   }
 
   comparaDia(){
+    this.comparaMes()
     let retornaValor;
     for (let i = 0; i < this.objetoApi.length; i++) {
       if(this.objetoApi[i].data == this.dateSelected ){
@@ -163,7 +164,6 @@ export class FluxoCaixaComponent implements OnInit {
         this.valorDiario = 0
       }
     }
-    this.comparaMes()
   }
 
   comparaMes(){

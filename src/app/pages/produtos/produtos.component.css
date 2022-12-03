@@ -23,7 +23,7 @@ h2{
 
 .container-produto{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   padding: 0 3rem 0 7rem;
 }
