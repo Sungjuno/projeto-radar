@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FluxosComponent } from './fluxos.component';
+import { FluxoEstadoComponent } from './fluxo-estado.component';
 
-describe('FluxosComponent', () => {
-  let component: FluxosComponent;
-  let fixture: ComponentFixture<FluxosComponent>;
+describe('FluxoEstadoComponent', () => {
+  let component: FluxoEstadoComponent;
+  let fixture: ComponentFixture<FluxoEstadoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FluxosComponent ]
+      declarations: [ FluxoEstadoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FluxosComponent);
+    fixture = TestBed.createComponent(FluxoEstadoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

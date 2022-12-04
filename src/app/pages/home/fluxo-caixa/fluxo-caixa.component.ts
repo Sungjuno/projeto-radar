@@ -22,6 +22,8 @@ export class FluxoCaixaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.chamaApiProduto()
+    this.chamaApiClientes()
     this.fluxoPedidoClienteApi()
   }
 
@@ -102,7 +104,9 @@ export class FluxoCaixaComponent implements OnInit {
   fluxoPedidoClienteApi() {
 
     this.req.getPedidoCliente()
-      .pipe(take(1), tap(res => this.objetoApi = res))
+      .pipe(
+        take(1),
+        tap(res => {this.objetoApi = res;}))
       .subscribe(res => {
         this.filtraPorMes(res);
       })
@@ -221,6 +225,29 @@ export class FluxoCaixaComponent implements OnInit {
         return
       } else { this.valorMes = 0 }
     }
+  }
+
+  clientes: number = 0
+  produtos: number = 0
+
+  quantidadeClientes(res: any) {
+    this.clientes = res.length
+  }
+
+  quantidadeProduto(res: any) {
+    this.produtos = res.length
+  }
+
+  chamaApiClientes() {
+    this.req.getCliente()
+      .pipe(take(1))
+      .subscribe(res => this.quantidadeClientes(res))
+  }
+
+  chamaApiProduto() {
+    this.req.getProduto()
+      .pipe(take(1))
+      .subscribe(res => this.quantidadeProduto(res))
   }
 
 
