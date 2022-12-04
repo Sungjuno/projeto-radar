@@ -24,6 +24,10 @@ export class RequestService {
     return this.http.put<ICliente>(environment.url + 'clientes/',cliente)
   }
 
+  deleteCliente(id:number){
+    return this.http.delete<ICliente>(environment.url + `clientes/${id}`)
+  }
+
 
 
   getProduto(){
@@ -37,6 +41,10 @@ export class RequestService {
 
   updateProduto(produto:IProduto){
     return this.http.put<IProduto>(environment.url + 'produtos/',produto)
+  }
+
+  deleteProduto(id:number){
+    return this.http.delete<ICliente>(environment.url + `produtos/${id}`)
   }
 
   getPedidoCliente(){
