@@ -39,44 +39,18 @@ export class PedidosClientesComponent implements OnInit {
   cadastrarPedidoCliente(){
     this.req.postPedidoCliente(this.pedidoClienteForm.value)
     .subscribe(res => console.log(res))
+    this.resetForm()
   }
 
   getListaClientes(){
     this.req.getCliente()
-    // .pipe( finalize( () => this.listaFiltrado = this.listaDeClientes))
+    .pipe(take(1))
     .subscribe(
       res => this.listaDeClientes = res)
   }
 
-  // listaClientes(){
-  //   this.req.getCliente()
-  //   .pipe(
-  //     take(1),
-  //       finalize( ()=> this.listaFiltrado = this.listaDeClientes )
-  //       )
-  //     .subscribe(
-  //       res => this.listaDeClientes = <ICliente[]>res)
-  // }
+  resetForm() {
+    this.pedidoClienteForm.reset();
+  }
 
-
-  // get filterTexto(){
-  //   return this.pedidoClienteForm.value.clienteId
-  // }
-
-  // set filterTexto(value: any){
-  //   this.pedidoClienteForm.value.clienteId = value;
-  //   this.listaFiltrado = this.filtraClientes(value)
-  // }
-
-
-  // filtraClientes(valorFiltro:string){
-  //   if(this.listaDeClientes.length === 0 || valorFiltro === ''){
-  //     return this.listaDeClientes
-  //   }else{
-  //     return this.listaDeClientes.filter(
-  //       (filtrado:ICliente) => {
-  //         return filtrado.email === valorFiltro.toLowerCase()
-  //       })
-  //   }
-  // }
 }

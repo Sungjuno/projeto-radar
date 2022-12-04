@@ -70,6 +70,7 @@
         <tr *ngFor="let cliente of listaCliente" class="cliente">
           <td>{{cliente.nome}} </td>
           <td>{{cliente.email}}</td>
+          <button (click)="removeCliente(cliente.id)">Remover</button>
         </tr>
       </tbody>
     </table>

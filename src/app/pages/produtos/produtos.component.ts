@@ -44,11 +44,23 @@ export class ProdutosComponent implements OnInit {
     this.request.postProduto(this.produtoForm.value)
     .subscribe()
     this.getProduto()
+    this.resetForm()
   }
 
   getProduto(){
     this.request.getProduto()
     .pipe(take(1))
     .subscribe(res => this.listaProduto = <IProduto[]>res)
+  }
+
+  removeProduto(event:any){
+    this.request.deleteProduto(event)
+    .pipe(take(1))
+    .subscribe()
+    this.getProduto()
+  }
+
+  resetForm() {
+    this.produtoForm.reset();
   }
 }

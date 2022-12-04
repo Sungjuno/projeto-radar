@@ -82,12 +82,24 @@ listaCliente: ICliente[] = []
     .pipe(take(1))
     .subscribe()
     this.getCliente()
+    this.resetForm()
   }
 
   getCliente(){
     this.request.getCliente()
     .pipe(take(1))
     .subscribe( res => this.listaCliente = <ICliente[]>res)
+  }
+
+  removeCliente(event:any){
+    this.request.deleteCliente(event)
+    .pipe(take(1))
+    .subscribe()
+    this.getCliente()
+  }
+
+  resetForm() {
+    this.clienteForm.reset();
   }
 
 }
