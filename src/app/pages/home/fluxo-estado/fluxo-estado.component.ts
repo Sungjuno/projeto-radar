@@ -173,13 +173,10 @@ tocantins = 0
   listaEstadoExistente: string[] = []
 
   mostraListaEstado(){
-    console.log(this.pieChartDatasets[0].data.length)
-
     for (let i = 0; i < this.pieChartDatasets[0].data.length; i++) {
       if(this.pieChartDatasets[0].data[i] != 0){
         this.listaEstadoExistente.push(this.pieChartLabels[i])
       }
     }
-    console.log(this.listaEstadoExistente)
   }
 }
