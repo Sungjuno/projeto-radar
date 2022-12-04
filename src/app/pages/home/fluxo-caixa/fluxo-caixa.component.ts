@@ -14,19 +14,20 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class FluxoCaixaComponent implements OnInit {
 
+  dateInicial = new Date()
+
   constructor(
     private req: RequestService,
     private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
-    const dataInicial = new Date()
-    this.fluxoPedidoClienteApi(dataInicial.getFullYear().toString())
+    this.chamaApiProduto()
+    this.chamaApiClientes()
+    this.fluxoPedidoClienteApi()
   }
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
-
-  fluxoAno = "";
 
   fluxoJaneiro = 0
   fluxoFevereiro = 0
@@ -100,19 +101,19 @@ export class FluxoCaixaComponent implements OnInit {
 
   objetoApi: any
 
-  fluxoPedidoClienteApi(ano: string) {
-    this.fluxoAno = ano;
+  fluxoPedidoClienteApi() {
 
     this.req.getPedidoCliente()
-      .pipe(take(1), tap(res => this.objetoApi = res))
+      .pipe(
+        take(1),
+        tap(res => {this.objetoApi = res;}))
       .subscribe(res => {
-        this.filtraPorMes(res, this.fluxoAno);
+        this.filtraPorMes(res);
       })
   }
 
-  filtraPorMes(arr: any, ano: string) {
+  filtraPorMes(arr: any) {
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i].data.toString().slice(0, -6) == ano) {
         if (arr[i].data.toString().slice(5, -3) == '01') {
           this.fluxoJaneiro += arr[i].valor_total
           this.lineChartData.datasets[0].data[0] = this.fluxoJaneiro
@@ -120,7 +121,7 @@ export class FluxoCaixaComponent implements OnInit {
           this.fluxoFevereiro += arr[i].valor_total
           this.lineChartData.datasets[0].data[1] = this.fluxoFevereiro
         } else if (arr[i].data.toString().slice(5, -3) == '03') {
-          this.fluxoMarco += arr[i].valor_total
+          this.fluxoMarco = this.fluxoMarco + arr[i].valor_total
           this.lineChartData.datasets[0].data[2] = this.fluxoMarco
         } else if (arr[i].data.toString().slice(5, -3) == '04') {
           this.fluxoAbril += arr[i].valor_total
@@ -150,7 +151,6 @@ export class FluxoCaixaComponent implements OnInit {
           this.fluxoDezembro += arr[i].valor_total
           this.lineChartData.datasets[0].data[11] = this.fluxoDezembro
         }
-      }
     }
 
     this.totalAnual = this.fluxoJaneiro + this.fluxoFevereiro + this.fluxoMarco + this.fluxoAbril + this.fluxoMaio + this.fluxoJulho + this.fluxoJunho + this.fluxoAgosto + this.fluxoSetembro + this.fluxoNovembro + this.fluxoDezembro
@@ -160,19 +160,21 @@ export class FluxoCaixaComponent implements OnInit {
 
   comparaDia() {
     this.comparaMes()
-    let retornaValor;
+    let receitaDia = 0
     for (let i = 0; i < this.objetoApi.length; i++) {
-      if (this.objetoApi[i].data == this.dateSelected) {
-        retornaValor = this.objetoApi[i].valor_total
-        this.valorDiario = retornaValor
-        return
-      } else {
-        this.valorDiario = 0
+      if(this.objetoApi[i].data == this.dateSelected){
+        receitaDia += this.objetoApi[i].valor_total
+        this.valorDiario = receitaDia
       }
     }
+    if(receitaDia == 0){
+      this.valorDiario = 0
+    }
+
   }
 
   comparaMes() {
+
     for (let i = 0; i < 11; i++) {
       if (this.dateSelected.toString().slice(5, -3) == '01') {
         this.valorMes = this.fluxoJaneiro
@@ -223,6 +225,29 @@ export class FluxoCaixaComponent implements OnInit {
         return
       } else { this.valorMes = 0 }
     }
+  }
+
+  clientes: number = 0
+  produtos: number = 0
+
+  quantidadeClientes(res: any) {
+    this.clientes = res.length
+  }
+
+  quantidadeProduto(res: any) {
+    this.produtos = res.length
+  }
+
+  chamaApiClientes() {
+    this.req.getCliente()
+      .pipe(take(1))
+      .subscribe(res => this.quantidadeClientes(res))
+  }
+
+  chamaApiProduto() {
+    this.req.getProduto()
+      .pipe(take(1))
+      .subscribe(res => this.quantidadeProduto(res))
   }
 
 
