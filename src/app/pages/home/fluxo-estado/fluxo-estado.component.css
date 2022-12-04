@@ -1,0 +1,27 @@
+.pie{
+  padding-top: 2rem;
+  width: 16rem;
+}
+
+.pie-container{
+  display: flex;
+}
+
+.titulo{
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+li{
+  list-style: none;
+}
+.tabela{
+
+  height: 10rem;
+  overflow-y: scroll;
+}
+
+.lista-estado{
+  display: flex;
+  flex-direction: column;
+}

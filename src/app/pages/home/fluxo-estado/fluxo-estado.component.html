@@ -1,8 +1,20 @@
-<canvas baseChart
-  [type]="'pie'"
-  [datasets]="pieChartDatasets"
-  [labels]="pieChartLabels"
-  [options]="pieChartOptions"
-  [plugins]="pieChartPlugins"
-  [legend]="pieChartLegend">
-</canvas>
+<div class="pie-container">
+  <div class="pie">
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasets"
+      [labels]="pieChartLabels"
+      [options]="pieChartOptions"
+      [plugins]="pieChartPlugins"
+      [legend]="pieChartLegend">
+    </canvas>
+  </div>
+  <div class="lista-estado ">
+    <h5 class="titulo">Gráfico de clientes por estado</h5>
+    <div class="tabela" #tabela>
+      <ul>
+        <li *ngFor="let estado of listaEstadoExistente">{{estado}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

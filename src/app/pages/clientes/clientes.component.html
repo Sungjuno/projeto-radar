@@ -48,7 +48,7 @@
       <div class="mb-3">
         <label for="estado" class="form-label">Estado:</label>
         <select name="estados" id="" formControlName="estado" class="form-select seleciona-estado">
-          <option [ngValue]="estadoSelect" *ngFor="let estadoSelect of listaEstados">{{estadoSelect}}</option>
+          <option [ngValue]="estadoSelect | pipeEstado" *ngFor="let estadoSelect of listaEstados">{{estadoSelect}}</option>
         </select>
       </div>
       <div class="mb-3">

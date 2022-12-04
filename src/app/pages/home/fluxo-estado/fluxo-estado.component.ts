@@ -1,7 +1,8 @@
 import { take } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChartOptions } from 'chart.js';
 import { RequestService } from 'src/app/shared/request/request.service';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-fluxo-estado',
@@ -20,67 +21,76 @@ export class FluxoEstadoComponent implements OnInit {
     this.getClienteEstado()
   }
 
+  @ViewChild('tabela') list?: ElementRef<HTMLDivElement>;
+
+  ngAfterViewInit() {
+    const maxScroll = this.list?.nativeElement.scrollHeight;
+    this.list?.nativeElement.scrollTo({ top: maxScroll, behavior: 'smooth' });
+  }
+
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
   listaEstados = [
-    'Acre',
-    'Alagoas',
-    'Amapá',
-    'Amazonas',
-    'Bahia',
-    'Ceará',
-    'Distrito Federal',
-    'Espírito Santo',
-    'Goiás',
-    'Maranhão',
-    'Mato Grosso',
-    'Mato Grosso do Sul',
-    'Minas Gerais',
-    'Pará',
-    'Paraíba',
-    'Paraná',
-    'Pernambuco',
-    'Piauí',
-    'Rio de Janeiro',
-    'Rio Grande do Norte',
-    'Rio Grande do Sul',
-    'Rondônia',
-    'Roraima',
-    'Santa Catarina',
-    'São Paulo',
-    'Sergipe',
-    'Tocantins'
+    'acre',
+    'alagoas',
+    'amapa',
+    'amazonas',
+    'bahia',
+    'ceara',
+    'distritofederal',
+    'espiritosanto',
+    'goias',
+    'maranhao',
+    'matogrosso',
+    'matogrossodosul',
+    'minasgerais',
+    'para',
+    'paraiba',
+    'parana',
+    'pernambuco',
+    'piaui',
+    'riodejaneiro',
+    'riograndedonorte',
+    'riograndedosul',
+    'rondonia',
+    'roraima',
+    'santacatarina',
+    'saopaulo',
+    'sergipe',
+    'tocantins'
 ]
 
-Acre = 0
-Alagoas = 0
-Amapa = 0
-Amazonas = 0
-Bahia = 0
-Ceara = 0
-DistritoFederal = 0
-EspiritoSanto = 0
-Goias = 0
-Maranhao = 0
-MatoGrosso = 0
-MatoGrossodoSul = 0
-MinasGerais = 0
-Para = 0
-Paraiba = 0
-Parana = 0
-Pernambuco = 0
-Piaui = 0
-RiodeJaneiro = 0
-RioGrandedoNorte = 0
-RioGrandedoSul = 0
-Rondonia = 0
-Roraima = 0
-SantaCatarina = 0
-SaoPaulo = 0
-Sergipe = 0
-Tocantins = 0
+acre = 0
+alagoas = 0
+amapa = 0
+amazonas = 0
+bahia = 0
+ceara = 0
+distritofederal = 0
+espiritosanto = 0
+goias = 0
+maranhao = 0
+matogrosso = 0
+matogrossodosul = 0
+minasgerais = 0
+para = 0
+paraiba = 0
+parana = 0
+pernambuco = 0
+piaui = 0
+riodejaneiro = 0
+riograndedonorte = 0
+riograndedosul = 0
+rondonia = 0
+roraima = 0
+santacatarina = 0
+saopaulo = 0
+sergipe = 0
+tocantins = 0
 
   public pieChartOptions: ChartOptions<'pie'> = {
-    responsive: false,
+    responsive: true,
   };
+
   public pieChartLabels = [ 'Acre',
   'Alagoas',
   'Amapá',
@@ -108,34 +118,37 @@ Tocantins = 0
   'São Paulo',
   'Sergipe',
   'Tocantins' ];
+
   public pieChartDatasets = [ {
-    data: [ this.Acre,
-      this.Alagoas,
-      this.Amapa,
-      this.Amazonas ,
-      this.Bahia,
-      this.Ceara,
-      this.DistritoFederal ,
-      this.EspiritoSanto,
-      this.Goias,
-      this.Maranhao ,
-      this.MatoGrosso ,
-      this.MatoGrossodoSul ,
-      this.MinasGerais ,
-      this.Para,
-      this.Paraiba,
-      this.Parana,
-      this.Pernambuco,
-      this.Piaui,
-      this.RiodeJaneiro,
-      this.RioGrandedoNorte,
-      this.RioGrandedoSul,
-      this.Rondonia,
-      this.Roraima,
-      this.SantaCatarina,
-      this.SaoPaulo,
-      this.Sergipe,
-      this.Tocantins]
+    data: [
+      this.acre,
+      this.alagoas,
+      this.amapa,
+      this.amazonas,
+      this.bahia,
+      this.ceara,
+      this.distritofederal,
+      this.espiritosanto,
+      this.goias,
+      this.maranhao,
+      this.matogrosso,
+      this.matogrossodosul,
+      this.minasgerais,
+      this.para,
+      this.paraiba,
+      this.parana,
+      this.pernambuco,
+      this.piaui,
+      this.riodejaneiro,
+      this.riograndedonorte,
+      this.riograndedosul,
+      this.rondonia,
+      this.roraima,
+      this.santacatarina,
+      this.saopaulo,
+      this.sergipe,
+      this.tocantins
+    ]
   } ];
   public pieChartLegend = false;
   public pieChartPlugins = [];
@@ -147,18 +160,26 @@ Tocantins = 0
   }
 
   verificaEstado(res:any){
-    let a
-    let b
-    let listaRegexEstado = this.listaEstados
-
+    let indexEstadoLista;
     for (let i = 0; i < res.length; i++) {
-      a =this.listaEstados[i].normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase().replace(/\s/g, '')
-      console.log(a)
-      // b = res[i].normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase().replace(/\s/g, '')
-      // if(a.includes(b)){
-      //   console.log(a)
-      // }
-
+      if(this.listaEstados.includes(res[i].estado)){
+        indexEstadoLista = this.listaEstados.indexOf(res[i].estado)
+        this.pieChartDatasets[0].data[indexEstadoLista]++
+      }
     }
+    this.chart?.update();
+    this.mostraListaEstado()
+  }
+  listaEstadoExistente: string[] = []
+
+  mostraListaEstado(){
+    console.log(this.pieChartDatasets[0].data.length)
+
+    for (let i = 0; i < this.pieChartDatasets[0].data.length; i++) {
+      if(this.pieChartDatasets[0].data[i] != 0){
+        this.listaEstadoExistente.push(this.pieChartLabels[i])
+      }
+    }
+    console.log(this.listaEstadoExistente)
   }
 }

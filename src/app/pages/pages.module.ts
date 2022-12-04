@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { HomeComponent } from '../pages/home/home.component';
 import { ProdutosComponent } from '../pages/produtos/produtos.component';
 import { ClientesComponent } from '../pages/clientes/clientes.component';
@@ -18,6 +18,7 @@ import { FormatarTelefonePipe } from '../shared/pipes/formatar-telefone.pipe';
 import { FormatarCpfPipe } from '../shared/pipes/formatar-cpf.pipe';
 import { NgChartsModule } from 'ng2-charts';
 import { FluxoEstadoComponent } from './home/fluxo-estado/fluxo-estado.component';
+import { PipeEstadoPipe } from './clientes/pipe-estado.pipe';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { FluxoEstadoComponent } from './home/fluxo-estado/fluxo-estado.component
     FluxoCaixaComponent,
     FluxoClientesComponent,
     FluxoEstadoComponent,
+    PipeEstadoPipe,
   ],
   imports: [
     CommonModule,
