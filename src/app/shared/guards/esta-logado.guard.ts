@@ -11,14 +11,15 @@ export class EstaLogadoGuard implements CanActivate {
   constructor(
     private auth: AuthService,
     private router: Router
-    ){
+  ) {
 
   }
-  canActivate(): boolean{
 
-    if(this.auth.verificaLogado()){
+  canActivate(): boolean {
+
+    if (this.auth.verificaLogado()) {
       return true
-    }else{
+    } else {
       this.router.navigate(['login'])
     }
     return false
