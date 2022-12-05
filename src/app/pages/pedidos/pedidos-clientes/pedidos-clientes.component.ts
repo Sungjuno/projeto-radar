@@ -1,8 +1,9 @@
-import { take, finalize } from 'rxjs';
+import { IClienteForm } from './../../../shared/models/cliente.interface';
+import { IPedidoCliente, IPedidoClienteForm } from './../../../shared/models/pedido-cliente.interface';
+import { take } from 'rxjs';
 import { RequestService } from 'src/app/shared/request/request.service';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ICliente } from 'src/app/shared/models/cliente.interface';
 
 @Component({
   selector: 'app-pedidos-clientes',
@@ -25,16 +26,12 @@ export class PedidosClientesComponent implements OnInit {
   }
 
 
-  pedidoClienteForm = this.fb.group({
+  pedidoClienteForm: IPedidoClienteForm = this.fb.group({
     id: [0],
     cliente_id: [''],
     valor_total: [0],
     data: [Date]
-  })
-
-  public getSearchCtrl(accountNumber:any) {
-    return this.pedidoClienteForm.get(accountNumber)
-  }
+  }) as IPedidoClienteForm
 
   cadastrarPedidoCliente(){
     this.req.postPedidoCliente(this.pedidoClienteForm.value)
@@ -46,7 +43,7 @@ export class PedidosClientesComponent implements OnInit {
     this.req.getCliente()
     .pipe(take(1))
     .subscribe(
-      res => this.listaDeClientes = res)
+      res => this.listaDeClientes = <IPedidoCliente>res)
   }
 
   resetForm() {

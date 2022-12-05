@@ -7,11 +7,11 @@
 </div>
 
 <div class="container-cliente">
-  <form [formGroup]="clienteForm" class="form" *ngIf="auth.verificaAdm()">
+  <form [formGroup]="clienteForm" class="form" *ngIf="auth.verificaAdm()" >
     <div class="inputs">
       <div class="mb-3">
-        <label for="nome" class="form-label">Nome:</label>
-        <input type="text" class="form-control textbox" id="nome" formControlName="nome">
+        <label for="nome" class="form-label" >Nome:</label>
+        <input type="text" class="form-control textbox" id="nome" formControlName="nome" [ngClass]="validador ? '' : 'is-invalid'">
       </div>
       <div class="mb-3">
         <label for="telefone" class="form-label">Telefone:</label>
@@ -19,7 +19,7 @@
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
-        <input type="email" class="form-control textbox" id="email" formControlName="email">
+        <input type="email" class="form-control textbox" id="email" formControlName="email" [ngClass]="validador ? '' : 'is-invalid'">
       </div>
       <div class="mb-3">
         <label for="cpf" class="form-label">CPF:</label>
@@ -47,7 +47,7 @@
       </div>
       <div class="mb-3">
         <label for="estado" class="form-label">Estado:</label>
-        <select name="estados" id="" formControlName="estado" class="form-select seleciona-estado">
+        <select name="estados" id="" formControlName="estado" class="form-select seleciona-estado" [ngClass]="validador ? '' : 'is-invalid'">
           <option [ngValue]="estadoSelect | pipeEstado" *ngFor="let estadoSelect of listaEstados">{{estadoSelect}}</option>
         </select>
       </div>

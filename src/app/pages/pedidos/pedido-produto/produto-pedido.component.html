@@ -6,11 +6,11 @@
       <div class="inputs">
         <div class="mb-3">
           <label for="pedidoId" class="form-label">Id do pedido do cliente:</label>
-          <input type="text" class="form-control textbox" id="pedidoId"   formControlName="pedidoId">
+          <input type="text" class="form-control textbox" id="pedidoId"   formControlName="pedido_id">
         </div>
         <div class="mb-3">
           <label for="produtoId" class="form-label">Id do produto:</label>
-          <input type="text" class="form-control textbox" id="produtoId"   formControlName="produtoId">
+          <input type="text" class="form-control textbox" id="produtoId"   formControlName="produto_id">
         </div>
         <div class="mb-3">
           <label for="valor" class="form-label">Valor:</label>
@@ -20,7 +20,7 @@
           <label for="quantidade" class="form-label">Quantidade:</label>
           <input type="number" class="form-control textbox" id="quantidade" formControlName="quantidade">
         </div>
-        <button class="btn botao">Cadastrar</button>
+        <button class="btn botao" (click)="cadastrarPedidoProduto()">Cadastrar</button>
 
       </div>
     </form>
