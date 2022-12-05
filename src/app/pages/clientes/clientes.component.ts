@@ -49,7 +49,7 @@ listaEstados = [
       'Tocantins'
 ]
 
-listaCliente: any[] = []
+listaCliente: ICliente[] = []
 
   clienteForm :IClienteForm = this.fb.group({
     id: [0],
@@ -80,7 +80,6 @@ listaCliente: any[] = []
   }
 
   cadastrarCliente(){
-    console.log('entrou')
 
     if(this.clienteForm.status == 'INVALID'){
       this.validador = false
