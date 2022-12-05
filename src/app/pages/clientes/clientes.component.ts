@@ -91,8 +91,8 @@ listaCliente: ICliente[] = []
     .subscribe( res => this.listaCliente = <ICliente[]>res)
   }
 
-  removeCliente(event:any){
-    this.request.deleteCliente(event)
+  removeCliente(id:number){
+    this.request.deleteCliente(id)
     .pipe(take(1))
     .subscribe()
     this.getCliente()

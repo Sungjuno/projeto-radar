@@ -1,3 +1,4 @@
+import { IPedidoProdutoForm } from './../../../shared/models/pedido-produto.interface';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from 'src/app/shared/request/request.service';
@@ -16,20 +17,18 @@ export class ProdutoPedidoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  pedidoProdutoForm = this.fb.group({
+  pedidoProdutoForm:IPedidoProdutoForm = this.fb.group({
     id: [0],
-    pedidoId: [''],
-    produtoId: [''],
+    pedido_id: [''],
+    produto_id: [''],
     valor: [0],
     quantidade:[0]
-  })
+  }) as IPedidoProdutoForm
 
   cadastrarPedidoProduto(){
     console.log(this.pedidoProdutoForm.value)
     this.req.postPedidoProduto(this.pedidoProdutoForm.value)
-    .subscribe(res => console.log(res))
-    // console.log(this.pedidoClienteForm.value )
+    .subscribe()
   }
-
 
 }

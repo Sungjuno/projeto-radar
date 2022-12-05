@@ -48,11 +48,9 @@ export class FluxoCaixaComponent implements OnInit {
     this.fluxoSetembro, this.fluxoOutubro, this.fluxoNovembro, this.fluxoDezembro]
 
   totalAnual = 0
-  totalMensal = 0
-  dateSelected: any = this.datePipe.transform(new Date(), "yyyy-MM-dd")
-  dateChoose = this.dateSelected
-  valorDiario: any
-  valorMes: any
+  dateSelected = this.datePipe.transform(new Date(), "yyyy-MM-dd") as string
+  valorDiario: number = 0
+  valorMes: number = 0
 
   lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: [
