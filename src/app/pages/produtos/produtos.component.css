@@ -48,3 +48,7 @@ button{
   background-color: rgb(255, 134, 134);
   margin: .5rem .5rem .5rem 0;
 }
+
+.invalido{
+  margin-top: 15rem;
+}

@@ -42,7 +42,7 @@
               <td>{{produto.nome}} </td>
               <td>{{produto.valor | currency: 'BRL'}}</td>
               <td>{{produto.qtd_estoque}}</td>
-              <button (click)="removeProduto(produto.id)">Remover</button>
+              <button (click)="removeProduto(produto.id)"  *ngIf="auth.verificaAdm()">Remover</button>
           </tr>
       </tbody>
   </table>
