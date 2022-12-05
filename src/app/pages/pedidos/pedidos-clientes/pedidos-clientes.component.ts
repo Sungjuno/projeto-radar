@@ -1,5 +1,3 @@
-import { IClienteForm } from './../../../shared/models/cliente.interface';
-import { IPedidoCliente, IPedidoClienteForm } from './../../../shared/models/pedido-cliente.interface';
 import { take } from 'rxjs';
 import { RequestService } from 'src/app/shared/request/request.service';
 import { FormBuilder } from '@angular/forms';
@@ -22,16 +20,16 @@ export class PedidosClientesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListaClientes()
-    this.pedidoClienteForm.valueChanges.subscribe(value => value.cliente_id)
+    // this.pedidoClienteForm.valueChanges.subscribe(value => value.cliente_id)
   }
 
 
-  pedidoClienteForm: IPedidoClienteForm = this.fb.group({
+  pedidoClienteForm = this.fb.group({
     id: [0],
     cliente_id: [''],
     valor_total: [0],
     data: [Date]
-  }) as IPedidoClienteForm
+  })
 
   cadastrarPedidoCliente(){
     this.req.postPedidoCliente(this.pedidoClienteForm.value)
@@ -43,7 +41,7 @@ export class PedidosClientesComponent implements OnInit {
     this.req.getCliente()
     .pipe(take(1))
     .subscribe(
-      res => this.listaDeClientes = <IPedidoCliente>res)
+      res => this.listaDeClientes = res)
   }
 
   resetForm() {
