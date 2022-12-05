@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 9rem);
+  /* height: calc(100vh - 9rem); */
 }
 
 .textbox{
@@ -15,3 +15,17 @@
   width: 7rem;
   margin-top: 1.5rem;
 }
+
+.div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo{
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+  width: 15rem;
+}
+

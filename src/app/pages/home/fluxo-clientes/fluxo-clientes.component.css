@@ -8,14 +8,14 @@
   box-shadow: 5px 5px 5px #a7abaf;
   border-radius: 25px;
   background-color: white;
+  width: 32.5rem;
 }
 .cards{
   display: flex;
   gap: 1rem;
 }
 .receita-container{
-  padding: 2rem 2rem 2rem 2rem;
-  gap: 2rem;
+  padding: 3rem 2rem 2rem 2rem;
 }
 
 .receita-box{

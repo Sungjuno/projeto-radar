@@ -23,6 +23,7 @@ export class ProdutosComponent implements OnInit {
     this.getProduto()
   }
 
+  validador = true;
   listaProduto:IProduto[] = []
 
   produtoForm = this.fb.group ({
