@@ -31,8 +31,8 @@ export class RequestService {
 
 
   getProduto(){
-    let a = this.http.get(environment.url + 'produtos')
-    return a
+    let produtos = this.http.get(environment.url + 'produtos')
+    return produtos
   }
   postProduto(produto:IProduto){
     console.log('post no request ' + produto )
@@ -48,8 +48,8 @@ export class RequestService {
   }
 
   getPedidoCliente(){
-    let a = this.http.get(environment.url + 'pedidos')
-    return a
+    let pedidos = this.http.get(environment.url + 'pedidos')
+    return pedidos
   }
   postPedidoCliente(pedidoCliente:any){
     console.log('post no request ' + pedidoCliente )
@@ -61,8 +61,8 @@ export class RequestService {
   }
 
   getPedidoProduto(){
-    let a = this.http.get(environment.url + 'pedidosProdutos')
-    return a
+    let pedidosProdutos = this.http.get(environment.url + 'pedidosProdutos')
+    return pedidosProdutos
   }
   postPedidoProduto(pedidoProduto:any){
     console.log('post no request ' + pedidoProduto )

@@ -15,8 +15,8 @@ export interface IPedidoProdutoForm extends FormGroup{
 
 export interface IPedidoProduto{
   id:number,
-  pedido_id:string,
-  produto_id:string,
+  pedido_id:number,
+  produto_id:number,
   valor:number,
   quantidade:number
 }
