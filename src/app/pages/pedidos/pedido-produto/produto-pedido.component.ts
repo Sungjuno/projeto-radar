@@ -19,8 +19,8 @@ export class ProdutoPedidoComponent implements OnInit {
 
   pedidoProdutoForm:IPedidoProdutoForm = this.fb.group({
     id: [0],
-    pedido_id: [''],
-    produto_id: [''],
+    pedido_id: [0],
+    produto_id: [0],
     valor: [0],
     quantidade:[0]
   }) as IPedidoProdutoForm
