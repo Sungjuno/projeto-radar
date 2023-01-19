@@ -35,12 +35,20 @@ h2{
 }
 
 .tabela{
-  height: 20rem;
+  height: 20%;
   overflow-y: scroll;
 }
-td{
-  width: 9rem;
-  padding-right: 2rem;
+
+.td{
+  word-wrap: break-word;
+  max-width: 10%;
+  padding-right: 1rem;
+}
+
+.th{
+  word-wrap: break-word;
+  max-width: 10%;
+  padding-right: 1rem;
 }
 
 .container-cliente{
@@ -50,8 +58,14 @@ td{
   padding: 0 3rem 0 0 ;
 }
 
-button{
+.remove{
   border: none;
   background-color: rgb(255, 134, 134);
-  margin: .5rem;
+  margin: .5rem .5rem .5rem 0;
+}
+
+.update{
+  border: none;
+  background-color: rgb(134, 134, 255);
+  margin: .5rem .5rem .5rem 0;
 }

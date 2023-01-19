@@ -48,7 +48,7 @@
       <div class="mb-3">
         <label for="estado" class="form-label">Estado:</label>
         <select name="estados" id="" formControlName="estado" class="form-select seleciona-estado" [ngClass]="validador ? '' : 'is-invalid'">
-          <option [ngValue]="estadoSelect | pipeEstado" *ngFor="let estadoSelect of listaEstados">{{estadoSelect}}</option>
+          <option [ngValue]="estadoSelect | pipeEstado" *ngFor="let estadoSelect of listaEstados; index as i">{{estadoSelect}}</option>
         </select>
       </div>
       <div class="mb-3">
@@ -56,8 +56,14 @@
         <input type="string" class="form-control textbox" id="complemento" formControlName="complemento">
       </div>
     </div>
-    <button type="submit" (click)="cadastrarCliente()" class="btn botao">Cadastrar</button>
+    <div *ngIf="id==-1" class="botao">
+      <button type="submit" (click)="cadastrarCliente()" class="btn botao">Cadastrar</button>
+    </div>
+    <div *ngIf="id!=-1" class="botao">
+      <button type="submit" (click)="editarCliente()" class="btn botao">Editar</button>
+    </div>
   </form>
+</div>
   <div #tabela class="tabela">
     <table>
       <thead>
@@ -67,12 +73,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let cliente of listaCliente" class="cliente">
-          <td>{{cliente.nome}} </td>
+        <tr *ngFor="let cliente of listaCliente; index as i" class="cliente">
+          <td>{{cliente.nome}}</td>
           <td>{{cliente.email}}</td>
-          <button (click)="removeCliente(cliente.id)"  *ngIf="auth.verificaAdm()" [ngClass]="validador ? '' : 'is-invalid'">Remover</button>
+          <button class="remove" (click)="removeCliente(cliente.id)"  *ngIf="auth.verificaAdm()" [ngClass]="validador ? '' : 'is-invalid'">Remover</button>
+          <button class="update" (click)="pushCliente(i)"  *ngIf="auth.verificaAdm()">Editar</button>
         </tr>
       </tbody>
     </table>
   </div>
-</div>
