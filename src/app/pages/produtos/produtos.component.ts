@@ -23,6 +23,7 @@ export class ProdutosComponent implements OnInit {
     this.getProduto()
   }
 
+  id = -1;
   validador = true;
   listaProduto:IProduto[] = []
 
@@ -48,10 +49,24 @@ export class ProdutosComponent implements OnInit {
     this.resetForm()
   }
 
+  editarProduto(){
+    this.request.updateProduto(this.produtoForm.value)
+    .pipe(take(1))
+    .subscribe()
+    this.id =-1;
+    this.getProduto()
+    this.resetForm()
+  }
+
   getProduto(){
     this.request.getProduto()
     .pipe(take(1))
     .subscribe(res => this.listaProduto = <IProduto[]>res)
+    this.listaProduto = [{id: 0,
+      nome: 'teste',
+      descricao: 'teste',
+      valor: 0,
+      qtd_estoque: 0}];
   }
 
   removeProduto(event:any){
@@ -59,6 +74,18 @@ export class ProdutosComponent implements OnInit {
     .pipe(take(1))
     .subscribe()
     this.getProduto()
+  }
+
+  pushProduto(event:any){
+    let produto = this.listaProduto[event];
+    this.id=produto.id;
+    this.produtoForm = this.fb.group ({
+      id: [produto.id],
+      nome: [produto.nome],
+      descricao: [produto.descricao],
+      valor: [produto.valor],
+      qtd_estoque: [produto.qtd_estoque]
+    }) as IProdutoForm
   }
 
   resetForm() {

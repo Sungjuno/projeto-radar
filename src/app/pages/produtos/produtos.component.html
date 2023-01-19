@@ -25,7 +25,12 @@
         <label for="qtd_estoque" class="form-label">Estoque:</label>
         <input type="number" class="form-control textbox" id="qtd_estoque" formControlName="qtd_estoque">
       </div>
-      <button type="submit" (click)="cadastrarProduto()" class="btn botao">Cadastrar</button>
+      <div *ngIf="id==-1">
+        <button type="submit" (click)="cadastrarProduto()" class="btn botao">Cadastrar</button>
+      </div>
+      <div *ngIf="id!=-1">
+        <button type="submit" (click)="editarProduto()" class="btn botao">Editar</button>
+      </div>
     </div>
   </form>
   <div #tabela class="tabela">
@@ -38,11 +43,12 @@
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let produto of listaProduto" class="produto">
+          <tr *ngFor="let produto of listaProduto; index as i" class="produto">
               <td>{{produto.nome}} </td>
               <td>{{produto.valor | currency: 'BRL'}}</td>
               <td>{{produto.qtd_estoque}}</td>
-              <button (click)="removeProduto(produto.id)"  *ngIf="auth.verificaAdm()">Remover</button>
+              <button class="remove" (click)="removeProduto(produto.id)"  *ngIf="auth.verificaAdm()">Remover</button>
+              <button class="update" (click)="pushProduto(i)"  *ngIf="auth.verificaAdm()">Editar</button>
           </tr>
       </tbody>
   </table>
