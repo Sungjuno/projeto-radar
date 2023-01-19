@@ -23,6 +23,15 @@ export class ProdutosComponent implements OnInit {
     this.getProduto()
   }
 
+  
+
+
+
+
+
+
+
+
   id = -1;
   validador = true;
   listaProduto:IProduto[] = []
