@@ -68,7 +68,17 @@ export class Carrinho{
     }
 
     public static async salvar(http:HttpClient):Promise<void>{
-        //Implementar
+        let request = new RequestService(http);
+        request.postPedidoCliente(this.pedido).subscribe();
+        let pedido = [] as IPedido[];
+        request.getPedidoCliente()
+        .subscribe( res => pedido = <IPedido[]>res);
+        let pedidoLast=pedido.pop();
+        this.carrinho.forEach(pedidoProduto => {
+            pedidoProduto.pedido_id=pedidoLast ? pedidoLast.id : 0;
+            request.postPedidoProduto(pedidoProduto).subscribe();
+        });
+
     }
 
     public static reset(){
