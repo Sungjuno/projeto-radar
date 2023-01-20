@@ -19,6 +19,7 @@ export class ClientesComponent implements OnInit {
     public auth: AuthService
     ) { }
 
+id = -1;
 listaEstados = [
       'Acre',
       'Alagoas',
@@ -70,6 +71,18 @@ listaCliente: ICliente[] = []
 
   ngOnInit(): void {
     this.getCliente()
+    this.listaCliente= [ {id: 0,
+    nome: 'Guilherme' ,
+    telefone: 'a',
+    email: 'guihenrisampaio@gmail.com',
+    cpf: 'a',
+    cep: 'a',
+    logradouro:'a',
+    numero: 'a',
+    bairro:'a',
+    cidade: 'a',
+    estado: 'a',
+    complemento: 'a'}]
   }
 
   @ViewChild('tabela') list?: ElementRef<HTMLDivElement>;
@@ -94,6 +107,16 @@ listaCliente: ICliente[] = []
     }
   }
 
+  editarCliente(){
+    this.request.updateCliente(this.clienteForm.value)
+        .pipe(take(1))
+        .subscribe()
+    this.validador = true
+    this.getCliente()
+    this.resetForm()
+    this.id=-1;
+  }
+
   getCliente(){
     this.request.getCliente()
     .pipe(take(1))
@@ -105,6 +128,25 @@ listaCliente: ICliente[] = []
     .pipe(take(1))
     .subscribe()
     this.getCliente()
+  }
+
+  pushCliente(event:any){
+    let cliente = this.listaCliente[event]
+    this.id=cliente.id;
+    this.clienteForm=this.fb.group({
+      id: [cliente.id],
+      nome: [cliente.nome],
+      telefone: [cliente.telefone],
+      email: [cliente.email],
+      cpf: [cliente.cpf],
+      cep: [cliente.cep],
+      logradouro:[cliente.logradouro],
+      numero: [cliente.numero],
+      bairro:[cliente.bairro],
+      cidade: [cliente.cidade],
+      estado: [cliente.estado],
+      complemento: [cliente.complemento]
+    }) as IClienteForm
   }
 
   resetForm() {

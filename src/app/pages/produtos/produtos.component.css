@@ -34,7 +34,7 @@ h2{
 }
 
 td{
-  width: 9rem;
+  width: 5rem;
 }
 
 .produto-p{
@@ -43,9 +43,15 @@ td{
   gap: 5rem;
 }
 
-button{
+.remove{
   border: none;
   background-color: rgb(255, 134, 134);
+  margin: .5rem .5rem .5rem 0;
+}
+
+.update{
+  border: none;
+  background-color: rgb(134, 134, 255);
   margin: .5rem .5rem .5rem 0;
 }
 
