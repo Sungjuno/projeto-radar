@@ -1,5 +1,5 @@
 import { AuthService } from './../../../shared/auth/auth.service';
-import { PedidosService } from './../../../shared/request/pedidos.service';
+import { PedidosRequestService } from './../../../shared/request/pedidos.service';
 import { IPedido } from '../../../shared/models/pedido.interface';
 import { Component, OnInit } from '@angular/core';
 import { mergeMap, take, finalize } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { mergeMap, take, finalize } from 'rxjs/operators';
 export class PedidosComponent implements OnInit {
 
   constructor(
-    private pedidosService: PedidosService,
+    private pedidosService: PedidosRequestService,
     public auth: AuthService) {
     
   }
@@ -28,12 +28,12 @@ export class PedidosComponent implements OnInit {
   valores:any = []
 
   carregarPedidos() {
-    this.pedidosService.getPedidos()
+    this.pedidosService.getPedido()
       .pipe(
         take(1), // O take fará com que a gente se DESINSCREVA após o SUBSCRIBE. Quando isso for resolvido 1 vez, vamos se desinscrever.
       )
       .subscribe(
-        response => this.onSuccess(response),
+        response => this.onSuccess(<IPedido[]>response),
         error => this.onError(error)
       )
   }

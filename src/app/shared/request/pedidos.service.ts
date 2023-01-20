@@ -23,7 +23,7 @@ export class PedidosRequestService {
 
   postPedido(pedido:any){
     console.log('post no request ' + pedido )
-    return this.http.post<any>(environment.url + 'pedidos/',pedido)
+    return this.http.post<IPedido>(environment.url + 'pedidos/',pedido)
   }
 
   deletePedido(id:number){

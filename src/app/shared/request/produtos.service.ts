@@ -8,7 +8,7 @@ import { IProduto } from 'src/app/shared/models/produto.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class ProdutoRequestService {
+export class ProdutosRequestService {
 
   constructor( private http: HttpClient ) { }
 

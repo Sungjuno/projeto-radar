@@ -1,4 +1,4 @@
-import { PedidoRequestService } from "../shared/request/pedido.service";
+import { PedidosRequestService } from "../shared/request/pedidos.service";
 import { IPedidoProduto } from "../shared/models/pedido-produto.interface";
 import { HttpClient } from "@angular/common/http";
 import { IPedido } from "../shared/models/pedido.interface";
@@ -68,17 +68,16 @@ export class Carrinho{
     }
 
     public static async salvar(http:HttpClient):Promise<void>{
-        /* let request = new RequestService(http);
-        request.postPedidoCliente(this.pedido).subscribe();
+        let request = new PedidosRequestService(http);
+        request.postPedido(this.pedido).subscribe();
         let pedido = [] as IPedido[];
-        request.getPedidoCliente()
+        request.getPedido()
         .subscribe( res => pedido = <IPedido[]>res);
         let pedidoLast=pedido.pop();
         this.carrinho.forEach(pedidoProduto => {
             pedidoProduto.pedido_id=pedidoLast ? pedidoLast.id : 0;
-            request.postPedidoProduto(pedidoProduto).subscribe();
+            request.postPedido(pedidoProduto).subscribe();
         });
-        */
     }
 
     public static reset(){

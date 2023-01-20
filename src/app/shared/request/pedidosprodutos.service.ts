@@ -7,13 +7,11 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PedidoProdutoRequestService {
+export class PedidosProdutosRequestService {
 
   constructor( private http: HttpClient ) { }
   
-  updatePedidoCliente(pedidoCliente:any){
-    return this.http.put<any>(environment.url + 'pedidos/',pedidoCliente)
-  }
+  
 
   getPedidoProduto(){
     let pedidosProdutos = this.http.get(environment.url + 'pedidosProdutos')
