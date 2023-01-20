@@ -1,4 +1,4 @@
-import { RequestService } from "../shared/request/request.service";
+import { PedidoRequestService } from "../shared/request/pedido.service";
 import { IPedidoProduto } from "../shared/models/pedido-produto.interface";
 import { HttpClient } from "@angular/common/http";
 import { IPedido } from "../shared/models/pedido.interface";
@@ -68,7 +68,7 @@ export class Carrinho{
     }
 
     public static async salvar(http:HttpClient):Promise<void>{
-        let request = new RequestService(http);
+        /* let request = new RequestService(http);
         request.postPedidoCliente(this.pedido).subscribe();
         let pedido = [] as IPedido[];
         request.getPedidoCliente()
@@ -78,7 +78,7 @@ export class Carrinho{
             pedidoProduto.pedido_id=pedidoLast ? pedidoLast.id : 0;
             request.postPedidoProduto(pedidoProduto).subscribe();
         });
-
+        */
     }
 
     public static reset(){

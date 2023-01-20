@@ -4,7 +4,7 @@ import { IClienteForm } from '../../shared/models/cliente.interface';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { take } from 'rxjs';
-import { RequestService } from 'src/app/shared/request/request.service';
+import { ClienteRequestService } from 'src/app/shared/request/cliente.service';
 
 @Component({
   selector: 'app-clientes',
@@ -15,7 +15,7 @@ export class ClientesComponent implements OnInit {
 
   constructor(
     private fb:FormBuilder,
-    private request: RequestService,
+    private request: ClienteRequestService,
     public auth: AuthService
     ) { }
 
