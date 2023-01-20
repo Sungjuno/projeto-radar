@@ -19,6 +19,10 @@ import { FormatarCpfPipe } from '../shared/pipes/formatar-cpf.pipe';
 import { NgChartsModule } from 'ng2-charts';
 import { FluxoEstadoComponent } from './home/fluxo-estado/fluxo-estado.component';
 import { PipeEstadoPipe } from './clientes/pipe-estado.pipe';
+import { CreateProdutosModalComponent } from './modais/produtos-modal/create-produtos-modal.component';
+import { ViewProdutosModalComponent } from './modais/produtos-modal/view-produtos-modal.component';
+import { EditProdutosModalComponent } from './modais/produtos-modal/edit-produtos-modal.component';
+import { DeleteProdutosModalComponent } from './modais/produtos-modal/delete-produtos-modal.component';
 
 
 @NgModule({
@@ -37,6 +41,10 @@ import { PipeEstadoPipe } from './clientes/pipe-estado.pipe';
     FluxoClientesComponent,
     FluxoEstadoComponent,
     PipeEstadoPipe,
+    CreateProdutosModalComponent,
+    ViewProdutosModalComponent,
+    EditProdutosModalComponent,
+    DeleteProdutosModalComponent,
   ],
   imports: [
     CommonModule,

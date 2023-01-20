@@ -7,6 +7,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { take, tap } from 'rxjs';
 
 
+
+
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.component.html',
