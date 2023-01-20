@@ -1,7 +1,7 @@
 import { take } from 'rxjs';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChartOptions } from 'chart.js';
-import { RequestService } from 'src/app/shared/request/request.service';
+import { ClientesRequestService } from 'src/app/shared/request/clientes.service';
 import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
@@ -14,7 +14,7 @@ export class FluxoEstadoComponent implements OnInit {
 
 
   constructor(
-    private req: RequestService
+    private req: ClientesRequestService
   ) { }
 
   ngOnInit(): void {
