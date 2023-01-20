@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { PedidosComponent } from './pages/pedidos/pedido/pedidos.component';
+import { LojasComponent } from './pages/lojas/lojas.component';
 
 const routes: Routes = [
   {path:'login', component: LoginComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:'produtos', component: ProdutosComponent, canActivate:[EstaLogadoGuard]},
   {path:'clientes', component: ClientesComponent, canActivate:[EstaLogadoGuard]},
   {path:'pedidos', component: PedidosComponent, canActivate:[EstaLogadoGuard]},
+  {path:'lojas', component: LojasComponent, canActivate:[EstaLogadoGuard]},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', component: NotFoundComponent},
 ];
