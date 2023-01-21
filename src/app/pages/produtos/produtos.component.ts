@@ -31,7 +31,7 @@ export class ProdutosComponent implements OnInit {
 
 
   constructor(
-    private fb: FormBuilder,
+    // private fb: FormBuilder,
     private request: RequestService,
     public auth: AuthService,
     private modalService: NgbModal,

@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-view-clientes-modal',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./view-clientes-modal.component.css']
 })
 export class ViewClientesModalComponent {
-
+  constructor(
+    private http:HttpClient,
+    public activeModal: NgbActiveModal,
+  ) { }
 }

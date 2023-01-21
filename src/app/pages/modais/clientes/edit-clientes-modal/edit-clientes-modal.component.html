@@ -1,1 +1,14 @@
-<p>edit-clientes-modal works!</p>
+<div class="modal-content">
+  <div class="modal-header">
+    <h3 class="modal-title">Editar Cliente</h3>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+      (click)="activeModal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <span>Editar Cliente</span>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-warning" data-bs-dismiss="modal" (click)="activeModal.dismiss()">Cancelar</button>
+    <button type="button" class="btn btn-success" routerLink="/clientes" (click)="activeModal.dismiss()">Salvar</button>
+  </div>
+</div>
