@@ -1,7 +1,7 @@
 import { AuthService } from './../../shared/auth/auth.service';
 import { ILojas } from 'src/app/shared/models/lojas.interface';
 import { ILojasForm } from '../../shared/models/lojas.interface';
-import { RequestService } from 'src/app/shared/request/request.service';
+import { LojaRequestService } from 'src/app/shared/request/lojas.service';
 import { FormBuilder } from '@angular/forms';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { take, tap } from 'rxjs';
@@ -14,7 +14,7 @@ import { take, tap } from 'rxjs';
     export class LojasComponent implements OnInit {
 
         constructor(
-         private request: RequestService,
+         private request: LojaRequestService,
           public auth: AuthService) {
           
         }
