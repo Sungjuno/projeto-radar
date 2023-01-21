@@ -20,6 +20,8 @@ import { DeleteClientesModalComponent } from '../modais/clientes/delete-clientes
 })
 export class ClientesComponent implements OnInit {
 
+  clientes: ICliente[] = []
+
   constructor(
     // private fb:FormBuilder,
     private request: RequestService,
@@ -60,11 +62,11 @@ listaEstados = [
 ] */
 
 ngOnInit(): void {
+  // Carrega a função getClientes ao iniciar o componente.
   this.getClientes()
 }
 
-clientes: ICliente[] = []
-
+// Função getClientes, que pega todos os clientes e carrega na variável clientes, declarada  no início da classe
 getClientes() {
   this.httpClient.get<ICliente[]>(environment.url + "/clientes")
     .subscribe(list => {
@@ -72,13 +74,14 @@ getClientes() {
     })
 }
 
+
 ViewCliente(cliente: ICliente){
   const modalRef = this.modalService.open(ViewClientesModalComponent);
   modalRef.componentInstance.cliente = cliente;
 }
 
 CreateCliente(){
-  const modalRef = this.modalService.open(CreateClientesModalComponent);
+  this.modalService.open(CreateClientesModalComponent);
 }
 
 
