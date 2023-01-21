@@ -31,7 +31,7 @@ export class Carrinho{
         let existePedidoProduto = Carrinho.verifica(produto.id);
         
         if(existePedidoProduto > -1){
-            if(Number(Carrinho.carrinho[existePedidoProduto].quantidade) < Number(produto.qtdestoque))
+            if(Number(Carrinho.carrinho[existePedidoProduto].quantidade) < Number(produto.qtdEstoque))
                 Carrinho.carrinho[existePedidoProduto].quantidade = Number(Carrinho.carrinho[existePedidoProduto].quantidade) + 1;
         }else{
             let pedidoProduto={} as IPedidoProduto;

@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { take } from 'rxjs';
 import { IProduto, IProdutoForm } from 'src/app/shared/models/produto.interface';
-import { RequestService } from 'src/app/shared/request/request.service';
+import { ProdutosRequestService } from 'src/app/shared/request/produtos.service';
 
 @Component({
   selector: 'app-edit-produtos-modal',
@@ -16,7 +16,7 @@ export class EditProdutosModalComponent {
   constructor(
     private http:HttpClient,
     public activeModal: NgbActiveModal,
-    public request:RequestService
+    public request:ProdutosRequestService
   ) { 
   }
   edit(){

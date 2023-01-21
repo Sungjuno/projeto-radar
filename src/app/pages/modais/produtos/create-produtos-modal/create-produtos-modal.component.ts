@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IProdutoForm } from 'src/app/shared/models/produto.interface';
-import { RequestService } from 'src/app/shared/request/request.service';
+import { ProdutosRequestService } from 'src/app/shared/request/produtos.service';
 
 @Component({
   selector: 'app-create-produtos-modal',
@@ -15,14 +15,15 @@ export class CreateProdutosModalComponent {
     private fb: FormBuilder,
     private http:HttpClient,
     public activeModal: NgbActiveModal,
-    public request:RequestService
+    public request:ProdutosRequestService
   ) { }
   produtoForm = this.fb.group({
     id: [0],
     nome: [''],
     descricao: [''],
     valor: [0],
-    qtdestoque: [0]
+    qtdEstoque: [0],
+    photoUrl: [" "] 
   }) as IProdutoForm;
   create(){
     this.request.postProduto(this.produtoForm.value)

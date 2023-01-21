@@ -57,7 +57,8 @@ export class ProdutosComponent implements OnInit {
       nome: [produto.nome],
       descricao: [produto.descricao],
       valor: [produto.valor],
-      qtdestoque: [produto.qtdestoque]
+      qtdEstoque: [produto.qtdEstoque],
+      photoUrl: [produto.photoUrl] 
     }) as IProdutoForm
     const modalRef = this.modalService.open(ViewProdutosModalComponent);
     modalRef.componentInstance.produtoForm = produtoForm;
@@ -74,8 +75,8 @@ export class ProdutosComponent implements OnInit {
       nome: [produto.nome],
       descricao: [produto.descricao],
       valor: [produto.valor],
-      qtdestoque: [produto.qtdestoque]
-    }) as IProdutoForm
+      qtdEstoque: [produto.qtdEstoque],
+      photoUrl: [produto.photoUrl]    }) as IProdutoForm
     const modalRef = this.modalService.open(EditProdutosModalComponent);
     modalRef.componentInstance.produtoForm = produtoForm;
   }

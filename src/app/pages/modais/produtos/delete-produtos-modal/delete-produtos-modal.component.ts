@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { take } from 'rxjs';
 import { IProduto } from 'src/app/shared/models/produto.interface';
-import { RequestService } from 'src/app/shared/request/request.service';
+import { ProdutosRequestService } from 'src/app/shared/request/produtos.service';
 
 @Component({
   selector: 'app-delete-produtos-modal',
@@ -13,7 +13,7 @@ import { RequestService } from 'src/app/shared/request/request.service';
 export class DeleteProdutosModalComponent {
   @Input() produto!:IProduto;
   constructor(
-    private request: RequestService,
+    private request: ProdutosRequestService,
     public activeModal: NgbActiveModal,
   ) { 
     console.log(this.produto)}
