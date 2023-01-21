@@ -4,39 +4,77 @@ import { IProdutoForm } from '../../shared/models/produto.interface';
 import { RequestService } from 'src/app/shared/request/request.service';
 import { FormBuilder } from '@angular/forms';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { take, tap } from 'rxjs';
+import { take } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateProdutosModalComponent } from '../modais/produtos/create-produtos-modal/create-produtos-modal.component';
+import { EditProdutosModalComponent } from '../modais/produtos/edit-produtos-modal/edit-produtos-modal.component';
+import { DeleteProdutosModalComponent } from '../modais/produtos/delete-produtos-modal/delete-produtos-modal.component';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { ViewProdutosModalComponent } from '../modais/produtos/view-produtos-modal/view-produtos-modal.component';
 
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+
+myModal?.addEventListener('shown.bs.modal', () => {
+  myInput?.focus()
+})
 
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.component.html',
   styleUrls: ['./produtos.component.css']
 })
+
+
 export class ProdutosComponent implements OnInit {
 
+
   constructor(
-    private fb: FormBuilder,
+    // private fb: FormBuilder,
     private request: RequestService,
-    public auth: AuthService) { }
+    public auth: AuthService,
+    private modalService: NgbModal,
+    private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.getProduto()
   }
 
+  public produtos:IProduto[] = []
+
+  getProduto() {
+    this.httpClient.get<IProduto[]>(environment.url + "produtos")
+      .subscribe(list => {
+        this.produtos = list;
+      })
+  }
+
+  ViewProduto(produto: IProduto){
+    const modalRef = this.modalService.open(ViewProdutosModalComponent);
+    modalRef.componentInstance.produto = produto;
+  }
+
+  CreateProduto(){
+    const modalRef = this.modalService.open(CreateProdutosModalComponent);
+  }
+
+  
+  EditProduto(produto: IProduto){
+    const modalRef = this.modalService.open(EditProdutosModalComponent);
+    modalRef.componentInstance.produto = produto;
+  }
+  
+  DeleteProduto(produto: IProduto){
+    const modalRef = this.modalService.open(DeleteProdutosModalComponent);
+    modalRef.componentInstance.produto = produto;
+  }
+
+ /*  id = -1;
+  validador = true;*/
   
 
-
-
-
-
-
-
-
-  id = -1;
-  validador = true;
-  listaProduto:IProduto[] = []
-
-  produtoForm = this.fb.group ({
+  /*produtoForm = this.fb.group({
     id: [0],
     nome: [''],
     descricao: [''],
@@ -51,44 +89,46 @@ export class ProdutosComponent implements OnInit {
     this.list?.nativeElement.scrollTo({ top: maxScroll, behavior: 'smooth' });
   }
 
-  cadastrarProduto(){
+  cadastrarProduto() {
     this.request.postProduto(this.produtoForm.value)
-    .subscribe()
+      .subscribe()
     this.getProduto()
     this.resetForm()
   }
 
-  editarProduto(){
+  editarProduto() {
     this.request.updateProduto(this.produtoForm.value)
-    .pipe(take(1))
-    .subscribe()
-    this.id =-1;
+      .pipe(take(1))
+      .subscribe()
+    this.id = -1;
     this.getProduto()
     this.resetForm()
-  }
+  }*/
 
-  getProduto(){
+ /*  getProduto() {
     this.request.getProduto()
-    .pipe(take(1))
-    .subscribe(res => this.listaProduto = <IProduto[]>res)
-    this.listaProduto = [{id: 0,
+      .pipe(take(1))
+      .subscribe(res => this.listaProduto = <IProduto[]>res)
+    this.listaProduto = [{
+      id: 0,
       nome: 'teste',
       descricao: 'teste',
       valor: 0,
-      qtd_estoque: 0}];
-  }
+      qtd_estoque: 0
+    }];
+  } */
 
-  removeProduto(event:any){
+  /*removeProduto(event: any) {
     this.request.deleteProduto(event)
-    .pipe(take(1))
-    .subscribe()
+      .pipe(take(1))
+      .subscribe()
     this.getProduto()
   }
 
-  pushProduto(event:any){
+  pushProduto(event: any) {
     let produto = this.listaProduto[event];
-    this.id=produto.id;
-    this.produtoForm = this.fb.group ({
+    this.id = produto.id;
+    this.produtoForm = this.fb.group({
       id: [produto.id],
       nome: [produto.nome],
       descricao: [produto.descricao],
@@ -100,4 +140,8 @@ export class ProdutosComponent implements OnInit {
   resetForm() {
     this.produtoForm.reset();
   }
+ */
+ 
+
+  
 }

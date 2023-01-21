@@ -1,28 +1,72 @@
-<h2>Cadastro Produto</h2>
-
+<br>
 <div *ngIf="!auth.verificaAdm()" class="d-flex justify-content-center">
   <div class="alert alert-warning text-center mt-4 w-25">
     <p><strong>Você não tem permissão para cadastrar novos produtos.</strong></p>
   </div>
 </div>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CRUD</title>
-  <link rel="stylesheet" href="style.css">
-  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-</head>
-
-<body>
-  <div class="container">
+<div class="container-produto">
+ <div class="container">
     <div class="header">
-      <span>Cadastro de Funcionários</span>
-      <button onclick="openModal()" id="new">Incluir</i></button>
+      <span>Produtos</span>
+      <button type="submit" (click)="CreateProduto()" id="new">Incluir</button>
+    </div>
+
+    <div class="divTable">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th style="width:50%">Descrição</th>
+            <th>Valor</th>
+            <th>Estoque</th>
+            <th class="acao">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let produto of produtos">
+            <td>{{produto.nome}}</td>
+            <td>{{produto.descricao}}</td>
+            <td>{{produto.valor | currency}}</td>
+            <td>{{produto.qtd_estoque}} un.</td>
+            <td class="acao">
+              <button><i class='bx bx-show' (click)="ViewProduto(produto)"></i></button>
+              <button><i class='bx bx-edit' (click)="EditProduto(produto)"></i></button>
+              <button><i class='bx bx-trash' (click)="DeleteProduto(produto)"></i></button>
+           </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+  <!-- <form [formGroup]="produtoForm" *ngIf="auth.verificaAdm()">
+    <div class="inputs">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome:</label>
+        <input type="text" class="form-control textbox" id="nome" formControlName="nome">
+      </div>
+      <div class="mb-3">
+        <label for="descricao" class="form-label">Descrição:</label>
+        <input type="text" class="form-control textbox" id="descricao" formControlName="descricao">
+      </div>
+      <div class="mb-3">
+        <label for="valor" class="form-label">Valor:</label>
+        <input type="number" class="form-control textbox" id="valor" formControlName="valor">
+      </div>
+      <div class="mb-3">
+        <label for="qtd_estoque" class="form-label">Estoque:</label>
+        <input type="number" class="form-control textbox" id="qtd_estoque" formControlName="qtd_estoque">
+      </div>
+      <div *ngIf="id==-1">
+        <button type="submit" (click)="cadastrarProduto()" class="btn botao">Cadastrar</button>
+      </div>
+      <div *ngIf="id!=-1">
+        <button type="submit" (click)="editarProduto()" class="btn botao">Editar</button>
+      </div>
     </div>
 
     <div class="divTable">
@@ -35,30 +79,16 @@
             <th class="acao">Editar</th>
             <th class="acao">Excluir</th>
           </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="modal-container">
-      <div class="modal">
-        <form>
-          <label for="m-nome">Nome</label>
-          <input id="m-nome" type="text" required />
-  
-          <label for="m-funcao">Função</label>
-          <input id="m-funcao" type="text" required />
-  
-          <label for="m-salario">Salário</label>
-          <input id="m-salario" type="number" required />
-          <button id="btnSalvar">Salvar</button>
-        </form>
-      </div>
-    </div>
-
-  </div>
-  <script src="script.js"></script>
-</body>
-
-</html>
+      </thead>
+      <tbody>
+          <tr *ngFor="let produto of listaProduto; index as i" class="produto">
+              <td>{{produto.nome}} </td>
+              <td>{{produto.valor | currency: 'BRL'}}</td>
+              <td>{{produto.qtd_estoque}}</td>
+              <button class="remove" (click)="removeProduto(produto.id)"  *ngIf="auth.verificaAdm()">Remover</button>
+              <button class="update" (click)="pushProduto(i)"  *ngIf="auth.verificaAdm()">Editar</button>
+          </tr>
+      </tbody>
+  </table>
+  </div> -->
+</div>
