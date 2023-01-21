@@ -31,11 +31,11 @@ export class RequestService {
 
 
   getProduto(){
-    let produtos = this.http.get(environment.url + 'produtos')
+    let produtos = this.http.get<IProduto[]>(environment.url + 'produtos')
     return produtos
   }
   postProduto(produto:IProduto){
-    console.log('post no request ' + produto )
+    console.log(produto )
     return this.http.post<IProduto>(environment.url + 'produtos/',produto)
   }
 

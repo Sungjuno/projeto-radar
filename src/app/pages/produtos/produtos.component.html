@@ -28,7 +28,7 @@
             <td>{{produto.nome}}</td>
             <td>{{produto.descricao}}</td>
             <td>{{produto.valor | currency}}</td>
-            <td>{{produto.qtd_estoque}} un.</td>
+            <td>{{produto.qtdestoque}} un.</td>
             <td class="acao">
               <button><i class='bx bx-show' (click)="ViewProduto(produto)"></i></button>
               <button><i class='bx bx-edit' (click)="EditProduto(produto)"></i></button>
@@ -58,8 +58,8 @@
         <input type="number" class="form-control textbox" id="valor" formControlName="valor">
       </div>
       <div class="mb-3">
-        <label for="qtd_estoque" class="form-label">Estoque:</label>
-        <input type="number" class="form-control textbox" id="qtd_estoque" formControlName="qtd_estoque">
+        <label for="qtdestoque" class="form-label">Estoque:</label>
+        <input type="number" class="form-control textbox" id="estoque" formControlName="qtdestoque">
       </div>
       <div *ngIf="id==-1">
         <button type="submit" (click)="cadastrarProduto()" class="btn botao">Cadastrar</button>
@@ -84,7 +84,7 @@
           <tr *ngFor="let produto of listaProduto; index as i" class="produto">
               <td>{{produto.nome}} </td>
               <td>{{produto.valor | currency: 'BRL'}}</td>
-              <td>{{produto.qtd_estoque}}</td>
+              <td>{{produto.qtdestoque}}</td>
               <button class="remove" (click)="removeProduto(produto.id)"  *ngIf="auth.verificaAdm()">Remover</button>
               <button class="update" (click)="pushProduto(i)"  *ngIf="auth.verificaAdm()">Editar</button>
           </tr>

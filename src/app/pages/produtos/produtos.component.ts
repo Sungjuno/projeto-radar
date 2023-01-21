@@ -35,7 +35,7 @@ export class ProdutosComponent implements OnInit {
     private request: RequestService,
     public auth: AuthService,
     private modalService: NgbModal,
-    private httpClient: HttpClient) { }
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getProduto()
@@ -44,10 +44,12 @@ export class ProdutosComponent implements OnInit {
   public produtos:IProduto[] = []
 
   getProduto() {
-    this.httpClient.get<IProduto[]>(environment.url + "produtos")
+    this.request.getProduto()
+      .pipe(take(1))
       .subscribe(list => {
-        this.produtos = list;
+        this.produtos = <IProduto[]>list;
       })
+    console.log(this.produtos);
   }
 
   ViewProduto(produto: IProduto){
@@ -61,8 +63,15 @@ export class ProdutosComponent implements OnInit {
 
   
   EditProduto(produto: IProduto){
+    let produtoForm = this.fb.group({
+      id: [produto.id],
+      nome: [produto.nome],
+      descricao: [produto.descricao],
+      valor: [produto.valor],
+      qtdestoque: [produto.qtdestoque]
+    }) as IProdutoForm
     const modalRef = this.modalService.open(EditProdutosModalComponent);
-    modalRef.componentInstance.produto = produto;
+    modalRef.componentInstance.produtoForm = produtoForm;
   }
   
   DeleteProduto(produto: IProduto){
@@ -79,7 +88,7 @@ export class ProdutosComponent implements OnInit {
     nome: [''],
     descricao: [''],
     valor: [0],
-    qtd_estoque: [0]
+    qtdestoque: [0]
   }) as IProdutoForm
 
   @ViewChild('tabela') list?: ElementRef<HTMLDivElement>;
@@ -114,7 +123,7 @@ export class ProdutosComponent implements OnInit {
       nome: 'teste',
       descricao: 'teste',
       valor: 0,
-      qtd_estoque: 0
+      qtdestoque: 0
     }];
   } */
 
@@ -133,7 +142,7 @@ export class ProdutosComponent implements OnInit {
       nome: [produto.nome],
       descricao: [produto.descricao],
       valor: [produto.valor],
-      qtd_estoque: [produto.qtd_estoque]
+      qtdestoque: [produto.qtdestoque]
     }) as IProdutoForm
   }
 
