@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { IProduto } from 'src/app/shared/models/produto.interface';
+import { IProdutoForm } from 'src/app/shared/models/produto.interface';
 
 @Component({
   selector: 'app-view-produtos-modal',
@@ -8,7 +8,7 @@ import { IProduto } from 'src/app/shared/models/produto.interface';
   styleUrls: ['./view-produtos-modal.component.css']
 })
 export class ViewProdutosModalComponent {
-  @Input() produto!:IProduto;
+  @Input() produtoForm!:IProdutoForm;
   
   constructor(
     public activeModal: NgbActiveModal,

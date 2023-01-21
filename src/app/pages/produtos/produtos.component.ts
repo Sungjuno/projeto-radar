@@ -53,8 +53,15 @@ export class ProdutosComponent implements OnInit {
   }
 
   ViewProduto(produto: IProduto){
+    let produtoForm = this.fb.group({
+      id: [produto.id],
+      nome: [produto.nome],
+      descricao: [produto.descricao],
+      valor: [produto.valor],
+      qtdestoque: [produto.qtdestoque]
+    }) as IProdutoForm
     const modalRef = this.modalService.open(ViewProdutosModalComponent);
-    modalRef.componentInstance.produto = produto;
+    modalRef.componentInstance.produtoForm = produtoForm;
   }
 
   CreateProduto(){
