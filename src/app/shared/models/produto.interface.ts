@@ -8,7 +8,8 @@ export interface IProdutoForm extends FormGroup{
   nome: AbstractControl,
   descricao: AbstractControl,
   valor: AbstractControl,
-  qtdestoque: AbstractControl
+  qtdEstoque: AbstractControl,
+  photoUrl: AbstractControl
 }
 }
 
@@ -17,5 +18,6 @@ export interface IProduto {
   nome: string,
   descricao: string,
   valor: number,
-  qtdestoque: number
+  qtdEstoque: number,
+  photoUrl: string
 }

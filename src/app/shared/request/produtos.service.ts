@@ -17,7 +17,7 @@ export class ProdutosRequestService {
     return produtos
   }
   postProduto(produto:IProduto){
-    console.log('post no request ' + produto )
+    console.log(produto )
     return this.http.post<IProduto>(environment.url + 'produtos/',produto)
   }
 
