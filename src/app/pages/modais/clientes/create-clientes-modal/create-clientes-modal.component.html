@@ -6,10 +6,11 @@
   </div>
   <div class="modal-body">
     <span>Cadastrar Cliente</span>
+    
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-warning" data-bs-dismiss="modal" (click)="activeModal.dismiss()">Cancelar</button>
-    <button type="button" class="btn btn-success" routerLink="/clientes" (click)="activeModal.dismiss()">Salvar</button>
+    <button type="button" class="btn btn-warning" data-bs-dismiss="modal" (click)="activeModal.close()">Cancelar</button>
+    <button type="button" class="btn btn-success" routerLink="/clientes" (click)="activeModal.close()">Salvar</button>
   </div>
 </div>
 

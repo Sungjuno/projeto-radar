@@ -27,7 +27,7 @@ export class ClientesComponent implements OnInit {
     private modalService: NgbModal,
     private httpClient: HttpClient
     ) { }
-
+/* 
 id = -1;
 listaEstados = [
       'Acre',
@@ -57,7 +57,7 @@ listaEstados = [
       'São Paulo',
       'Sergipe',
       'Tocantins'
-]
+] */
 
 ngOnInit(): void {
   this.getClientes()
@@ -66,7 +66,7 @@ ngOnInit(): void {
 clientes: ICliente[] = []
 
 getClientes() {
-  this.httpClient.get<ICliente[]>(environment.url + "clientes")
+  this.httpClient.get<ICliente[]>(environment.url + "/clientes")
     .subscribe(list => {
       this.clientes = list;
     })
