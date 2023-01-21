@@ -35,6 +35,9 @@ h2{
 
 td{
   width: 5rem;
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+  overflow: hidden;
 }
 
 .produto-p{
@@ -162,11 +165,12 @@ tbody tr {
 
 thead tr th.acao {
   width: 100px!important;
-  text-align: center;
+  text-align: right;
+  padding-right: 3%;
 }
 
 tbody tr td.acao {
-  text-align: center;
+  text-align: right;
 }
 
 @media (max-width: 700px) {
@@ -287,3 +291,4 @@ td button i {
 td button i:first-child {
   margin-right: 10px;
 }
+

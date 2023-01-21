@@ -2,7 +2,7 @@ import { PagesModule } from './pages/pages.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from './components/components.module';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, DEFAULT_CURRENCY_CODE } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +30,9 @@ registerLocaleData(localePt, 'pt');
   providers: [{
     provide: LOCALE_ID,
     useValue: 'pt'
+  },{ 
+    provide: DEFAULT_CURRENCY_CODE,
+    useValue: 'BRL'
   }],
   bootstrap: [AppComponent]
 })

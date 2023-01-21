@@ -5,11 +5,13 @@ import { RequestService } from 'src/app/shared/request/request.service';
 import { FormBuilder } from '@angular/forms';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { take } from 'rxjs';
-import { ViewProdutosModalComponent } from '../modais/produtos-modal/view-produtos-modal.component';
-import { CreateProdutosModalComponent } from '../modais/produtos-modal/create-produtos-modal.component';
-import { EditProdutosModalComponent } from '../modais/produtos-modal/edit-produtos-modal.component';
-import { DeleteProdutosModalComponent } from '../modais/produtos-modal/delete-produtos-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateProdutosModalComponent } from '../modais/produtos/create-produtos-modal/create-produtos-modal.component';
+import { EditProdutosModalComponent } from '../modais/produtos/edit-produtos-modal/edit-produtos-modal.component';
+import { DeleteProdutosModalComponent } from '../modais/produtos/delete-produtos-modal/delete-produtos-modal.component';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { ViewProdutosModalComponent } from '../modais/produtos/view-produtos-modal/view-produtos-modal.component';
 
 const myModal = document.getElementById('myModal')
 const myInput = document.getElementById('myInput')
@@ -32,17 +34,47 @@ export class ProdutosComponent implements OnInit {
     private fb: FormBuilder,
     private request: RequestService,
     public auth: AuthService,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.getProduto()
   }
 
-  id = -1;
-  validador = true;
-  listaProduto: IProduto[] = []
+  public produtos:IProduto[] = []
 
-  produtoForm = this.fb.group({
+  getProduto() {
+    this.httpClient.get<IProduto[]>(environment.url + "produtos")
+      .subscribe(list => {
+        this.produtos = list;
+      })
+  }
+
+  ViewProduto(produto: IProduto){
+    const modalRef = this.modalService.open(ViewProdutosModalComponent);
+    modalRef.componentInstance.produto = produto;
+  }
+
+  CreateProduto(){
+    const modalRef = this.modalService.open(CreateProdutosModalComponent);
+  }
+
+  
+  EditProduto(produto: IProduto){
+    const modalRef = this.modalService.open(EditProdutosModalComponent);
+    modalRef.componentInstance.produto = produto;
+  }
+  
+  DeleteProduto(produto: IProduto){
+    const modalRef = this.modalService.open(DeleteProdutosModalComponent);
+    modalRef.componentInstance.produto = produto;
+  }
+
+ /*  id = -1;
+  validador = true;*/
+  
+
+  /*produtoForm = this.fb.group({
     id: [0],
     nome: [''],
     descricao: [''],
@@ -71,9 +103,9 @@ export class ProdutosComponent implements OnInit {
     this.id = -1;
     this.getProduto()
     this.resetForm()
-  }
+  }*/
 
-  getProduto() {
+ /*  getProduto() {
     this.request.getProduto()
       .pipe(take(1))
       .subscribe(res => this.listaProduto = <IProduto[]>res)
@@ -84,9 +116,9 @@ export class ProdutosComponent implements OnInit {
       valor: 0,
       qtd_estoque: 0
     }];
-  }
+  } */
 
-  removeProduto(event: any) {
+  /*removeProduto(event: any) {
     this.request.deleteProduto(event)
       .pipe(take(1))
       .subscribe()
@@ -108,25 +140,8 @@ export class ProdutosComponent implements OnInit {
   resetForm() {
     this.produtoForm.reset();
   }
-
+ */
  
 
-  modalViewProduto(produto: IProduto){
-    const modalRef = this.modalService.open(ViewProdutosModalComponent);
-    modalRef.componentInstance.produto = produto;
-  }
   
-  modalCreateProduto(){
-    const modalRef = this.modalService.open(CreateProdutosModalComponent);
-  }
-  
-  modalEditProduto(produto: IProduto){
-    const modalRef = this.modalService.open(EditProdutosModalComponent);
-    modalRef.componentInstance.produto = produto;
-  }
-  
-  modalDeleteProduto(produto: IProduto){
-    const modalRef = this.modalService.open(DeleteProdutosModalComponent);
-    modalRef.componentInstance.produto = produto;
-  }
 }
