@@ -1,7 +1,7 @@
 import { AuthService } from './../../shared/auth/auth.service';
 import { IProduto } from 'src/app/shared/models/produto.interface';
 import { IProdutoForm } from '../../shared/models/produto.interface';
-import { RequestService } from 'src/app/shared/request/request.service';
+import { ProdutosRequestService } from 'src/app/shared/request/produtos.service';
 import { FormBuilder } from '@angular/forms';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { take } from 'rxjs';
@@ -31,11 +31,10 @@ export class ProdutosComponent implements OnInit {
 
 
   constructor(
-    // private fb: FormBuilder,
-    private request: RequestService,
-    public auth: AuthService,
+    private fb: FormBuilder,
+    private request: ProdutosRequestService,
     private modalService: NgbModal,
-    private fb: FormBuilder) { }
+    public auth: AuthService) { }
 
   ngOnInit(): void {
     this.getProduto()

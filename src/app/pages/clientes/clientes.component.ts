@@ -4,7 +4,6 @@ import { IClienteForm } from '../../shared/models/cliente.interface';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { take } from 'rxjs';
-import { RequestService } from 'src/app/shared/request/request.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -12,6 +11,7 @@ import { ViewClientesModalComponent } from '../modais/clientes/view-clientes-mod
 import { CreateClientesModalComponent } from '../modais/clientes/create-clientes-modal/create-clientes-modal.component';
 import { EditClientesModalComponent } from '../modais/clientes/edit-clientes-modal/edit-clientes-modal.component';
 import { DeleteClientesModalComponent } from '../modais/clientes/delete-clientes-modal/delete-clientes-modal.component';
+import { ClientesRequestService } from 'src/app/shared/request/clientes.service';
 
 @Component({
   selector: 'app-clientes',
@@ -24,7 +24,7 @@ export class ClientesComponent implements OnInit {
 
   constructor(
     // private fb:FormBuilder,
-    private request: RequestService,
+    private request: ClientesRequestService,
     public auth: AuthService,
     private modalService: NgbModal,
     private httpClient: HttpClient

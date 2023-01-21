@@ -6,14 +6,28 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class PedidosService {
+export class PedidosRequestService {
 
   url = environment.url
 
   constructor(private http: HttpClient) { }
 
-  getPedidos() {
-    return this.http.get<IPedido[]>(this.url + "pedidos")
+  updatePedido(pedido:any){
+    return this.http.put<any>(environment.url + 'pedidos/',pedido)
+  }
+
+  getPedido(){
+    let pedidos = this.http.get(environment.url + 'pedidos')
+    return pedidos
+  }
+
+  postPedido(pedido:any){
+    console.log('post no request ' + pedido )
+    return this.http.post<IPedido>(environment.url + 'pedidos/',pedido)
+  }
+
+  deletePedido(id:number){
+    return this.http.delete<IPedido>(environment.url + `pedidos/${id}`)
   }
 
 }

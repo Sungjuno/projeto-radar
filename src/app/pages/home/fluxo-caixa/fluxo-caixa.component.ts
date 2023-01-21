@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { finalize, take, tap } from 'rxjs';
-import { RequestService } from 'src/app/shared/request/request.service';
+import { ClientesRequestService } from 'src/app/shared/request/clientes.service';
+import { ProdutosRequestService } from 'src/app/shared/request/produtos.service';
+import { PedidosRequestService } from 'src/app/shared/request/pedidos.service';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -17,7 +19,9 @@ export class FluxoCaixaComponent implements OnInit {
   dateInicial = new Date()
 
   constructor(
-    private req: RequestService,
+    private clienteReq: ClientesRequestService,
+    private produtoReq: ProdutosRequestService,
+    private pedidoReq: PedidosRequestService,
     private datePipe: DatePipe
   ) { }
 
@@ -101,7 +105,7 @@ export class FluxoCaixaComponent implements OnInit {
 
   fluxoPedidoClienteApi() {
 
-    this.req.getPedidoCliente()
+    this.pedidoReq.getPedido()
       .pipe(
         take(1),
         tap(res => {this.objetoApi = res;}))
@@ -237,13 +241,13 @@ export class FluxoCaixaComponent implements OnInit {
   }
 
   chamaApiClientes() {
-    this.req.getCliente()
+    this.clienteReq.getCliente()
       .pipe(take(1))
       .subscribe(res => this.quantidadeClientes(res))
   }
 
   chamaApiProduto() {
-    this.req.getProduto()
+    this.produtoReq.getProduto()
       .pipe(take(1))
       .subscribe(res => this.quantidadeProduto(res))
   }

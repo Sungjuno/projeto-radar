@@ -3,7 +3,9 @@ import { ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { take, tap } from 'rxjs';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { RequestService } from 'src/app/shared/request/request.service';
+import { ProdutosRequestService } from 'src/app/shared/request/produtos.service';
+import { PedidosRequestService } from 'src/app/shared/request/pedidos.service';
+import { ClientesRequestService } from 'src/app/shared/request/clientes.service';
 
 @Component({
   selector: 'app-fluxo-clientes',
@@ -29,7 +31,9 @@ export class FluxoClientesComponent implements OnInit {
   fluxoNovembro = 0
   fluxoDezembro = 0
 
-  constructor(private req: RequestService) { }
+  constructor(private clienteReq: ClientesRequestService,
+    private produtoReq: ProdutosRequestService,
+    private pedidoReq: PedidosRequestService,) { }
 
   ngOnInit(): void {
     const dataInicial = new Date()
@@ -99,13 +103,13 @@ export class FluxoClientesComponent implements OnInit {
   }]
 
   chamaApiClientes() {
-    this.req.getCliente()
+    this.clienteReq.getCliente()
       .pipe(take(1))
       .subscribe(res => this.quantidadeClientes(res))
   }
 
   chamaApiProduto() {
-    this.req.getProduto()
+    this.produtoReq.getProduto()
       .pipe(take(1))
       .subscribe(res => this.quantidadeProduto(res))
   }
@@ -113,7 +117,7 @@ export class FluxoClientesComponent implements OnInit {
   fluxoPedidoClienteApi(ano: string) {
     this.fluxoAno = ano;
 
-    this.req.getPedidoCliente()
+    this.pedidoReq.getPedido()
       .pipe(take(1))
       .subscribe(res => this.filtraPorMes(res, this.fluxoAno))
   }

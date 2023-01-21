@@ -1,7 +1,7 @@
 import { IPedidoProdutoForm } from './../../../shared/models/pedido-produto.interface';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { RequestService } from 'src/app/shared/request/request.service';
+import { PedidosProdutosRequestService } from 'src/app/shared/request/pedidosprodutos.service';
 
 @Component({
   selector: 'app-produto-pedido',
@@ -12,7 +12,7 @@ export class ProdutoPedidoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private req: RequestService) { }
+    private req: PedidosProdutosRequestService) { }
 
   ngOnInit(): void {
   }

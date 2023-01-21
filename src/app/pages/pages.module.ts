@@ -11,6 +11,7 @@ import { HomeComponent } from '../pages/home/home.component';
 import { ProdutosComponent } from '../pages/produtos/produtos.component';
 import { ClientesComponent } from '../pages/clientes/clientes.component';
 import { PedidosComponent } from '../pages/pedidos/pedido/pedidos.component';
+import { LojasComponent } from '../pages/lojas/lojas.component';
 import { ProdutoPedidoComponent } from '../pages/pedidos/pedido-produto/produto-pedido.component';
 import { PedidosClientesComponent } from '../pages/pedidos/pedidos-clientes/pedidos-clientes.component';
 import { NotFoundComponent } from './not-found/not-found.component';
