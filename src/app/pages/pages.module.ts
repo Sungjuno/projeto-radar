@@ -33,6 +33,9 @@ import { DeleteLojasModalComponent } from './modais/lojas/delete-lojas-modal/del
 import { CreateLojasModalComponent } from './modais/lojas/create-lojas-modal/create-lojas-modal.component';
 import { ViewLojasModalComponent } from './modais/lojas/view-lojas-modal/view-lojas-modal.component';
 import { EditLojasModalComponent } from './modais/lojas/edit-lojas-modal/edit-lojas-modal.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { PrateleiraComponent } from './prateleira/prateleira.component';
+import { CampanhasComponent } from './campanhas/campanhas.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 
 @NgModule({
@@ -65,6 +68,8 @@ import { CarrinhoComponent } from './carrinho/carrinho.component';
     CreateLojasModalComponent,
     ViewLojasModalComponent,
     EditLojasModalComponent,
+    PrateleiraComponent,
+    CampanhasComponent,
   ],
   imports: [
     CommonModule,
@@ -73,7 +78,8 @@ import { CarrinhoComponent } from './carrinho/carrinho.component';
     AppRoutingModule,
     ReactiveFormsModule,
     NgChartsModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   exports: [
     HomeComponent,

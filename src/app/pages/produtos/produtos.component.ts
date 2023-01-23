@@ -43,8 +43,7 @@ export class ProdutosComponent implements OnInit {
       .pipe(take(1))
       .subscribe(list => {
         this.produtos = <IProduto[]>list;
-      })
-    console.log(this.produtos);
+      });
   }
 
   viewProduto(produto: IProduto){
@@ -60,8 +59,8 @@ export class ProdutosComponent implements OnInit {
     modalRef.componentInstance.produtoForm = produtoForm;
   }
 
-  createProduto(){
-    const modalRef = this.modalService.open(CreateProdutosModalComponent);
+  CreateProduto(){
+    this.modalService.open(CreateProdutosModalComponent);
   }
 
   
@@ -72,7 +71,8 @@ export class ProdutosComponent implements OnInit {
       descricao: [produto.descricao],
       valor: [produto.valor],
       qtdEstoque: [produto.qtdEstoque],
-      photoUrl: [produto.photoUrl]    }) as IProdutoForm
+      photoUrl: [produto.photoUrl]
+    }) as IProdutoForm
     const modalRef = this.modalService.open(EditProdutosModalComponent);
     modalRef.componentInstance.produtoForm = produtoForm;
   }
@@ -81,79 +81,4 @@ export class ProdutosComponent implements OnInit {
     const modalRef = this.modalService.open(DeleteProdutosModalComponent);
     modalRef.componentInstance.produto = produto;
   }
-
- /*  id = -1;
-  validador = true;*/
-  
-
-  /*produtoForm = this.fb.group({
-    id: [0],
-    nome: [''],
-    descricao: [''],
-    valor: [0],
-    qtdestoque: [0]
-  }) as IProdutoForm
-
-  @ViewChild('tabela') list?: ElementRef<HTMLDivElement>;
-
-  ngAfterViewInit() {
-    const maxScroll = this.list?.nativeElement.scrollHeight;
-    this.list?.nativeElement.scrollTo({ top: maxScroll, behavior: 'smooth' });
-  }
-
-  cadastrarProduto() {
-    this.request.postProduto(this.produtoForm.value)
-      .subscribe()
-    this.getProduto()
-    this.resetForm()
-  }
-
-  editarProduto() {
-    this.request.updateProduto(this.produtoForm.value)
-      .pipe(take(1))
-      .subscribe()
-    this.id = -1;
-    this.getProduto()
-    this.resetForm()
-  }*/
-
- /*  getProduto() {
-    this.request.getProduto()
-      .pipe(take(1))
-      .subscribe(res => this.listaProduto = <IProduto[]>res)
-    this.listaProduto = [{
-      id: 0,
-      nome: 'teste',
-      descricao: 'teste',
-      valor: 0,
-      qtdestoque: 0
-    }];
-  } */
-
-  /*removeProduto(event: any) {
-    this.request.deleteProduto(event)
-      .pipe(take(1))
-      .subscribe()
-    this.getProduto()
-  }
-
-  pushProduto(event: any) {
-    let produto = this.listaProduto[event];
-    this.id = produto.id;
-    this.produtoForm = this.fb.group({
-      id: [produto.id],
-      nome: [produto.nome],
-      descricao: [produto.descricao],
-      valor: [produto.valor],
-      qtdestoque: [produto.qtdestoque]
-    }) as IProdutoForm
-  }
-
-  resetForm() {
-    this.produtoForm.reset();
-  }
- */
- 
-
-  
 }

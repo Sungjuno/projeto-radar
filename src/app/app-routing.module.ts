@@ -8,6 +8,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { LojasComponent } from './pages/lojas/lojas.component';
+import { PrateleiraComponent } from './pages/prateleira/prateleira.component';
+import { CampanhasComponent } from './pages/campanhas/campanhas.component';
 import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
 
 const routes: Routes = [
@@ -17,6 +19,8 @@ const routes: Routes = [
   {path:'clientes', component: ClientesComponent, canActivate:[EstaLogadoGuard]},
   {path:'pedidos', component: PedidosComponent, canActivate:[EstaLogadoGuard]},
   {path:'lojas', component: LojasComponent, canActivate:[EstaLogadoGuard]},
+  {path:'campanhas', component: CampanhasComponent, canActivate:[EstaLogadoGuard]},
+  {path:'prateleira', component: PrateleiraComponent, canActivate:[EstaLogadoGuard]},
   {path:'carrinho', component: CarrinhoComponent, canActivate:[EstaLogadoGuard]},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', component: NotFoundComponent},

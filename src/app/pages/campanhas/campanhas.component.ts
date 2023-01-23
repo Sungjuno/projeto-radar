@@ -1,9 +1,12 @@
-import { AuthService } from './../../shared/auth/auth.service';
+
+import { FormBuilder } from '@angular/forms';
+import { take } from 'rxjs';
+import { ICampanha } from 'src/app/shared/models/campanha.interface';
+import { CampanhaRequestService } from 'src/app/shared/request/campanhas.service';#fig8[8A
 import { Component, OnInit } from '@angular/core';
 import { mergeMap, take, finalize } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteProdutosModalComponent } from '../modais/produtos/delete-produtos-modal/delete-produtos-modal.component';
-import { CampanhasRequestService } from 'src/app/shared/request/campanhas.service';
 import { ICampanha } from 'src/app/shared/models/campanha.interface';
 import { Prateleira } from 'src/app/services/Prateleira';
 
@@ -16,7 +19,6 @@ export class CampanhasComponent implements OnInit {
 
   constructor(
     private campanhasRequest: CampanhasRequestService,
-    public auth: AuthService,
     private modalService: NgbModal,) {
     
   }
