@@ -2,11 +2,10 @@ import { FormGroup, AbstractControl } from '@angular/forms';
 // Pedidos (id, cliente_id, valor_total, data)
 // PedidosProdutos (id, pedido_id, produto_id, valor, quantidade)
 
-
-export interface IPedidoProduto{
+export interface IPosicaoProduto{
   id:number,
-  pedidoId:number,
+  campanhaId:number,
   produtoId:number,
-  valor:number,
-  quantidade:number
+  posicaoX:number,
+  posicaoY:number
 }

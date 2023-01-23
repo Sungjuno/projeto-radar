@@ -3,22 +3,14 @@ import { IProduto } from 'src/app/shared/models/produto.interface';
 import { IProdutoForm } from '../../shared/models/produto.interface';
 import { ProdutosRequestService } from 'src/app/shared/request/produtos.service';
 import { FormBuilder } from '@angular/forms';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateProdutosModalComponent } from '../modais/produtos/create-produtos-modal/create-produtos-modal.component';
 import { EditProdutosModalComponent } from '../modais/produtos/edit-produtos-modal/edit-produtos-modal.component';
 import { DeleteProdutosModalComponent } from '../modais/produtos/delete-produtos-modal/delete-produtos-modal.component';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { ViewProdutosModalComponent } from '../modais/produtos/view-produtos-modal/view-produtos-modal.component';
-
-const myModal = document.getElementById('myModal')
-const myInput = document.getElementById('myInput')
-
-myModal?.addEventListener('shown.bs.modal', () => {
-  myInput?.focus()
-})
+import { Carrinho } from 'src/app/services/Carrinho';
 
 @Component({
   selector: 'app-produtos',
@@ -42,6 +34,10 @@ export class ProdutosComponent implements OnInit {
 
   public produtos:IProduto[] = []
 
+  addProduto(produto:IProduto){
+    Carrinho.adicionaPedidoProduto(produto);
+  }
+
   getProduto() {
     this.request.getProduto()
       .pipe(take(1))
@@ -51,7 +47,7 @@ export class ProdutosComponent implements OnInit {
     console.log(this.produtos);
   }
 
-  ViewProduto(produto: IProduto){
+  viewProduto(produto: IProduto){
     let produtoForm = this.fb.group({
       id: [produto.id],
       nome: [produto.nome],
@@ -64,12 +60,12 @@ export class ProdutosComponent implements OnInit {
     modalRef.componentInstance.produtoForm = produtoForm;
   }
 
-  CreateProduto(){
+  createProduto(){
     const modalRef = this.modalService.open(CreateProdutosModalComponent);
   }
 
   
-  EditProduto(produto: IProduto){
+  editProduto(produto: IProduto){
     let produtoForm = this.fb.group({
       id: [produto.id],
       nome: [produto.nome],
@@ -81,7 +77,7 @@ export class ProdutosComponent implements OnInit {
     modalRef.componentInstance.produtoForm = produtoForm;
   }
   
-  DeleteProduto(produto: IProduto){
+  deleteProduto(produto: IProduto){
     const modalRef = this.modalService.open(DeleteProdutosModalComponent);
     modalRef.componentInstance.produto = produto;
   }

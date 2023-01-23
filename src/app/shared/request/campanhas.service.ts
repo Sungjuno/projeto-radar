@@ -20,7 +20,7 @@ export class CampanhaRequestService {
   }
 
   updateCampanha(campanha:ICampanha){
-    return this.http.put<ICampanha>(environment.url + 'campanhas/',campanha)
+    return this.http.put<ICampanha>(environment.url + 'campanhas/'+campanha.id,campanha)
   }
 
   deleteCampanha(id:number){

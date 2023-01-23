@@ -5,7 +5,7 @@
       <li routerLink="produtos" *ngIf="mostraHeader">Produtos</li>
       <li routerLink="clientes" *ngIf="mostraHeader">Clientes</li>
       <li routerLink="lojas" *ngIf="mostraHeader">lojas</li>
-      <li routerLink="pedidos" *ngIf="mostraHeader">Carrinho({{getQuantidade()}})</li>
+      <li routerLink="carrinho" *ngIf="mostraHeader">Carrinho({{getQuantidade()}})</li>
       <li (click)="logout()" *ngIf="mostraHeader && auth.verificaLogado()">Logout</li>
     </ul>
 </div>

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="header">
+    <span>Listagem de Pedidos</span>
+  </div>
+
+  <div class="divTable">
+    <table>
+        <thead>
+          <tr>
+            <th>nome</th>
+            <th>cep</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pedido of pedidos">
+        <td>{{loja.nome}}</td>
+        <td>{{loja.cep}}</td>
+        <td class="acao">
+          <button><i class='bx bx-show' (click)="ViewPedido(loja)"></i></button>
+          <button><i class='bx bx-edit' (click)="EditLoja(loja)"></i></button>
+          <button><i class='bx bx-trash' (click)="DeleteLoja(loja)"></i></button>
+       </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

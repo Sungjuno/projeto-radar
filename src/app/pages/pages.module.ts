@@ -10,10 +10,8 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from '../pages/home/home.component';
 import { ProdutosComponent } from '../pages/produtos/produtos.component';
 import { ClientesComponent } from '../pages/clientes/clientes.component';
-import { PedidosComponent } from '../pages/pedidos/pedido/pedidos.component';
+import { PedidosComponent } from '../pages/pedidos/pedidos.component';
 import { LojasComponent } from '../pages/lojas/lojas.component';
-import { ProdutoPedidoComponent } from '../pages/pedidos/pedido-produto/produto-pedido.component';
-import { PedidosClientesComponent } from '../pages/pedidos/pedidos-clientes/pedidos-clientes.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormatarTelefonePipe } from '../shared/pipes/formatar-telefone.pipe';
 import { FormatarCpfPipe } from '../shared/pipes/formatar-cpf.pipe';
@@ -36,16 +34,16 @@ import { DeleteLojasModalComponent } from './modais/lojas/delete-lojas-modal/del
 import { CreateLojasModalComponent } from './modais/lojas/create-lojas-modal/create-lojas-modal.component';
 import { ViewLojasModalComponent } from './modais/lojas/view-lojas-modal/view-lojas-modal.component';
 import { EditLojasModalComponent } from './modais/lojas/edit-lojas-modal/edit-lojas-modal.component';
-
+import { CarrinhoComponent } from './carrinho/carrinho.component';
 
 @NgModule({
   declarations: [
+    CarrinhoComponent,
     HomeComponent,
     ProdutosComponent,
     ClientesComponent,
+    LojasComponent,
     PedidosComponent,
-    ProdutoPedidoComponent,
-    PedidosClientesComponent,
     LoginComponent,
     NotFoundComponent,
     FormatarTelefonePipe,
@@ -85,8 +83,6 @@ import { EditLojasModalComponent } from './modais/lojas/edit-lojas-modal/edit-lo
     ProdutosComponent,
     ClientesComponent,
     PedidosComponent,
-    ProdutoPedidoComponent,
-    PedidosClientesComponent,
     LoginComponent,
     FluxoCaixaComponent,
     FluxoClientesComponent,

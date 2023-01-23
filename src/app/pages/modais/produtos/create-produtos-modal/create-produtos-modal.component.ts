@@ -13,7 +13,6 @@ import { ProdutosRequestService } from 'src/app/shared/request/produtos.service'
 export class CreateProdutosModalComponent {
   constructor(
     private fb: FormBuilder,
-    private http:HttpClient,
     public activeModal: NgbActiveModal,
     public request:ProdutosRequestService
   ) { }
@@ -28,5 +27,7 @@ export class CreateProdutosModalComponent {
   create(){
     this.request.postProduto(this.produtoForm.value)
       .subscribe();
+      this.activeModal.dismiss();
+      window.location.replace("/produtos");
   }
 }
