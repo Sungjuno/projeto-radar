@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
 
 * {
   margin: 0;
@@ -9,7 +9,7 @@
 
 body {
   width: 100vw;
-  height: 100vh;
+  height: 94vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +21,6 @@ button {
 }
 
 .container {
-  width: 90%;
   height: 80%;
   border-radius: 10px;
   background: white;
@@ -99,171 +98,19 @@ tbody tr {
 }
 
 thead tr th.acao {
-  width: 100px!important;
+  width: 150px!important;
   text-align: center;
 }
 
 tbody tr td.acao {
   text-align: center;
-}
-
-.container-produto{
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 0 3rem 0 7rem;
-}
-
-.tabela{
-  height: 20rem;
-  overflow-y: scroll;
-}
-
-td{
-  width: 5rem;
-  text-overflow: ellipsis; 
-  white-space: nowrap; 
-  overflow: hidden;
-}
-
-.produto-p{
-  display: flex;
-  justify-content: space-evenly;
-  gap: 5rem;
-}
-
-.remove{
-  border: none;
-  background-color: rgb(255, 134, 134);
-  margin: .5rem .5rem .5rem 0;
-}
-
-.update{
-  border: none;
-  background-color: rgb(134, 134, 255);
-  margin: .5rem .5rem .5rem 0;
-}
-
-.invalido{
-  margin-top: 15rem;
-}
-
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0,0,0,0.1);
-}
-
-button {
-  cursor: pointer;
-}
-
-.container {
-  width: 90%;
-  height: 80%;
-  border-radius: 10px;
-  background: white;
-}
-
-.header {
-  min-height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: auto 12px;
-}
-
-.header span {
-  font-weight: 900;
-  font-size: 20px;
-  word-break: break-all;
-}
-
-#new {
-  font-size: 16px;
-  padding: 8px;
-  border-radius: 5px;
-  border: none;
-  color: white;
-  background-color: rgb(57, 57, 226);
-}
-
-.divTable {
-  padding: 10px;
-  width: auto; 
-  height:inherit; 
-  overflow:auto;
-}
-
-.divTable::-webkit-scrollbar {
-  width: 12px;
-  background-color: whitesmoke; 
-}
-
-.divTable::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: darkgray; 
-}
-
-table {
-  width: 100%;
-  border-spacing: 10px;
-  word-break: break-all;
-  border-collapse: collapse;
-}
-
-thead {
-  background-color: whitesmoke;
-}
-
-tr {
-  border-bottom: 1px solid rgb(238, 235, 235)!important;
-}
-
-tbody tr td {
-  vertical-align: text-top;
-  padding: 6px;
-  max-width: 50px;
-}
-
-thead tr th {
-  padding: 5px;
-  text-align: start;
-  margin-bottom: 50px;
-}
-
-tbody tr {
-  margin-bottom: 50px;
-}
-
-thead tr th.acao {
-  width: 100px!important;
-  text-align: right;
-  padding-right: 3%;
-}
-
-tbody tr td.acao {
-  text-align: right;
 }
 
 @media (max-width: 700px) {
   body {
     font-size: 10px;
   }
-  
+
   .header span {
     font-size: 15px;
   }
@@ -276,7 +123,7 @@ tbody tr td.acao {
   thead tr th.acao {
     width: auto!important;
   }
-  
+
   td button i {
     font-size: 20px!important;
   }
@@ -378,3 +225,9 @@ td button i:first-child {
   margin-right: 10px;
 }
 
+.container-produto{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 1rem 0 1rem;
+}

@@ -25,7 +25,10 @@
         </div>
         <div class="mb-3">
           <label for="photoUrl" class="form-label">Foto Url:</label>
-          <input type="text" class="form-control textbox" id="photoUrl" formControlName="photoUrl">
+          <input type="file" accept="image/*" class="form-control textbox" id="photoUrl" formControlName="photoUrl" (change)="onFileSelected($event)">
+          <div  *ngIf="fotoCarregada">
+            <img class="photoUrl form-control" [src]="this.produtoForm.value.photoUrl">
+          </div>
         </div>
       </div>
     </div>

@@ -1,29 +1,94 @@
 import { AuthService } from './../../shared/auth/auth.service';
 import { ILojas } from 'src/app/shared/models/lojas.interface';
-import { ILojasForm } from '../../shared/models/lojas.interface';
 import { LojaRequestService } from 'src/app/shared/request/lojas.service';
 import { FormBuilder } from '@angular/forms';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { take, tap } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ILoja, ILojaForm } from 'src/app/shared/models/loja.interface';
+import { ViewLojasModalComponent } from '../modais/lojas/view-lojas-modal/view-lojas-modal.component';
+import { CreateLojasModalComponent } from '../modais/lojas/create-lojas-modal/create-lojas-modal.component';
+import { EditLojasModalComponent } from '../modais/lojas/edit-lojas-modal/edit-lojas-modal.component';
+import { DeleteLojasModalComponent } from '../modais/lojas/delete-lojas-modal/delete-lojas-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'app-lojas',
-    templateUrl: './lojas.component.html',
-    styleUrls: ['./lojas.component.css'] })
+  selector: 'app-lojas',
+  templateUrl: './lojas.component.html',
+  styleUrls: ['./lojas.component.css']
+})
 
-    export class LojasComponent implements OnInit {
+export class LojasComponent implements OnInit {
+ 
+  constructor(
+    private fb: FormBuilder,
+    private request: LojaRequestService,
+    private modalService: NgbModal,
+    public auth: AuthService) {
 
-        constructor(
-         private request: LojaRequestService,
-          public auth: AuthService) {
-          
-        }
+  }
 
-        ngOnInit(): void {
-           
-        
-          }
-    }
+  ngOnInit(): void {
+    this.getLojas()
+  }
+  
+  public lojas:ILojas[] = []
 
-      
+   getLojas() {
+    this.request.getLoja()
+      .pipe(take(1))
+      .subscribe(list => {
+        this.lojas = <ILojas[]>list;
+      });
+  }
+
+  ViewLoja(loja: ILoja){
+    let lojaForm = this.fb.group({
+      id: [loja.id],
+      nome: [loja.nome],
+      telefone: [loja.telefone],
+      email: [loja.email],
+      cpf: [loja.cpf],
+      cep: [loja.cep],
+      logradouro: [loja.logradouro],
+      numero: [loja.numero],
+      bairro: [loja.bairro],
+      cidade: [loja.cidade],
+      estado: [loja.estado],
+      complemento: [loja.complemento],
+    }) as ILojaForm
+    const modalRef = this.modalService.open(ViewLojasModalComponent);
+    modalRef.componentInstance.lojaForm = lojaForm;
+  }
+
+  CreateLoja(){
+    this.modalService.open(CreateLojasModalComponent);
+  }
+
+  EditLoja(loja: ILoja){
+    let lojaForm = this.fb.group({
+      id: [loja.id],
+      nome: [loja.nome],
+      telefone: [loja.telefone],
+      email: [loja.email],
+      cpf: [loja.cpf],
+      cep: [loja.cep],
+      logradouro: [loja.logradouro],
+      numero: [loja.numero],
+      bairro: [loja.bairro],
+      cidade: [loja.cidade],
+      estado: [loja.estado],
+      complemento: [loja.complemento],
+    }) as ILojaForm
+    const modalRef = this.modalService.open(EditLojasModalComponent);
+    modalRef.componentInstance.lojaForm = lojaForm;
+  }
+  
+  DeleteLoja(loja: ILoja){
+    const modalRef = this.modalService.open(DeleteLojasModalComponent);
+    modalRef.componentInstance.loja = loja;
+  }
+}
+
+
 

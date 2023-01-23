@@ -11,11 +11,13 @@ import { ProdutosRequestService } from 'src/app/shared/request/produtos.service'
   styleUrls: ['./create-produtos-modal.component.css']
 })
 export class CreateProdutosModalComponent {
+  photoUrl!: string | ArrayBuffer | null;
+  fotoCarregada!: string;
   constructor(
     private fb: FormBuilder,
-    private http:HttpClient,
+    private http: HttpClient,
     public activeModal: NgbActiveModal,
-    public request:ProdutosRequestService
+    public request: ProdutosRequestService
   ) { }
   produtoForm = this.fb.group({
     id: [0],
@@ -23,10 +25,22 @@ export class CreateProdutosModalComponent {
     descricao: [''],
     valor: [0],
     qtdEstoque: [0],
-    photoUrl: [" "] 
+    photoUrl: [" "]
   }) as IProdutoForm;
-  create(){
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    this.fotoCarregada = URL.createObjectURL(event.target.files[0]);
+    reader.onload = (e) => {
+      this.photoUrl = e.target!.result;
+      this.produtoForm.controls['photoUrl'].setValue(this.photoUrl);
+    };
+    reader.readAsDataURL(file);
+  }
+  create() {
     this.request.postProduto(this.produtoForm.value)
       .subscribe();
+    this.activeModal.dismiss();
+    
   }
 }

@@ -68,7 +68,7 @@ ngOnInit(): void {
 
 // Função getClientes, que pega todos os clientes e carrega na variável clientes, declarada  no início da classe
 getClientes() {
-  this.httpClient.get<ICliente[]>(environment.url + "/clientes")
+  this.httpClient.get<ICliente[]>(environment.url + "clientes")
     .subscribe(list => {
       this.clientes = list;
     })

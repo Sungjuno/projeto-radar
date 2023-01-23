@@ -1,49 +1,53 @@
-<br>
-<div *ngIf="!auth.verificaAdm()" class="d-flex justify-content-center">
-  <div class="alert alert-warning text-center mt-4 w-25">
-    <p><strong>Você não tem permissão para cadastrar novos produtos.</strong></p>
-  </div>
-</div>
 
-<div class="container-produto">
- <div class="container">
-    <div class="header">
-      <span>Produtos</span>
-      <button type="submit" (click)="CreateProduto()" id="new">Incluir</button>
+<body>
+  <div class="container">
+    <div *ngIf="!auth.verificaAdm()" class="d-flex justify-content-center">
+      <div class="alert alert-warning text-center mt-4 w-25">
+        <p><strong>Você não tem permissão para cadastrar novos produtos.</strong></p>
+      </div>
     </div>
 
-    <div class="divTable">
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th style="width:50%">Descrição</th>
-            <th>Valor</th>
-            <th>Estoque</th>
-            <th class="acao">Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let produto of produtos">
-            <td>{{produto.nome}}</td>
-            <td>{{produto.descricao}}</td>
-            <td>{{produto.valor | currency}}</td>
-            <td>{{produto.qtdEstoque}} un.</td>
-            <td class="acao">
-              <button><i class='bx bx-show' (click)="ViewProduto(produto)"></i></button>
-              <button><i class='bx bx-edit' (click)="EditProduto(produto)"></i></button>
-              <button><i class='bx bx-trash' (click)="DeleteProduto(produto)"></i></button>
-           </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="container-produto">
+      <div class="container">
+        <div class="header">
+          <span>Produtos</span>
+          <button type="submit" (click)="CreateProduto()" id="new">Incluir</button>
+        </div>
+
+        <div class="divTable">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th style="width:50%">Descrição</th>
+                <th>Valor</th>
+                <th>Estoque</th>
+                <th class="acao">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let produto of produtos">
+                <td>{{produto.nome}}</td>
+                <td>{{produto.descricao}}</td>
+                <td>{{produto.valor | currency}}</td>
+                <td>{{produto.qtdEstoque}} un.</td>
+                <td class="acao">
+                  <button><i class='bx bx-show' (click)="ViewProduto(produto)"></i></button>
+                  <button><i class='bx bx-edit' (click)="EditProduto(produto)"></i></button>
+                  <button><i class='bx bx-trash' (click)="DeleteProduto(produto)"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
+</body>
 
 
 
-
-  <!-- <form [formGroup]="produtoForm" *ngIf="auth.verificaAdm()">
+<!-- <form [formGroup]="produtoForm" *ngIf="auth.verificaAdm()">
     <div class="inputs">
       <div class="mb-3">
         <label for="nome" class="form-label">Nome:</label>
@@ -91,4 +95,3 @@
       </tbody>
   </table>
   </div> -->
-</div>
