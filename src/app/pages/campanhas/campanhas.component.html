@@ -21,7 +21,6 @@
         <td>{{pedido.valorTotal}}</td>
         <td>{{pedido.dtCriacao}}</td>
         <td class="acao">
-          <button><i class='bx bx-show' (click)="viewPedido(pedido)"></i></button>
           <button><i class='bx bx-edit' routerLink="/carrinho" (click)="editPedido(pedido)"></i></button>
           <button><i class='bx bx-trash' (click)="deletePedido(pedido)"></i></button>
        </td>

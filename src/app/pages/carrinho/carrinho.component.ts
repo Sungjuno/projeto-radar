@@ -22,9 +22,12 @@ export class CarrinhoComponent implements OnInit {
     ) { 
     }
   valor_total=0;
-  pedidosProdutos:IPedidoProduto[]=[];
   produtos:IProduto[]=[];
   hashFindProduto:Map<number,number>=new Map<number,number>();
+
+  getCarrinho(){
+    return Carrinho.listar();
+  }
 iniciar(){
     this.request.getProduto()
       .pipe(take(1))
@@ -37,7 +40,6 @@ iniciar(){
         }
       })
       this.calcularValorTotal()
-    this.pedidosProdutos=Carrinho.listar();
 }
 getProduto(index:number){
   
@@ -61,31 +63,28 @@ calcularValorTotal() {
 }
 Excluir(id:number){
   Carrinho.excluirProduto(id);
-  this.pedidosProdutos=Carrinho.listar();
   this.calcularValorTotal();
 }
 Subtrair(i:number){
-    let itemE=this.pedidosProdutos[i];
+    let itemE=this.getCarrinho()[i];
     let quantidade=itemE.quantidade;
     if((quantidade--)>1){
-      this.pedidosProdutos[i].quantidade--;
+      this.getCarrinho()[i].quantidade--;
       this.calcularValorTotal();
     }else{
       this.Excluir(i)
     }
   }
   async Adicionar(i:number){
-    let itemE=this.pedidosProdutos[i];
+    let itemE=this.getCarrinho()[i];
     let limiteSuperior= this.getProduto(itemE.produtoId).qtdEstoque;
     let quantidade=itemE.quantidade;
     if(limiteSuperior>quantidade++){
-      this.pedidosProdutos[i].quantidade++;
+      this.getCarrinho()[i].quantidade++;
       this.calcularValorTotal();
     }
   }
   comprar(){
     Carrinho.salvar(this.http);
-    Carrinho.reset();
-    this.pedidosProdutos=Carrinho.listar();
   }
 }

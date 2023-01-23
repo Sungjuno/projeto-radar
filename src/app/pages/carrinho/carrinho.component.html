@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let pedidoProduto of pedidosProdutos;index as i">
+          <tr *ngFor="let pedidoProduto of getCarrinho();index as i">
             <td>{{this.getProduto(pedidoProduto.produtoId).nome}}</td>
             <td>{{pedidoProduto.valor}}</td>
             <td><button id="retirar" type="button" class="btn btn-danger" style="margin-left: 10px;"

@@ -6,7 +6,7 @@ import { ICampanha } from '../models/campanha.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class CampanhaRequestService {
+export class CampanhasRequestService {
 
   constructor( private http: HttpClient ) { }
 

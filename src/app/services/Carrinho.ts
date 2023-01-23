@@ -6,6 +6,11 @@ import { IProduto } from "../shared/models/produto.interface";
 import { PedidosProdutosRequestService } from "../shared/request/pedidosprodutos.service";
 
 export class Carrinho{
+    static setCarrinho(pedido: IPedido, pedidosProdutos: IPedidoProduto[]) {
+        console.log("Set: ", pedido, pedidosProdutos)
+      Carrinho.carrinho=pedidosProdutos;
+      Carrinho.pedido=pedido;
+    }
 
     private static carrinho: (IPedidoProduto)[]=[{"id":0,"pedidoId":2,"produtoId":1,"valor":10,"quantidade":2},
     {"id":0,"pedidoId":2,"produtoId":2,"valor":10,"quantidade":2}];
@@ -16,7 +21,7 @@ export class Carrinho{
     }
 
     public static setCliente_Id(id:number):void{
-        this.pedido.clienteId=id;
+        Carrinho.pedido.clienteId=id;
     }
 
     public static listar():(IPedidoProduto)[]{
@@ -67,37 +72,41 @@ export class Carrinho{
     public static async salvar(http:HttpClient):Promise<void>{
         let request = new PedidosRequestService(http);
         let pedidoProdutoRequest=new PedidosProdutosRequestService(http);
-        if(this.pedido.id){
-            request.updatePedido(this.pedido).subscribe();
-            this.carrinho.forEach(pedidoProduto=>{
+        console.log("pedido",Carrinho.pedido)
+        if(Carrinho.pedido.id){
+            request.updatePedido(Carrinho.pedido).subscribe();
+            Carrinho.carrinho.forEach(pedidoProduto=>{
                 if(pedidoProduto.id>0){
-                    pedidoProduto.pedidoId=this.pedido.id;
-                    pedidoProdutoRequest.postPedidoProduto(pedidoProduto).subscribe();
-                }else{
                     pedidoProdutoRequest.updatePedidoProduto(pedidoProduto).subscribe();
+                }else{
+                    pedidoProduto.pedidoId=Carrinho.pedido.id;
+                    pedidoProdutoRequest.postPedidoProduto(pedidoProduto).subscribe();
                 }
             })
+            Carrinho.reset();
         }else{
             let pedidoPost: IPedido = {} as IPedido;
             pedidoPost.dtCriacao=new Date((new Date()).getTime());
-            pedidoPost.valorTotal=this.getValor_Total();
-            pedidoPost.clienteId=this.pedido.clienteId;
-            request.postPedido(pedidoPost).subscribe();
-            let pedido = [] as IPedido[];
-            request.getPedido()
-            .subscribe( res => {pedido = <IPedido[]>res
-                let pedidoLast=pedido.pop();
-                this.carrinho.forEach(pedidoProduto => {
-                    pedidoProduto.pedidoId=pedidoLast ? pedidoLast.id : 0;
-                    pedidoProdutoRequest.postPedidoProduto(pedidoProduto).subscribe();
-                });
-            });
+            pedidoPost.valorTotal=Carrinho.getValor_Total();
+            pedidoPost.clienteId=Carrinho.pedido.clienteId;
+            request.postPedido(pedidoPost).subscribe(()=>{let pedido = [] as IPedido[];
+                request.getPedido()
+                .subscribe( res => {pedido = <IPedido[]>res
+                    let pedidoLast=pedido.pop();
+                    console.log("Carrinho",Carrinho.carrinho)
+                    Carrinho.carrinho.forEach(pedidoProduto => {
+                        pedidoProduto.pedidoId=pedidoLast ? pedidoLast.id : 0;
+                        pedidoProdutoRequest.postPedidoProduto(pedidoProduto).subscribe();
+                    });
+                    Carrinho.reset();
+                });});
+            
         }
     }
 
     public static reset(){
-        while(this.carrinho.length>0){
-            this.carrinho.pop();
+        while(Carrinho.carrinho.length>0){
+            Carrinho.carrinho.pop();
         }
     }
 }
