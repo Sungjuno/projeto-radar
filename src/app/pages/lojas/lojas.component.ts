@@ -9,7 +9,9 @@ import { ViewLojasModalComponent } from '../modais/lojas/view-lojas-modal/view-l
 import { CreateLojasModalComponent } from '../modais/lojas/create-lojas-modal/create-lojas-modal.component';
 import { EditLojasModalComponent } from '../modais/lojas/edit-lojas-modal/edit-lojas-modal.component';
 import { DeleteLojasModalComponent } from '../modais/lojas/delete-lojas-modal/delete-lojas-modal.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EnderecoRequestService } from 'src/app/shared/request/endereco.service';
+import { ILojaPost } from 'src/app/shared/models/lojaPost.interface';
+import { IEndereco } from 'src/app/shared/models/endereco.interface';
 
 @Component({
   selector: 'app-lojas',
@@ -21,7 +23,8 @@ export class LojasComponent implements OnInit {
  
   constructor(
     private fb: FormBuilder,
-    private request: LojaRequestService,
+    private request: LojasRequestService,
+    private endRequest:EnderecoRequestService,
     private modalService: NgbModal,
     public auth: AuthService) {
 
@@ -31,23 +34,30 @@ export class LojasComponent implements OnInit {
     this.getLojas()
   }
   
-  public lojas:ILojas[] = []
+  public lojas:ILoja[] = []
 
    getLojas() {
-    this.request.getLoja()
-      .pipe(take(1))
-      .subscribe(list => {
-        this.lojas = <ILojas[]>list;
-      });
+    this.request.getLoja().pipe(take(1)).subscribe(res=>{
+      this.endRequest.getEndereco().pipe(take(1)).subscribe(response=>{
+        let lojasPost = <ILojaPost[]>res;
+        let hashFindEnd = new Map<number,number>();
+        let enderecos = <IEndereco[]>response;
+        for (let i = 0; i < enderecos.length; i++) {
+          const endereco = enderecos[i].id;
+          hashFindEnd.set(endereco,i);
+        }
+        lojasPost.forEach(loja=>{
+          this.lojas.push({...enderecos[hashFindEnd.get(loja.enderecoId||0)||0],...loja})
+        })
+      })
+    })
+    
   }
 
   ViewLoja(loja: ILoja){
     let lojaForm = this.fb.group({
       id: [loja.id],
       nome: [loja.nome],
-      telefone: [loja.telefone],
-      email: [loja.email],
-      cpf: [loja.cpf],
       cep: [loja.cep],
       logradouro: [loja.logradouro],
       numero: [loja.numero],
@@ -68,9 +78,6 @@ export class LojasComponent implements OnInit {
     let lojaForm = this.fb.group({
       id: [loja.id],
       nome: [loja.nome],
-      telefone: [loja.telefone],
-      email: [loja.email],
-      cpf: [loja.cpf],
       cep: [loja.cep],
       logradouro: [loja.logradouro],
       numero: [loja.numero],
@@ -81,6 +88,7 @@ export class LojasComponent implements OnInit {
     }) as ILojaForm
     const modalRef = this.modalService.open(EditLojasModalComponent);
     modalRef.componentInstance.lojaForm = lojaForm;
+    modalRef.componentInstance.enderecoId = loja.enderecoId;
   }
   
   DeleteLoja(loja: ILoja){

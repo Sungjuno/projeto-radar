@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { take } from 'rxjs';
 import { IProduto } from 'src/app/shared/models/produto.interface';
-import { RequestService } from 'src/app/shared/request/request.service';
+import { ProdutosRequestService } from 'src/app/shared/request/produtos.service';
 
 var containerId:number | undefined;
 var indexContainer:number;
@@ -19,7 +19,7 @@ export class PrateleiraComponent {
   prateleiras: IProduto[][]=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
 
   constructor(private httpClient: HttpClient,
-    private req:RequestService) {
+    private req:ProdutosRequestService) {
     this.getProdutos()
   }
 

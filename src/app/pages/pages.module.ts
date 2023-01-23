@@ -35,7 +35,6 @@ import { ViewLojasModalComponent } from './modais/lojas/view-lojas-modal/view-lo
 import { EditLojasModalComponent } from './modais/lojas/edit-lojas-modal/edit-lojas-modal.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { PrateleiraComponent } from './prateleira/prateleira.component';
-import { CampanhasComponent } from './campanhas/campanhas.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 
 @NgModule({

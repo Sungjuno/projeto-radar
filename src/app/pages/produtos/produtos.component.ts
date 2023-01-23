@@ -59,7 +59,7 @@ export class ProdutosComponent implements OnInit {
     modalRef.componentInstance.produtoForm = produtoForm;
   }
 
-  CreateProduto(){
+  createProduto(){
     this.modalService.open(CreateProdutosModalComponent);
   }
 

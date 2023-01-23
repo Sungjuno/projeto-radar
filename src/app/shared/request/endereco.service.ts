@@ -20,6 +20,7 @@ export class EnderecoRequestService {
   }
 
   updateEndereco(endereco:IEndereco){
+    console.log(environment.url + 'enderecos/'+endereco.id,endereco )
     return this.http.put<IEndereco>(environment.url + 'enderecos/'+endereco.id,endereco)
   }
 

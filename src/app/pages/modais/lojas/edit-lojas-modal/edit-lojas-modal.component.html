@@ -10,7 +10,7 @@
         <input id="nome" formControlName="nome" type="text" required />
     
         <label for="cep">Cep</label>
-        <input id="cep" formControlName="cep" type="number" required />
+        <input id="cep" formControlName="cep" type="text" required />
         
         <label for="logradouro">Lougradouro</label>
         <input id="logradouro" formControlName="logradouro" type="text" required />
@@ -34,6 +34,6 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-warning" data-bs-dismiss="modal" (click)="activeModal.close()">Cancelar</button>
-      <button type="button" class="btn btn-success" routerLink="/clientes" (click)="edit()">Editar</button>
+      <button type="button" class="btn btn-success" routerLink="/lojas" (click)="edit()">Editar</button>
     </div>
 </div>

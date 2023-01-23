@@ -10,7 +10,7 @@
       <div class="container">
         <div class="header">
           <span>Produtos</span>
-          <button type="submit" (click)="CreateProduto()" id="new">Incluir</button>
+          <button type="submit" (click)="createProduto()" id="new">Incluir</button>
         </div>
 
         <div class="divTable">
@@ -31,9 +31,9 @@
                 <td>{{produto.valor | currency}}</td>
                 <td>{{produto.qtdEstoque}} un.</td>
                 <td class="acao">
-                  <button><i class='bx bx-show' (click)="ViewProduto(produto)"></i></button>
-                  <button><i class='bx bx-edit' (click)="EditProduto(produto)"></i></button>
-                  <button><i class='bx bx-trash' (click)="DeleteProduto(produto)"></i></button>
+                  <button><i class='bx bx-show' (click)="viewProduto(produto)"></i></button>
+                  <button><i class='bx bx-edit' (click)="editProduto(produto)"></i></button>
+                  <button><i class='bx bx-trash' (click)="deleteProduto(produto)"></i></button>
                 </td>
               </tr>
             </tbody>

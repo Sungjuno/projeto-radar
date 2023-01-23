@@ -1,18 +1,10 @@
-<body>
-  <div class="container">
-    <div *ngIf="!auth.verificaAdm()" class="d-flex justify-content-center">
-      <div class="alert alert-warning text-center mt-4 w-25">
-        <p><strong>Você não tem permissão para cadastrar novos clientes.</strong></p>
-      </div>
-    </div>
-
     <div class="container-produto">
       <div class="container">
         <div class="header">
           <span>Campanhas</span>
           <div>
           <button type="submit" routerLink="../prateleira" id="new">Modelos</button>
-          <button type="submit" (click)="CreateCampanha()" id="new" class="include">Nova Campanha</button>
+          <button type="submit" (click)="createCampanha()" id="new" class="include">Nova Campanha</button>
           </div>
         </div>
 
@@ -45,5 +37,3 @@
         </div>
       </div>
     </div>
-  </div>
-</body>

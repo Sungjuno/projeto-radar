@@ -1,13 +1,10 @@
-
 import { FormBuilder } from '@angular/forms';
-import { take } from 'rxjs';
 import { ICampanha } from 'src/app/shared/models/campanha.interface';
-import { CampanhaRequestService } from 'src/app/shared/request/campanhas.service';#fig8[8A
+import { CampanhasRequestService } from 'src/app/shared/request/campanhas.service';
 import { Component, OnInit } from '@angular/core';
 import { mergeMap, take, finalize } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteProdutosModalComponent } from '../modais/produtos/delete-produtos-modal/delete-produtos-modal.component';
-import { ICampanha } from 'src/app/shared/models/campanha.interface';
 import { Prateleira } from 'src/app/services/Prateleira';
 
 @Component({
@@ -40,8 +37,11 @@ export class CampanhasComponent implements OnInit {
   
 
   deleteCampanha(campanha: ICampanha){
-    const modalRef = this.modalService.open(DeleteCampanhasModalComponent);
-    modalRef.componentInstance.campanha = campanha;
+    //const modalRef = this.modalService.open(DeleteCampanhasModalComponent);
+    //modalRef.componentInstance.campanha = campanha;
+  }
+  createCampanha(){
+    
   }
   editCampanha(campanha:ICampanha){
     Prateleira.prateleira=campanha;

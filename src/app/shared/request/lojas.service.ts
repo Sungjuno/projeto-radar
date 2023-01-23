@@ -17,7 +17,8 @@ export class LojasRequestService {
 
   getLoja(){
     let lojas = this.http.get(environment.url + 'lojas')
-    return lojas
+
+    return lojas;
   }
   postLoja(loja:ILoja){
     let endereco={
@@ -41,8 +42,9 @@ export class LojasRequestService {
     });
   }
 
-  updateLoja(loja:ILoja){
-    return this.http.put<ILoja>(environment.url + 'lojas/'+loja.id,loja)
+  updateLoja(loja:ILojaPost){
+    console.log(environment.url + 'lojas/'+loja.id,loja)
+    return this.http.put<ILojaPost>(environment.url + 'lojas/'+loja.id,loja)
   }
 
   deleteLoja(id:number){

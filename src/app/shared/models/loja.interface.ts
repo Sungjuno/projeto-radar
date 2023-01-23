@@ -24,5 +24,6 @@ export interface ILojaForm extends FormGroup{
   bairro:string,
   cidade: string,
   estado: string,
-  complemento: string
+  complemento: string,
+  enderecoId?:number
 }
