@@ -11,7 +11,7 @@ export class LoginRequestService {
   constructor( private http: HttpClient ) { }
 
   postLogin(login:ILogin){
-    return this.http.get(environment.url + 'login')
-
+    console.log(environment.url + 'login',login)
+    return this.http.post<ILogin>(environment.url + 'login',login)
   }
 }

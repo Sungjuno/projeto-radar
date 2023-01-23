@@ -46,8 +46,8 @@ export class ClientesRequestService {
     });
   }
 
-  updateCliente(cliente:ICliente){
-    return this.http.put<ICliente>(environment.url + 'clientes/'+cliente.id,cliente)
+  updateCliente(cliente:IClientePost){
+    return this.http.put<IClientePost>(environment.url + 'clientes/'+cliente.id,cliente)
   }
 
   deleteCliente(id:number){
