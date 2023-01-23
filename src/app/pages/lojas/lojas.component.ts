@@ -1,11 +1,10 @@
 import { AuthService } from './../../shared/auth/auth.service';
-import { ILojas } from 'src/app/shared/models/lojas.interface';
-import { LojaRequestService } from 'src/app/shared/request/lojas.service';
-import { FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { ILoja, ILojaForm } from 'src/app/shared/models/loja.interface';
+import { LojasRequestService } from 'src/app/shared/request/lojas.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { take } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ViewLojasModalComponent } from '../modais/lojas/view-lojas-modal/view-lojas-modal.component';
 import { CreateLojasModalComponent } from '../modais/lojas/create-lojas-modal/create-lojas-modal.component';
 import { EditLojasModalComponent } from '../modais/lojas/edit-lojas-modal/edit-lojas-modal.component';
@@ -89,6 +88,5 @@ export class LojasComponent implements OnInit {
     modalRef.componentInstance.loja = loja;
   }
 }
-
 
 
