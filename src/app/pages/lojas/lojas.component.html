@@ -1,79 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CRUD</title>
-  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-</head>
-
-<body>
     <div class="container">
       <div class="header">
         <span>Cadastro de Lojas</span>
-        <button onclick="openModal()" id="new">Incluir</button>
+        <button type="submit" (click)="CreateLoja()" id="new">Incluir</button>
       </div>
-  
-      <div class="divTable">
-        <table>
+        <div class="divTable">
+          <table>
             <thead>
               <tr>
-                <th>id</th>
                 <th>nome</th>
-                <th>observação</th>
                 <th>cep</th>
-                <th>logradouro</th>
-                <th>número</th>
-                <th>bairro</th>
-                <th>cidade</th>
-                <th>estado</th>
-                <th>complemento</th>
-                <th class="acao">Editar</th>
-                <th class="acao">Excluir</th>
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody>
+          <tr *ngFor="let loja of lojas">
+            <td>{{loja.nome}}</td>
+            <td>{{loja.cep}}</td>
+            <td class="acao">
+              <button><i class='bx bx-show' (click)="ViewLoja(loja)"></i></button>
+              <button><i class='bx bx-edit' (click)="EditLoja(loja)"></i></button>
+              <button><i class='bx bx-trash' (click)="DeleteLoja(loja)"></i></button>
+           </td>
+          </tr>
         </tbody>
       </table>
     </div>
-    <div class="modal-container">
-        <div class="modal">
-          <form>
-            <label for="m-nome">Nome</label>
-            <input id="m-nome" type="text" required />
-            
-            <label for="m-observação">Observação</label>
-            <input id="m-observação" type="text" required />
-            
-            <label for="m-cep">Cep</label>
-            <input id="m-cep" type="number" required />
-            
-            <label for="m-logradouro">Lougradouro</label>
-            <input id="m=logradouro" type="text" required />
-           
-            <label for="m-número">Número</label>
-            <input id="m=número" type="number" required />
-            <label for="m-bairro">Bairro</label>
-            <input id="m=bairro" type="text" required />
-            
-            <label for="m-cidade">Cidade</label>
-            <input id="m=cidade" type="text" required />
-            
-            <label for="m-estado">Estado</label>
-            <input id="m=estado" type="text" required />
-            
-            <label for="m-complemento">Complemento</label>
-            <input id="m=complemento" type="text" required />
-            
-            <button id="btnSalvar">Salvar</button>
-               </form>
-      </div>
-    </div>
-
   </div>
-  <script src="script.js"></script>
-</body>
-
-</html>

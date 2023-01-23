@@ -10,10 +10,9 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from '../pages/home/home.component';
 import { ProdutosComponent } from '../pages/produtos/produtos.component';
 import { ClientesComponent } from '../pages/clientes/clientes.component';
-import { PedidosComponent } from '../pages/pedidos/pedido/pedidos.component';
+import { PedidosComponent } from '../pages/pedidos/pedidos.component';
+import { CampanhasComponent } from './campanhas/campanhas.component';
 import { LojasComponent } from '../pages/lojas/lojas.component';
-import { ProdutoPedidoComponent } from '../pages/pedidos/pedido-produto/produto-pedido.component';
-import { PedidosClientesComponent } from '../pages/pedidos/pedidos-clientes/pedidos-clientes.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormatarTelefonePipe } from '../shared/pipes/formatar-telefone.pipe';
 import { FormatarCpfPipe } from '../shared/pipes/formatar-cpf.pipe';
@@ -28,24 +27,24 @@ import { DeleteClientesModalComponent } from './modais/clientes/delete-clientes-
 import { CreateClientesModalComponent } from './modais/clientes/create-clientes-modal/create-clientes-modal.component';
 import { ViewClientesModalComponent } from './modais/clientes/view-clientes-modal/view-clientes-modal.component';
 import { EditClientesModalComponent } from './modais/clientes/edit-clientes-modal/edit-clientes-modal.component';
-import { EditPedidosModalComponent } from './modais/pedidos/edit-pedidos-modal/edit-pedidos-modal.component';
 import { ViewPedidosModalComponent } from './modais/pedidos/view-pedidos-modal/view-pedidos-modal.component';
-import { CreatePedidosModalComponent } from './modais/pedidos/create-pedidos-modal/create-pedidos-modal.component';
 import { DeletePedidosModalComponent } from './modais/pedidos/delete-pedidos-modal/delete-pedidos-modal.component';
 import { DeleteLojasModalComponent } from './modais/lojas/delete-lojas-modal/delete-lojas-modal.component';
 import { CreateLojasModalComponent } from './modais/lojas/create-lojas-modal/create-lojas-modal.component';
 import { ViewLojasModalComponent } from './modais/lojas/view-lojas-modal/view-lojas-modal.component';
 import { EditLojasModalComponent } from './modais/lojas/edit-lojas-modal/edit-lojas-modal.component';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { PrateleiraComponent } from './prateleira/prateleira.component';
+import { CarrinhoComponent } from './carrinho/carrinho.component';
 
 @NgModule({
   declarations: [
+    CarrinhoComponent,
     HomeComponent,
     ProdutosComponent,
     ClientesComponent,
+    LojasComponent,
     PedidosComponent,
-    ProdutoPedidoComponent,
-    PedidosClientesComponent,
     LoginComponent,
     NotFoundComponent,
     FormatarTelefonePipe,
@@ -62,14 +61,14 @@ import { EditLojasModalComponent } from './modais/lojas/edit-lojas-modal/edit-lo
     CreateClientesModalComponent,
     ViewClientesModalComponent,
     EditClientesModalComponent,
-    EditPedidosModalComponent,
     ViewPedidosModalComponent,
-    CreatePedidosModalComponent,
     DeletePedidosModalComponent,
     DeleteLojasModalComponent,
     CreateLojasModalComponent,
     ViewLojasModalComponent,
     EditLojasModalComponent,
+    PrateleiraComponent,
+    CampanhasComponent,
   ],
   imports: [
     CommonModule,
@@ -78,15 +77,14 @@ import { EditLojasModalComponent } from './modais/lojas/edit-lojas-modal/edit-lo
     AppRoutingModule,
     ReactiveFormsModule,
     NgChartsModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   exports: [
     HomeComponent,
     ProdutosComponent,
     ClientesComponent,
     PedidosComponent,
-    ProdutoPedidoComponent,
-    PedidosClientesComponent,
     LoginComponent,
     FluxoCaixaComponent,
     FluxoClientesComponent,

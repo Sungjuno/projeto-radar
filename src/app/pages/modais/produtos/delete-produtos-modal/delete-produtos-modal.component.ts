@@ -15,13 +15,12 @@ export class DeleteProdutosModalComponent {
   constructor(
     private request: ProdutosRequestService,
     public activeModal: NgbActiveModal,
-  ) { 
-    console.log(this.produto)}
+  ) { }
   delete ():void{
     this.request.deleteProduto(this.produto.id)
       .pipe(take(1))
       .subscribe()
     this.activeModal.dismiss();
-    window.location.replace("/produtos");
+    window.location.replace("produtos");
   }
 }

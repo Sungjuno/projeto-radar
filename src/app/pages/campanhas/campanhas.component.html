@@ -1,0 +1,39 @@
+    <div class="container-produto">
+      <div class="container">
+        <div class="header">
+          <span>Campanhas</span>
+          <div>
+          <button type="submit" routerLink="../prateleira" id="new">Modelos</button>
+          <button type="submit" (click)="createCampanha()" id="new" class="include">Nova Campanha</button>
+          </div>
+        </div>
+
+        <div class="divTable">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Data</th>
+                <th>Modelo</th>
+                <th class="acao">Ações</th>
+              </tr>
+            </thead>
+           <!--  <tbody>
+              <tr *ngFor="let campanha of campanhas">
+                <td>{{loja.nome}}</td>
+                <td>{{loja.telefone}}</td>
+                <td>{{loja.email}}</td>
+                <td>{{loja.cidade}}</td>
+                <td>{{loja.estado}}</td>
+                <td class="acao">
+                  <button><i class='bx bx-show' (click)="ViewCampanha(campanha)"></i></button>
+                  <button><i class='bx bx-edit' routerLink="/carrinho" (click)="editPedido(pedido)"></i></button>
+                  <button><i class='bx bx-trash' (click)="DeleteCampanha(campanha)"></i></button>
+                </td>
+              </tr>
+            </tbody> -->
+          </table>
+        </div>
+      </div>
+    </div>

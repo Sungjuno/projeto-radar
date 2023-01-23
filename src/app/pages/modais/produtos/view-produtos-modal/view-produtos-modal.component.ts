@@ -9,9 +9,12 @@ import { IProdutoForm } from 'src/app/shared/models/produto.interface';
 })
 export class ViewProdutosModalComponent {
   @Input() produtoForm!:IProdutoForm;
+  photoUrl!: string;
   
   constructor(
     public activeModal: NgbActiveModal,
+    
   ) {   }
-  
+  ngOnInit(): void {
+  }
 }
