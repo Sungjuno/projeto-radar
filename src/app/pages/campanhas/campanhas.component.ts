@@ -1,5 +1,5 @@
 import { FormBuilder } from '@angular/forms';
-import { ICampanha } from 'src/app/shared/models/campanha.interface';
+import { ICampanha, ICampanhaForm } from 'src/app/shared/models/campanha.interface';
 import { CampanhasRequestService } from 'src/app/shared/request/campanhas.service';
 import { Component, OnInit } from '@angular/core';
 import { mergeMap, take, finalize } from 'rxjs/operators';
@@ -16,10 +16,9 @@ export class CampanhasComponent implements OnInit {
 
   constructor(
     private campanhasRequest: CampanhasRequestService,
-    private modalService: NgbModal,) {
+    ) {
     
   }
-
   ngOnInit(): void {
     this.carregarCampanhas()
 
@@ -35,16 +34,13 @@ export class CampanhasComponent implements OnInit {
       )
       .subscribe((response: any) => this.campanhas = <ICampanha[]>response)
     }
- 
-  createCampanha(){
-    
-  }
 
   viewCampanha(campanha: ICampanha): void {
 
   }
+
   editCampanha(campanha:ICampanha){
-    Prateleira.prateleira=campanha;
+    Prateleira.campanha=campanha;
   }
 
    

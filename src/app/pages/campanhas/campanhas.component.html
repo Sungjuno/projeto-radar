@@ -7,7 +7,7 @@
             <span>Campanhas</span>
             <div>
               <button type="submit" routerLink="../prateleira" id="new">Modelos</button>
-              <button type="submit" (click)="createCampanha()" id="new" class="include">Nova Campanha</button>
+              <button type="submit" routerLink="/prateleira" id="new" class="include">Nova Campanha</button>
             </div>
           </div>
 
@@ -28,7 +28,7 @@
               <tr *ngFor="let campanha of campanhas">
                 <td>{{campanha.nome}}</td>
                 <td>{{campanha.descricao}}</td>
-                <td>{{campanha.dt_criacao | date: 'dd/MM/yyyy'}}</td>
+                <td>{{campanha.dtCriacao | date: 'dd/MM/yyyy'}}</td>
                 <td class="acao">
                   <button><i class='bx bx-show' (click)="viewCampanha(campanha)"></i></button>
                   <button><i class='bx bx-edit' routerLink="/carrinho" (click)="editCampanha(campanha)"></i></button>
