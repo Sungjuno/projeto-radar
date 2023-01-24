@@ -60,6 +60,7 @@
   background-size: 100%;
   background-repeat: no-repeat;
   opacity: 80%;
+  background-image: url("../../../assets/img/oneshelf.png");
 } 
  
 /* CSS responsável pelo conteúdo dos nichos da prateleira */

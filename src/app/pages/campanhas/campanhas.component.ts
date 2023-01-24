@@ -24,7 +24,8 @@ export class CampanhasComponent implements OnInit {
     this.carregarCampanhas()
 
   }
-
+  
+  termoBuscar: string = "";
   campanhas: ICampanha[] = []
 
   carregarCampanhas() {
@@ -34,16 +35,22 @@ export class CampanhasComponent implements OnInit {
       )
       .subscribe((response: any) => this.campanhas = <ICampanha[]>response)
     }
-  
+ 
+  createCampanha(){
+    
+  }
+
+  viewCampanha(campanha: ICampanha): void {
+
+  }
+  editCampanha(campanha:ICampanha){
+    Prateleira.prateleira=campanha;
+  }
+
+   
 
   deleteCampanha(campanha: ICampanha){
     //const modalRef = this.modalService.open(DeleteCampanhasModalComponent);
     //modalRef.componentInstance.campanha = campanha;
-  }
-  createCampanha(){
-    
-  }
-  editCampanha(campanha:ICampanha){
-    Prateleira.prateleira=campanha;
   }
 }

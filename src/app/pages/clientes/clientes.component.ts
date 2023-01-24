@@ -20,6 +20,8 @@ import { IEndereco } from 'src/app/shared/models/endereco.interface';
 })
 export class ClientesComponent implements OnInit {
 
+  
+  termoBuscar: string = "";
   clientes: ICliente[] = []
 
   constructor(

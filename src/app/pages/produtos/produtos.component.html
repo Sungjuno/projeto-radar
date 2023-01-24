@@ -1,5 +1,5 @@
-
-  <div class="container">
+<body>
+  <div class="container container-tabela">
     <div *ngIf="!auth.verificaLogado()" class="d-flex justify-content-center">
       <div class="alert alert-warning text-center mt-4 w-25">
         <p><strong>Você não tem permissão para cadastrar novos produtos.</strong></p>
@@ -13,7 +13,11 @@
           <button type="submit" (click)="createProduto()" id="new">Incluir</button>
         </div>
 
+
         <div class="divTable">
+          <div class="container-busca">
+            <input type="search" class="form-control textbox busca" id="buscar" placeholder="Pesquisar..." [(ngModel)]="termoBuscar">
+          </div>
           <table>
             <thead>
               <tr>
@@ -25,13 +29,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let produto of produtos">
-                <td>{{produto.nome}}</td>
+              <tr *ngFor="let produto of produtos| filter: termoBuscar">
+                <td class="nomeProduto">{{produto.nome}}</td>
                 <td>{{produto.descricao}}</td>
                 <td>{{produto.valor | currency}}</td>
                 <td>{{produto.qtdEstoque}} un.</td>
                 <td class="acao">
-                  <button><i class='bx bx-cart-add' (click)="addProduto(produto)">asd</i></button>
+                  <button><i class='bx bx-cart' (click)="addProduto(produto)"></i></button>
                   <button><i class='bx bx-show' (click)="viewProduto(produto)"></i></button>
                   <button><i class='bx bx-edit' (click)="editProduto(produto)"></i></button>
                   <button><i class='bx bx-trash' (click)="deleteProduto(produto)"></i></button>
@@ -43,54 +47,4 @@
       </div>
     </div>
   </div>
-
-
-
-<!-- <form [formGroup]="produtoForm" *ngIf="auth.verificaAdm()">
-    <div class="inputs">
-      <div class="mb-3">
-        <label for="nome" class="form-label">Nome:</label>
-        <input type="text" class="form-control textbox" id="nome" formControlName="nome">
-      </div>
-      <div class="mb-3">
-        <label for="descricao" class="form-label">Descrição:</label>
-        <input type="text" class="form-control textbox" id="descricao" formControlName="descricao">
-      </div>
-      <div class="mb-3">
-        <label for="valor" class="form-label">Valor:</label>
-        <input type="number" class="form-control textbox" id="valor" formControlName="valor">
-      </div>
-      <div class="mb-3">
-        <label for="qtdestoque" class="form-label">Estoque:</label>
-        <input type="number" class="form-control textbox" id="estoque" formControlName="qtdestoque">
-      </div>
-      <div *ngIf="id==-1">
-        <button type="submit" (click)="cadastrarProduto()" class="btn botao">Cadastrar</button>
-      </div>
-      <div *ngIf="id!=-1">
-        <button type="submit" (click)="editarProduto()" class="btn botao">Editar</button>
-      </div>
-    </div>
-
-    <div class="divTable">
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Função</th>
-            <th>Salário</th>
-            <th class="acao">Editar</th>
-            <th class="acao">Excluir</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let produto of listaProduto; index as i" class="produto">
-              <td>{{produto.nome}} </td>
-              <td>{{produto.valor | currency: 'BRL'}}</td>
-              <td>{{produto.qtdestoque}}</td>
-              <button class="remove" (click)="removeProduto(produto.id)"  *ngIf="auth.verificaAdm()">Remover</button>
-              <button class="update" (click)="pushProduto(i)"  *ngIf="auth.verificaAdm()">Editar</button>
-          </tr>
-      </tbody>
-  </table>
-  </div> -->
+</body>

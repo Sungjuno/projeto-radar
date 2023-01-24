@@ -34,6 +34,7 @@ export class PedidosComponent implements OnInit {
   clientes:ICliente[]=[];
   hashFindCliente:Map<number,number>=new Map<number,number>();
 
+  termoBuscar: string = "";
   pedidos: IPedido[] = []
 
   carregarPedidos() {

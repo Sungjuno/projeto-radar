@@ -14,6 +14,9 @@
         </div>
 
         <div class="divTable">
+          <div class="container-busca">
+            <input type="search" class="form-control textbox busca" id="buscar" placeholder="Pesquisar..." [(ngModel)]="termoBuscar">
+          </div>
           <table>
             <thead>
               <tr>
@@ -25,11 +28,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let cliente of clientes">
+              <tr *ngFor="let cliente of clientes | filter: termoBuscar">
                 <td>{{cliente.nome}}</td>
                 <td>{{cliente.email}}</td>
-                <td>{{cliente.telefone}}</td>
-                <td>{{cliente.cpf}}</td>
+                <td>{{cliente.telefone | formatarTelefone}}</td>
+                <td>{{cliente.cpf | cpf}}</td>
                 <td class="acao">
                   <button><i class='bx bx-show' (click)="ViewCliente(cliente)"></i></button>
                   <button><i class='bx bx-edit' (click)="EditCliente(cliente)"></i></button>
