@@ -6,6 +6,7 @@ import { LoginRequestService } from 'src/app/shared/request/login.service';
 import { ThisReceiver } from '@angular/compiler';
 import { ILoginForm } from 'src/app/shared/models/login.interface';
 import { take } from 'rxjs';
+import { ILoginRecebido } from 'src/app/shared/models/loginRecebido.interface';
 
 @Component({
   selector: 'app-login',
@@ -31,11 +32,11 @@ export class LoginComponent implements OnInit {
   verificaLogin() {
 
     this.req.postLogin(this.loginForm.value).pipe(take(1)).subscribe(
-      res=> this.OnSucess(), erro=>this.OnError()
+      res=> this.OnSucess(<ILoginRecebido>res), erro=>this.OnError()
     )
   }
-  OnSucess() {
-    this.auth.setLogin(this.loginForm.value.email)
+  OnSucess(res:ILoginRecebido) {
+    this.auth.setToken(res)
     this.router.navigate(['home'])
   }
   OnError(){

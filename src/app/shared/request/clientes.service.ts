@@ -1,12 +1,13 @@
 import { ICliente } from '../models/cliente.interface';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { IEndereco } from '../models/endereco.interface';
 import { IClientePost } from '../models/clientePost.interface';
 import { take } from 'rxjs';
 import { EnderecoRequestService } from './endereco.service';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,11 @@ import { EnderecoRequestService } from './endereco.service';
 export class ClientesRequestService {
 
   constructor( private http: HttpClient,
-    private endRequest:EnderecoRequestService  ) { }
+    private endRequest:EnderecoRequestService,
+    private auth:AuthService,  ) { }
 
   getCliente(){
-    return this.http.get(environment.url + 'clientes')
+    return this.http.get(environment.url + 'clientes',{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
 
   }
   postCliente(cliente:ICliente){
@@ -41,17 +43,16 @@ export class ClientesRequestService {
           telefone: cliente.telefone
         } as IClientePost;
         post.enderecoId=(<IEndereco[]>res).pop()?.id;
-        console.log(post)
-        this.http.post<ICliente>(environment.url + 'clientes/',post).pipe(take(1)).subscribe()
+        this.http.post<ICliente>(environment.url + 'clientes/',post,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})}).pipe(take(1)).subscribe()
     });
   }
 
   updateCliente(cliente:IClientePost){
-    return this.http.put<IClientePost>(environment.url + 'clientes/'+cliente.id,cliente)
+    return this.http.put<IClientePost>(environment.url + 'clientes/'+cliente.id,cliente,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
   }
 
   deleteCliente(id:number){
-    return this.http.delete<ICliente>(environment.url + `clientes/${id}`)
+    return this.http.delete<ICliente>(environment.url + `clientes/${id}`,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
   }
 
 }

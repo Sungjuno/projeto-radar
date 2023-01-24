@@ -1,6 +1,6 @@
 
   <div class="container">
-    <div *ngIf="!auth.verificaAdm()" class="d-flex justify-content-center">
+    <div *ngIf="!auth.verificaLogado()" class="d-flex justify-content-center">
       <div class="alert alert-warning text-center mt-4 w-25">
         <p><strong>Você não tem permissão para cadastrar novos produtos.</strong></p>
       </div>
@@ -31,6 +31,7 @@
                 <td>{{produto.valor | currency}}</td>
                 <td>{{produto.qtdEstoque}} un.</td>
                 <td class="acao">
+                  <button><i class='bx bx-cart-add' (click)="addProduto(produto)">asd</i></button>
                   <button><i class='bx bx-show' (click)="viewProduto(produto)"></i></button>
                   <button><i class='bx bx-edit' (click)="editProduto(produto)"></i></button>
                   <button><i class='bx bx-trash' (click)="deleteProduto(produto)"></i></button>

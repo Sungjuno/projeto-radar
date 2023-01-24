@@ -61,5 +61,7 @@ clienteForm :IClienteForm = this.fb.group({
 }) as IClienteForm
 create(){
   this.request.postCliente(this.clienteForm.value)
+  this.activeModal.dismiss();
+  window.location.replace("/clientes");
 }
 }
