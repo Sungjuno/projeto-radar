@@ -14,7 +14,7 @@ export  class  Prateleira{
         let campRequest=new CampanhasRequestService(http, new AuthService)
         let pratRequest=new PosicaoProdutoRequestService(http, new AuthService)
         if(Prateleira.campanha.id){
-            campRequest.updateCampanha(Prateleira.campanha);
+            campRequest.updateCampanha(Prateleira.campanha).pipe(take(1)).subscribe();
             let hashFindProduto = new Map<number,number>();
             for (let i = 0; i < Prateleira.prateleira.length; i++) {
                 const posicao = Prateleira.prateleira[i];
@@ -47,5 +47,7 @@ export  class  Prateleira{
                 }
             )
         }
+        Prateleira.prateleira=[]
+        Prateleira.campanha={} as ICampanha
     }
 }

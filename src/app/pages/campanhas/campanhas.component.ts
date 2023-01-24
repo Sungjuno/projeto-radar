@@ -35,10 +35,6 @@ export class CampanhasComponent implements OnInit {
       .subscribe((response: any) => this.campanhas = <ICampanha[]>response)
     }
 
-  viewCampanha(campanha: ICampanha): void {
-
-  }
-
   editCampanha(campanha:ICampanha){
     Prateleira.campanha=campanha;
   }

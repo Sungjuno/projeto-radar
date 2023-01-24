@@ -46,7 +46,9 @@ export class CreateCampanhaModalComponent implements OnInit{
     Prateleira.campanha.dtCriacao=this.campanhaForm.value.dtCriacao
     Prateleira.campanha.lojaId=this.campanhaForm.value.lojaId
     Prateleira.campanha.nome=this.campanhaForm.value.nome
-    Prateleira.campanha.photoUrl=this.campanhaForm.value.photoUrl
+    Prateleira.campanha.photoUrl=""
     Prateleira.save(this.http)
+    this.activeModal.dismiss();
+    window.location.replace("/campanhas");
   }
 }

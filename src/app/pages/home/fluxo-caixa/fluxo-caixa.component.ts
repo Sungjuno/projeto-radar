@@ -6,6 +6,7 @@ import { ProdutosRequestService } from 'src/app/shared/request/produtos.service'
 import { PedidosRequestService } from 'src/app/shared/request/pedidos.service';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { IPedido } from 'src/app/shared/models/pedido.interface';
 
 
 @Component({
@@ -33,23 +34,9 @@ export class FluxoCaixaComponent implements OnInit {
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  fluxoJaneiro = 0
-  fluxoFevereiro = 0
-  fluxoMarco = 0
-  fluxoAbril = 0
-  fluxoMaio = 0
-  fluxoJunho = 0
-  fluxoJulho = 0
-  fluxoAgosto = 0
-  fluxoSetembro = 0
-  fluxoOutubro = 0
-  fluxoNovembro = 0
-  fluxoDezembro = 0
+  fluxo=[0,0,0,0,0,0,0,0,0,0,0,0]
 
-  meses = [
-    this.fluxoJaneiro, this.fluxoFevereiro, this.fluxoMarco, this.fluxoAbril,
-    this.fluxoMaio, this.fluxoJunho, this.fluxoJulho, this.fluxoAgosto,
-    this.fluxoSetembro, this.fluxoOutubro, this.fluxoNovembro, this.fluxoDezembro]
+  meses = this.fluxo
 
   totalAnual = 0
   dateSelected = this.datePipe.transform(new Date(), "yyyy-MM-dd") as string
@@ -74,18 +61,18 @@ export class FluxoCaixaComponent implements OnInit {
     datasets: [
       {
         data: [
-          this.fluxoJaneiro,
-          this.fluxoFevereiro,
-          this.fluxoMarco,
-          this.fluxoAbril,
-          this.fluxoMaio,
-          this.fluxoJunho,
-          this.fluxoJulho,
-          this.fluxoAgosto,
-          this.fluxoSetembro,
-          this.fluxoOutubro,
-          this.fluxoNovembro,
-          this.fluxoDezembro
+          this.fluxo[0],
+          this.fluxo[1],
+          this.fluxo[2],
+          this.fluxo[3],
+          this.fluxo[4],
+          this.fluxo[5],
+          this.fluxo[6],
+          this.fluxo[7],
+          this.fluxo[8],
+          this.fluxo[9],
+          this.fluxo[10],
+          this.fluxo[11],
         ],
         label: 'Toggle Fluxo',
         fill: false,
@@ -110,52 +97,20 @@ export class FluxoCaixaComponent implements OnInit {
         take(1),
         tap(res => {this.objetoApi = res;}))
       .subscribe(res => {
-        this.filtraPorMes(res);
+        this.filtraPorMes(<IPedido[]>res);
       })
   }
 
-  filtraPorMes(arr: any) {
+  filtraPorMes(arr: IPedido[]) {
+    let total=0.0;
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i].data.toString().slice(5, -3) == '01') {
-          this.fluxoJaneiro += arr[i].valor_total
-          this.lineChartData.datasets[0].data[0] = this.fluxoJaneiro
-        } else if (arr[i].data.toString().slice(5, -3) == '02') {
-          this.fluxoFevereiro += arr[i].valor_total
-          this.lineChartData.datasets[0].data[1] = this.fluxoFevereiro
-        } else if (arr[i].data.toString().slice(5, -3) == '03') {
-          this.fluxoMarco = this.fluxoMarco + arr[i].valor_total
-          this.lineChartData.datasets[0].data[2] = this.fluxoMarco
-        } else if (arr[i].data.toString().slice(5, -3) == '04') {
-          this.fluxoAbril += arr[i].valor_total
-          this.lineChartData.datasets[0].data[3] = this.fluxoAbril
-        } else if (arr[i].data.toString().slice(5, -3) == '05') {
-          this.fluxoMaio += arr[i].valor_total
-          this.lineChartData.datasets[0].data[4] = this.fluxoMaio
-        } else if (arr[i].data.toString().slice(5, -3) == '06') {
-          this.fluxoJunho += arr[i].valor_total
-          this.lineChartData.datasets[0].data[5] = this.fluxoJunho
-        } else if (arr[i].data.toString().slice(5, -3) == '07') {
-          this.fluxoJulho += arr[i].valor_total
-          this.lineChartData.datasets[0].data[6] = this.fluxoJulho
-        } else if (arr[i].data.toString().slice(5, -3) == '08') {
-          this.fluxoAgosto += arr[i].valor_total
-          this.lineChartData.datasets[0].data[7] = this.fluxoAgosto
-        } else if (arr[i].data.toString().slice(5, -3) == '09') {
-          this.fluxoSetembro += arr[i].valor_total
-          this.lineChartData.datasets[0].data[8] = this.fluxoSetembro
-        } else if (arr[i].data.toString().slice(5, -3) == '10') {
-          this.fluxoOutubro += arr[i].valor_total
-          this.lineChartData.datasets[0].data[9] = this.fluxoOutubro
-        } else if (arr[i].data.toString().slice(5, -3) == '11') {
-          this.fluxoNovembro += arr[i].valor_total
-          this.lineChartData.datasets[0].data[10] = this.fluxoNovembro
-        } else if (arr[i].data.toString().slice(5, -3) == '12') {
-          this.fluxoDezembro += arr[i].valor_total
-          this.lineChartData.datasets[0].data[11] = this.fluxoDezembro
-        }
+      total+=arr[i].valorTotal
+      let mes = (new Date(arr[i].dtCriacao)).getMonth();
+      this.fluxo[mes] += arr[i].valorTotal
+      this.lineChartData.datasets[0].data[mes] = this.fluxo[mes]
     }
 
-    this.totalAnual = this.fluxoJaneiro + this.fluxoFevereiro + this.fluxoMarco + this.fluxoAbril + this.fluxoMaio + this.fluxoJulho + this.fluxoJunho + this.fluxoAgosto + this.fluxoSetembro + this.fluxoNovembro + this.fluxoDezembro
+    this.totalAnual = total
     this.comparaDia()
     this.chart?.update()
   }
@@ -176,57 +131,9 @@ export class FluxoCaixaComponent implements OnInit {
   }
 
   comparaMes() {
-
-    for (let i = 0; i < 11; i++) {
-      if (this.dateSelected.toString().slice(5, -3) == '01') {
-        this.valorMes = this.fluxoJaneiro
-        return
-      } else { this.valorMes = 0 }
-      if (this.dateSelected.toString().slice(5, -3) == '02') {
-        this.valorMes = this.fluxoFevereiro
-        return
-      } else { this.valorMes = 0 }
-      if (this.dateSelected.toString().slice(5, -3) == '03') {
-        this.valorMes = this.fluxoMarco
-        return
-      } else { this.valorMes = 0 }
-      if (this.dateSelected.toString().slice(5, -3) == '04') {
-        this.valorMes = this.fluxoAbril
-        return
-      } else { this.valorMes = 0 }
-      if (this.dateSelected.toString().slice(5, -3) == '05') {
-        this.valorMes = this.fluxoMaio
-        return
-      } else { this.valorMes = 0 }
-      if (this.dateSelected.toString().slice(5, -3) == '06') {
-        this.valorMes = this.fluxoJunho
-        return
-      } else { this.valorMes = 0 }
-      if (this.dateSelected.toString().slice(5, -3) == '07') {
-        this.valorMes = this.fluxoJulho
-        return
-      } else { this.valorMes = 0 }
-      if (this.dateSelected.toString().slice(5, -3) == '08') {
-        this.valorMes = this.fluxoAgosto
-        return
-      } else { this.valorMes = 0 }
-      if (this.dateSelected.toString().slice(5, -3) == '09') {
-        this.valorMes = this.fluxoSetembro
-        return
-      } else { this.valorMes = 0 }
-      if (this.dateSelected.toString().slice(5, -3) == '10') {
-        this.valorMes = this.fluxoOutubro
-        return
-      } else { this.valorMes = 0 }
-      if (this.dateSelected.toString().slice(5, -3) == '11') {
-        this.valorMes = this.fluxoNovembro
-        return
-      } else { this.valorMes = 0 }
-      if (this.dateSelected.toString().slice(5, -3) == '12') {
-        this.valorMes = this.fluxoDezembro
-        return
-      } else { this.valorMes = 0 }
-    }
+      console.log(this.dateSelected)
+      let mes = Number(this.dateSelected.toString().slice(5, -3));
+      this.valorMes = this.fluxo[mes-1]
   }
 
   clientes: number = 0

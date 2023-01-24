@@ -30,8 +30,7 @@
                 <td>{{campanha.descricao}}</td>
                 <td>{{campanha.dtCriacao | date: 'dd/MM/yyyy'}}</td>
                 <td class="acao">
-                  <button><i class='bx bx-show' (click)="viewCampanha(campanha)"></i></button>
-                  <button><i class='bx bx-edit' routerLink="/carrinho" (click)="editCampanha(campanha)"></i></button>
+                  <button><i class='bx bx-edit' routerLink="/prateleira" (click)="editCampanha(campanha)"></i></button>
                   <button><i class='bx bx-trash' (click)="deleteCampanha(campanha)"></i></button>
                 </td>
               </tr>

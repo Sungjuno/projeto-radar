@@ -30,8 +30,8 @@ export class FluxoEstadoComponent implements OnInit {
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
   listaEstados = [
-    'acre',
-    'alagoas',
+    'AC',
+    '',
     'amapa',
     'amazonas',
     'bahia',

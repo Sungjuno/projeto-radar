@@ -6,6 +6,7 @@ import { take } from 'rxjs';
 import { Prateleira } from 'src/app/services/Prateleira';
 import { IPosicaoProduto } from 'src/app/shared/models/posicao-produto.interface';
 import { IProduto } from 'src/app/shared/models/produto.interface';
+import { PosicaoProdutoRequestService } from 'src/app/shared/request/posicoesprodutos.service';
 import { ProdutosRequestService } from 'src/app/shared/request/produtos.service';
 import { CreateCampanhaModalComponent } from '../modais/campanhas/create-campanha-modal/create-campanha-modal.component';
 
@@ -17,15 +18,15 @@ var containerId:number | undefined;
   styleUrls: ['./prateleira.component.css']
 })
 export class PrateleiraComponent {
-  estoque!: IProduto[];
+  estoque: IProduto[]=[];
   prateleiras: IProduto[][]=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
   numbers: number[] = [0,1,2,3,4] 
   constructor(private httpClient: HttpClient,
     private req:ProdutosRequestService,
+    private reqPP:PosicaoProdutoRequestService,
     private modalService: NgbModal,) {
     this.getProdutos();
     this.popular();
-    this.getPrateleira();
   }
 
    // Função responsável por buscar a lista de medicamentos na URL do Environment, que aponta para a api.
@@ -35,26 +36,27 @@ export class PrateleiraComponent {
       .subscribe(list => {
         let estoquePego = <IProduto[]>list;
         if(Prateleira.campanha.id){
-          let hashFindProduto = new Map<number,boolean>()
-          for (let i = 0; i < Prateleira.prateleira.length; i++) {
-            const produtoId = Prateleira.prateleira[i].produtoId;
-            hashFindProduto.set(produtoId,true);
-          }
-          estoquePego.forEach(produto=>{
-            if(!hashFindProduto.get(produto.id)){
-              this.estoque.push(produto);
+          this.reqPP.getPosicoesProdutos().pipe(take(1)).subscribe(res=>{
+            Prateleira.prateleira=(<IPosicaoProduto[]>res).filter(posicao=>posicao.campanhaId==Prateleira.campanha.id)
+            let hashFindProduto = new Map<number,number>()
+            for (let i = 0; i < Prateleira.prateleira.length; i++) {
+              const produtoId = Prateleira.prateleira[i].produtoId;
+              hashFindProduto.set(produtoId,i+1);
             }
-          })
+            estoquePego.forEach(produto=>{
+              if(!hashFindProduto.get(produto.id)){
+                this.estoque.push(produto);
+              }else{
+                this.prateleiras[Prateleira.prateleira[(hashFindProduto.get(produto.id)||1)-1].posicaoX]
+                [Prateleira.prateleira[(hashFindProduto.get(produto.id)||1)-1].posicaoY]=produto;  
+              }
+            })
+            
+          });
         }else{
           this.estoque=estoquePego
         }
       })
-  }
-
-  getPrateleira() {
-    if(Prateleira.campanha.id){
-      
-    }
   }
 
   // Função responsável pelo Drag and Drop
@@ -94,6 +96,7 @@ export class PrateleiraComponent {
   }
 
   transferArrayItem(idPreviousContainer:number,idCurrentContainer:number,previousIndex: number, currentIndex: number){
+    console.log()
     if(!idPreviousContainer){
       if(this.prateleiras[idCurrentContainer-1][currentIndex].id==-1){
         this.prateleiras[idCurrentContainer-1][currentIndex]=this.estoque[previousIndex];
@@ -121,10 +124,12 @@ export class PrateleiraComponent {
         const elementos = this.prateleiras[i];
         for (let j = 0; j < elementos.length; j++) {
           const elemento = elementos[j];
-          let posicaoX = i;//containerId
-          let posicaoY = j;//indexContainer
-          let produtoId = elemento["id"];
-          Prateleira.prateleira.push({id:0, campanhaId:0, posicaoX, posicaoY, produtoId})
+            if(elemento.id>0){
+            let posicaoX = i;//containerId
+            let posicaoY = j;//indexContainer
+            let produtoId = elemento["id"];
+            Prateleira.prateleira.push({id:0, campanhaId:0, posicaoX, posicaoY, produtoId})
+            }
         }
       }
       const modalRef= this.modalService.open(CreateCampanhaModalComponent);
