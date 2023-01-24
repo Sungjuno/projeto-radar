@@ -13,6 +13,7 @@ import { EnderecoRequestService } from 'src/app/shared/request/endereco.service'
 import { ILojaPost } from 'src/app/shared/models/lojaPost.interface';
 import { IEndereco } from 'src/app/shared/models/endereco.interface';
 
+
 @Component({
   selector: 'app-lojas',
   templateUrl: './lojas.component.html',

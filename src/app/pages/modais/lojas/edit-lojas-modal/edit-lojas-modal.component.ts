@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import cep from 'cep-promise';
 import { take } from 'rxjs';
 import { IEndereco } from 'src/app/shared/models/endereco.interface';
 import { ILojaForm } from 'src/app/shared/models/loja.interface';
@@ -39,6 +40,17 @@ export class EditLojasModalComponent {
     setTimeout(function () {
       window.location.replace("lojas"); //will redirect to your blog page (an ex: blog.html)
    }, 500);
+  }
+
+  buscaCEP() {
+    cep(this.lojaForm.value.cep)
+      .then(res =>
+        this.lojaForm.patchValue({
+          logradouro: res.street,
+          bairro: res.neighborhood,
+          cidade: res.city,
+          estado: res.state
+        }))
   }
 
 }

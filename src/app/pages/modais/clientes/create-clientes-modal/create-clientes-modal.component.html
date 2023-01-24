@@ -25,7 +25,7 @@
         </div>
         <div class="mb-3">
           <label for="cep" class="form-label">CEP:</label>
-          <input type="number" class="form-control textbox" id="cep" formControlName="cep">
+          <input type="number" class="form-control textbox" id="cep" formControlName="cep" (blur)="buscaCEP()">
         </div>
         <div class="mb-3">
           <label for="logradouro" class="form-label">Logradouro:</label>
@@ -45,9 +45,11 @@
         </div>
         <div class="mb-3">
           <label for="estado" class="form-label">Estado:</label>
-          <select name="estados" id="" formControlName="estado" class="form-select seleciona-estado">
+          <input id="estado" formControlName="estado" type="text" required class="form-control textbox"/>
+
+          <!-- <select name="estados" id="" formControlName="estado" class="form-select seleciona-estado">
             <option [ngValue]="estadoSelect | pipeEstado" *ngFor="let estadoSelect of listaEstados; index as i">{{estadoSelect}}</option>
-          </select>
+          </select> -->
         </div>
         <div class="mb-3">
           <label for="complemento" class="form-label">Complemento:</label>

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import cep from 'cep-promise';
 import { take } from 'rxjs';
 import { IClienteForm } from 'src/app/shared/models/cliente.interface';
 import { IClientePost } from 'src/app/shared/models/clientePost.interface';
@@ -72,4 +73,14 @@ export class EditClientesModalComponent {
     'Sergipe',
     'Tocantins'
 ]
+buscaCEP() {
+  cep(this.clienteForm.value.cep)
+    .then(res =>
+      this.clienteForm.patchValue({
+        logradouro: res.street,
+        bairro: res.neighborhood,
+        cidade: res.city,
+        estado: res.state
+      }))
+}
 }
