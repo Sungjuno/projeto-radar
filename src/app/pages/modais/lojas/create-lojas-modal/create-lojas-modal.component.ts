@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { take } from 'rxjs';
 import { ILojaForm } from 'src/app/shared/models/loja.interface';
 import { LojasRequestService } from 'src/app/shared/request/lojas.service';
+import cep from 'cep-promise'
 
 @Component({
   selector: 'app-create-lojas-modal',
@@ -11,54 +12,66 @@ import { LojasRequestService } from 'src/app/shared/request/lojas.service';
   styleUrls: ['./create-lojas-modal.component.css']
 })
 export class CreateLojasModalComponent {
-    constructor(
-      private fb: FormBuilder,
-      public activeModal: NgbActiveModal,
-      public request:LojasRequestService,
-    ) { }
-    listaEstados = [
-      'Acre',
-      'Alagoas',
-      'Amapá',
-      'Amazonas',
-      'Bahia',
-      'Ceará',
-      'Distrito Federal',
-      'Espírito Santo',
-      'Goiás',
-      'Maranhão',
-      'Mato Grosso',
-      'Mato Grosso do Sul',
-      'Minas Gerais',
-      'Pará',
-      'Paraíba',
-      'Paraná',
-      'Pernambuco',
-      'Piauí',
-      'Rio de Janeiro',
-      'Rio Grande do Norte',
-      'Rio Grande do Sul',
-      'Rondônia',
-      'Roraima',
-      'Santa Catarina',
-      'São Paulo',
-      'Sergipe',
-      'Tocantins'
+  constructor(
+    private fb: FormBuilder,
+    public activeModal: NgbActiveModal,
+    public request: LojasRequestService,
+  ) { }
+  listaEstados = [
+    'Acre',
+    'Alagoas',
+    'Amapá',
+    'Amazonas',
+    'Bahia',
+    'Ceará',
+    'Distrito Federal',
+    'Espírito Santo',
+    'Goiás',
+    'Maranhão',
+    'Mato Grosso',
+    'Mato Grosso do Sul',
+    'Minas Gerais',
+    'Pará',
+    'Paraíba',
+    'Paraná',
+    'Pernambuco',
+    'Piauí',
+    'Rio de Janeiro',
+    'Rio Grande do Norte',
+    'Rio Grande do Sul',
+    'Rondônia',
+    'Roraima',
+    'Santa Catarina',
+    'São Paulo',
+    'Sergipe',
+    'Tocantins'
   ]
-  lojaForm :ILojaForm = this.fb.group({
+  lojaForm: ILojaForm = this.fb.group({
     id: [0],
-    nome: ['' , [Validators.required, Validators.minLength(3)]],
+    nome: ['', [Validators.required, Validators.minLength(3)]],
     cep: [''],
-    logradouro:[''],
+    logradouro: [''],
     numero: [''],
-    bairro:[''],
+    bairro: [''],
     cidade: [''],
-    estado: ['' , Validators.required],
+    estado: ['', Validators.required],
     complemento: ['']
   }) as ILojaForm
-  create(){
+  create() {
     this.request.postLoja(this.lojaForm.value);
     this.activeModal.dismiss();
     window.location.replace("/lojas");
+  }
+
+
+  buscaCEP() {
+    cep(this.lojaForm.value.cep)
+      .then(res =>
+        this.lojaForm.patchValue({
+          logradouro: res.street,
+          bairro: res.neighborhood,
+          cidade: res.city,
+          estado: res.state
+        }))
   }
 }

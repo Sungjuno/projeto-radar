@@ -6,10 +6,11 @@
           <span>Cadastro de Lojas</span>
           <button type="submit" (click)="CreateLoja()" id="new">Incluir</button>
         </div>
+        <div class="container-busca">
+          <input type="search" class="form-control textbox busca" id="buscar" placeholder="Pesquisar..." [(ngModel)]="termoBuscar">
+        </div>
         <div class="divTable">
-          <div class="container-busca">
-            <input type="search" class="form-control textbox busca" id="buscar" placeholder="Pesquisar..." [(ngModel)]="termoBuscar">
-          </div>
+          
           <table>
             <thead>
               <tr>

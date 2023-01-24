@@ -13,7 +13,7 @@
         </div>
         <div class="mb-3">
           <label for="cep" class="form-label">Cep</label>
-          <input id="cep" formControlName="cep" type="text" required class="form-control textbox" />
+          <input id="cep" formControlName="cep" type="text" required class="form-control textbox" (blur)="buscaCEP()"/>
         </div>
         <div class="mb-3">
           <label for="logradouro" class="form-label">Lougradouro</label>

@@ -235,3 +235,12 @@ td button i:first-child {
 .include {
   margin-left: 12px;
 }
+
+
+.busca {
+  padding-left: 5px;
+}
+
+.is-hide {
+  display: none;
+}

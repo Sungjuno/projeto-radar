@@ -10,11 +10,11 @@
               <button type="submit" (click)="createCampanha()" id="new" class="include">Nova Campanha</button>
             </div>
           </div>
-
+          <div class="container-busca">
+            <input type="search" class="form-control textbox busca" id="buscar" placeholder="Pesquisar..." [(ngModel)]="termoBuscar">
+          </div>
           <div class="divTable">
-            <div class="container-busca">
-              <input type="search" class="form-control textbox busca" id="buscar" placeholder="Pesquisar..." [(ngModel)]="termoBuscar">
-            </div>
+            
             <table>
               <thead>
                 <tr>

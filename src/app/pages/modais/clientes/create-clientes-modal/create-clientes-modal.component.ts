@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import cep from 'cep-promise';
 import { take } from 'rxjs';
 import { IClienteForm } from 'src/app/shared/models/cliente.interface';
 import { ClientesRequestService } from 'src/app/shared/request/clientes.service';
@@ -63,5 +64,15 @@ create(){
   this.request.postCliente(this.clienteForm.value)
   this.activeModal.dismiss();
   window.location.replace("/clientes");
+}
+buscaCEP() {
+  cep(this.clienteForm.value.cep)
+    .then(res =>
+      this.clienteForm.patchValue({
+        logradouro: res.street,
+        bairro: res.neighborhood,
+        cidade: res.city,
+        estado: res.state
+      }))
 }
 }

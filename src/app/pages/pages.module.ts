@@ -39,6 +39,11 @@ import { PrateleiraComponent } from './prateleira/prateleira.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { CreateCampanhaModalComponent } from './modais/campanhas/create-campanha-modal/create-campanha-modal.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { ViewUsuariosModalComponent } from './modais/usuarios/view-usuarios-modal/view-usuarios-modal.component';
+import { CreateUsuariosModalComponent } from './modais/usuarios/create-usuarios-modal/create-usuarios-modal.component';
+import { DeleteUsuariosModalComponent } from './modais/usuarios/delete-usuarios-modal/delete-usuarios-modal.component';
+import { EditUsuariosModalComponent } from './modais/usuarios/edit-usuarios-modal/edit-usuarios-modal.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +79,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     CampanhasComponent,
     CreateCampanhaModalComponent,
     FormatarCepPipe,
+    UsuariosComponent,
+    ViewUsuariosModalComponent,
+    CreateUsuariosModalComponent,
+    DeleteUsuariosModalComponent,
+    EditUsuariosModalComponent,
   ],
   imports: [
     CommonModule,
