@@ -7,6 +7,8 @@ import { ThisReceiver } from '@angular/compiler';
 import { ILoginForm } from 'src/app/shared/models/login.interface';
 import { take } from 'rxjs';
 import { ILoginRecebido } from 'src/app/shared/models/loginRecebido.interface';
+import { CreateUsuariosModalComponent } from '../modais/usuarios/create-usuarios-modal/create-usuarios-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,6 @@ import { ILoginRecebido } from 'src/app/shared/models/loginRecebido.interface';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
