@@ -2,7 +2,10 @@ import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { take } from 'rxjs';
 import { IClienteForm } from 'src/app/shared/models/cliente.interface';
+import { IClientePost } from 'src/app/shared/models/clientePost.interface';
+import { IEndereco } from 'src/app/shared/models/endereco.interface';
 import { ClientesRequestService } from 'src/app/shared/request/clientes.service';
+import { EnderecoRequestService } from 'src/app/shared/request/endereco.service';
 
 @Component({
   selector: 'app-edit-clientes-modal',
@@ -11,10 +14,35 @@ import { ClientesRequestService } from 'src/app/shared/request/clientes.service'
 })
 export class EditClientesModalComponent {
   @Input() clienteForm!:IClienteForm;
+  @Input() enderecoId!:number;
   constructor(
     public activeModal: NgbActiveModal,
-    public request:ClientesRequestService,
+    public clienteRequest:ClientesRequestService,
+    public endRequest:EnderecoRequestService,
   ) { }
+  edit(){
+    let cliente = {
+      id: this.clienteForm.value.id,
+      nome: this.clienteForm.value.nome,
+      enderecoId: this.enderecoId,
+      telefone: this.clienteForm.value.telefone,
+      email: this.clienteForm.value.email,
+      cpf: this.clienteForm.value.cpf,
+    } as IClientePost;
+    this.clienteRequest.updateCliente(cliente)
+    .pipe(take(1))
+    .subscribe()
+    let endereco = {
+      ...this.clienteForm.value,
+      id: this.enderecoId,
+    } as IEndereco;
+    this.endRequest.updateEndereco(endereco)
+    .pipe(take(1))
+    .subscribe()
+    setTimeout(function () {
+      window.location.replace("clientes"); //will redirect to your blog page (an ex: blog.html)
+   }, 500);
+  }
   listaEstados = [
     'Acre',
     'Alagoas',
@@ -44,11 +72,4 @@ export class EditClientesModalComponent {
     'Sergipe',
     'Tocantins'
 ]
-  edit(){
-    this.request.updateCliente(this.clienteForm.value)
-    .pipe(take(1))
-    .subscribe()
-    this.activeModal.dismiss();
-    window.location.replace("/clientes");
-  }
 }

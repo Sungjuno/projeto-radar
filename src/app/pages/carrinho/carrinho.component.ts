@@ -36,7 +36,6 @@ iniciar(){
         for (let i = 0; i < this.produtos.length; i++) {
           const element = this.produtos[i].id;
           this.hashFindProduto.set(element,i);
-          console.log("batata"+this.hashFindProduto.get(element));
         }
       })
       this.calcularValorTotal()
@@ -44,8 +43,6 @@ iniciar(){
 getProduto(index:number){
   
     let i = this.hashFindProduto.get(index)
-    console.log(i)
-    console.log(index)
     if(i||i==0){
         return this.produtos[i];
     }

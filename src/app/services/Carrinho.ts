@@ -4,10 +4,10 @@ import { HttpClient } from "@angular/common/http";
 import { IPedido } from "../shared/models/pedido.interface";
 import { IProduto } from "../shared/models/produto.interface";
 import { PedidosProdutosRequestService } from "../shared/request/pedidosprodutos.service";
+import { AuthService } from "../shared/auth/auth.service";
 
 export class Carrinho{
     static setCarrinho(pedido: IPedido, pedidosProdutos: IPedidoProduto[]) {
-        console.log("Set: ", pedido, pedidosProdutos)
       Carrinho.carrinho=pedidosProdutos;
       Carrinho.pedido=pedido;
     }
@@ -70,9 +70,8 @@ export class Carrinho{
     }
 
     public static async salvar(http:HttpClient):Promise<void>{
-        let request = new PedidosRequestService(http);
-        let pedidoProdutoRequest=new PedidosProdutosRequestService(http);
-        console.log("pedido",Carrinho.pedido)
+        let request = new PedidosRequestService(http, new AuthService());
+        let pedidoProdutoRequest=new PedidosProdutosRequestService(http, new AuthService());
         if(Carrinho.pedido.id){
             request.updatePedido(Carrinho.pedido).subscribe();
             Carrinho.carrinho.forEach(pedidoProduto=>{
@@ -93,7 +92,6 @@ export class Carrinho{
                 request.getPedido()
                 .subscribe( res => {pedido = <IPedido[]>res
                     let pedidoLast=pedido.pop();
-                    console.log("Carrinho",Carrinho.carrinho)
                     Carrinho.carrinho.forEach(pedidoProduto => {
                         pedidoProduto.pedidoId=pedidoLast ? pedidoLast.id : 0;
                         pedidoProdutoRequest.postPedidoProduto(pedidoProduto).subscribe();

@@ -59,7 +59,6 @@ export class PedidosComponent implements OnInit {
 
   getClienteById(id:number){
     let index = this.hashFindCliente.get(id);
-    console.log(id+", "+index);
 
     if(index||index==0){
       return this.clientes[index];

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ILoja } from 'src/app/shared/models/loja.interface';
@@ -6,6 +6,7 @@ import { IEndereco } from '../models/endereco.interface';
 import { EnderecoRequestService } from './endereco.service';
 import { ILojaPost } from '../models/lojaPost.interface';
 import { Observable, take } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,11 @@ import { Observable, take } from 'rxjs';
 export class LojasRequestService {
 
   constructor( private http: HttpClient,
+    private auth:AuthService,
     private endRequest:EnderecoRequestService ) { }
 
   getLoja(){
-    let lojas = this.http.get(environment.url + 'lojas')
+    let lojas = this.http.get(environment.url + 'lojas', { headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
 
     return lojas;
   }
@@ -38,16 +40,15 @@ export class LojasRequestService {
           nome: loja.nome
         } as ILojaPost;
         post.enderecoId=(<IEndereco[]>res).pop()?.id;
-        this.http.post<ILoja>(environment.url + 'lojas/',post).pipe(take(1)).subscribe()
+        this.http.post<ILoja>(environment.url + 'lojas/',post,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})}).pipe(take(1)).subscribe()
     });
   }
 
   updateLoja(loja:ILojaPost){
-    console.log(environment.url + 'lojas/'+loja.id,loja)
-    return this.http.put<ILojaPost>(environment.url + 'lojas/'+loja.id,loja)
+    return this.http.put<ILojaPost>(environment.url + 'lojas/'+loja.id,loja,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
   }
 
   deleteLoja(id:number){
-    return this.http.delete<ILoja>(environment.url + `lojas/${id}`)
+    return this.http.delete<ILoja>(environment.url + `lojas/${id}`,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
   }
 }

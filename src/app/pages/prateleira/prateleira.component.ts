@@ -30,20 +30,15 @@ export class PrateleiraComponent {
       .subscribe(list => {
         this.estoque = <IProduto[]>list;
       })
-      console.log(this.estoque)
   }
 
   // Função responsável pelo Drag and Drop
   drop(event: CdkDragDrop<IProduto[]>) {
     containerId = Number(event.container.id )
-    console.log(event.container.data)
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);//id do container onde o item foi dropado
       indexContainer = event.currentIndex //Index da posição do item dentro do container
       itemId = Number(event.container.data[event.currentIndex]['id']) //ID do item movid
-      console.log(
-        "ID do Container: " + containerId + ", Index do Container: " + indexContainer + ", ID do item: " + itemId
-      )
     } else  if((containerId!=0&&event.container.data.length<4)||containerId===0){
       transferArrayItem(
         event.previousContainer.data,
@@ -51,7 +46,6 @@ export class PrateleiraComponent {
         event.previousIndex,
         event.currentIndex,
       );
-      console.log(event.container)
     }
   }
   
@@ -65,10 +59,8 @@ export class PrateleiraComponent {
         let indexContainer = j;
         let itemId = elemento["id"];
         prateleira.push({containerId, indexContainer, itemId})
-        console.log(elemento)
       }
     }
-    console.log(prateleira)
   }
 
   teste(item:any) {
