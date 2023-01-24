@@ -38,11 +38,12 @@ export class ClientesRequestService {
     this.endRequest.getEndereco().pipe(take(1)).subscribe(res =>{
         let post={
           nome: cliente.nome,
-          cpf: cliente.cpf,
+          cpf: cliente.cpf.toString(),
           email: cliente.email,
           telefone: cliente.telefone
         } as IClientePost;
         post.enderecoId=(<IEndereco[]>res).pop()?.id;
+        console.log(environment.url + 'clientes/',post,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})});
         this.http.post<ICliente>(environment.url + 'clientes/',post,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})}).pipe(take(1)).subscribe()
     });
   }
