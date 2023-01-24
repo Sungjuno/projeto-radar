@@ -34,6 +34,7 @@ export class LojasComponent implements OnInit {
     this.getLojas()
   }
   
+  termoBuscar: string = "";
   public lojas:ILoja[] = []
 
    getLojas() {

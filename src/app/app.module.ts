@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 registerLocaleData(localePt, 'pt');
@@ -27,7 +29,9 @@ registerLocaleData(localePt, 'pt');
     ReactiveFormsModule,
     PagesModule,
     ComponentsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CommonModule,
+    Ng2SearchPipeModule
   ],
   providers: [{
     provide: LOCALE_ID,

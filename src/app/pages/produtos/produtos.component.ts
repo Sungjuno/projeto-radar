@@ -2,7 +2,7 @@ import { AuthService } from './../../shared/auth/auth.service';
 import { IProduto } from 'src/app/shared/models/produto.interface';
 import { IProdutoForm } from '../../shared/models/produto.interface';
 import { ProdutosRequestService } from 'src/app/shared/request/produtos.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -31,7 +31,7 @@ export class ProdutosComponent implements OnInit {
   ngOnInit(): void {
     this.getProduto()
   }
-
+  termoBuscar: string = "";
   public produtos:IProduto[] = []
 
   addProduto(produto:IProduto){
@@ -81,4 +81,6 @@ export class ProdutosComponent implements OnInit {
     const modalRef = this.modalService.open(DeleteProdutosModalComponent);
     modalRef.componentInstance.produto = produto;
   }
+
+  
 }

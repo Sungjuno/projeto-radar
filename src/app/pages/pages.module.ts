@@ -16,9 +16,10 @@ import { LojasComponent } from '../pages/lojas/lojas.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormatarTelefonePipe } from '../shared/pipes/formatar-telefone.pipe';
 import { FormatarCpfPipe } from '../shared/pipes/formatar-cpf.pipe';
+import { FormatarCepPipe } from '../shared/pipes/formatar-cep.pipe';
 import { NgChartsModule } from 'ng2-charts';
 import { FluxoEstadoComponent } from './home/fluxo-estado/fluxo-estado.component';
-import { PipeEstadoPipe } from './clientes/pipe-estado.pipe';
+import { PipeEstadoPipe } from '../shared/pipes/pipe-estado.pipe';
 import { CreateProdutosModalComponent } from './modais/produtos/create-produtos-modal/create-produtos-modal.component';
 import { ViewProdutosModalComponent } from './modais/produtos/view-produtos-modal/view-produtos-modal.component';
 import { EditProdutosModalComponent } from './modais/produtos/edit-produtos-modal/edit-produtos-modal.component';
@@ -37,6 +38,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { PrateleiraComponent } from './prateleira/prateleira.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { CreateCampanhaModalComponent } from './modais/campanhas/create-campanha-modal/create-campanha-modal.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { CreateCampanhaModalComponent } from './modais/campanhas/create-campanha
     PrateleiraComponent,
     CampanhasComponent,
     CreateCampanhaModalComponent,
+    FormatarCepPipe,
   ],
   imports: [
     CommonModule,
@@ -80,7 +83,8 @@ import { CreateCampanhaModalComponent } from './modais/campanhas/create-campanha
     ReactiveFormsModule,
     NgChartsModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
+    Ng2SearchPipeModule
   ],
   exports: [
     HomeComponent,
