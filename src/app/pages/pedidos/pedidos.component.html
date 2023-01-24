@@ -5,11 +5,12 @@
         <div class="header">
           <span>Listagem de Pedidos</span>
         </div>
+        <div class="container-busca">
+          <input type="search" class="form-control textbox busca" id="buscar" placeholder="Pesquisar..." [(ngModel)]="termoBuscar">
+        </div>
 
         <div class="divTable">
-          <div class="container-busca">
-            <input type="search" class="form-control textbox busca" id="buscar" placeholder="Pesquisar..." [(ngModel)]="termoBuscar">
-          </div>
+          
           <table>
             <thead>
               <tr>
