@@ -1,25 +1,28 @@
-    <div class="container-produto">
-      <div class="container">
-        <div class="header">
-          <span>Campanhas</span>
-          <div>
-          <button type="submit" routerLink="../prateleira" id="new">Modelos</button>
-          <button type="submit" (click)="createCampanha()" id="new" class="include">Nova Campanha</button>
+<body>
+  <div class="container">
+    <div class="container-campanha">
+      <div class="container" style="height: -webkit-fill-available;">
+        <div class="container">
+          <div class="header">
+            <span>Campanhas</span>
+            <div>
+              <button type="submit" routerLink="../prateleira" id="new">Modelos</button>
+              <button type="submit" (click)="createCampanha()" id="new" class="include">Nova Campanha</button>
+            </div>
           </div>
-        </div>
 
-        <div class="divTable">
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Data</th>
-                <th>Modelo</th>
-                <th class="acao">Ações</th>
-              </tr>
-            </thead>
-           <!--  <tbody>
+          <div class="divTable">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Descrição</th>
+                  <th>Data</th>
+                  <th>Modelo</th>
+                  <th class="acao">Ações</th>
+                </tr>
+              </thead>
+              <!--  <tbody>
               <tr *ngFor="let campanha of campanhas">
                 <td>{{loja.nome}}</td>
                 <td>{{loja.telefone}}</td>
@@ -33,7 +36,10 @@
                 </td>
               </tr>
             </tbody> -->
-          </table>
+            </table>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+</body>
