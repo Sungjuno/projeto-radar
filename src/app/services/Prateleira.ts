@@ -16,6 +16,7 @@ export  class  Prateleira{
         if(Prateleira.campanha.id){
             campRequest.updateCampanha(Prateleira.campanha).pipe(take(1)).subscribe();
             let hashFindProduto = new Map<number,number>();
+            let hashFindCadastrado = new Map<number,boolean>();
             for (let i = 0; i < Prateleira.prateleira.length; i++) {
                 const posicao = Prateleira.prateleira[i];
                 if(posicao.id){
@@ -23,6 +24,7 @@ export  class  Prateleira{
                 }else{
                     posicao.campanhaId=Prateleira.campanha.id;
                     if(hashFindProduto.get(posicao.produtoId)){
+                        hashFindCadastrado.set(posicao.produtoId,true)
                         posicao.id=hashFindProduto.get(posicao.produtoId)||0
                         pratRequest.updatePosicoesProdutos(posicao).pipe(take(1)).subscribe()
                     }else{
@@ -30,24 +32,34 @@ export  class  Prateleira{
                     }
                 }
             }
+            for (let i = 0; i < Prateleira.prateleira.length; i++) {
+                const posicao = Prateleira.prateleira[i];
+                if((posicao.id>0)&&!hashFindCadastrado.get(posicao.produtoId)){
+                    pratRequest.deletePosicaoProduto(posicao.id).pipe(take(1)).subscribe();
+                }
+            }
+            Prateleira.prateleira=[]
+            Prateleira.campanha={} as ICampanha
         }else {
             campRequest.postCampanha(Prateleira.campanha).pipe(take(1)).subscribe(
                 ()=>{
                     campRequest.getCampanha().pipe(take(1)).subscribe(
                         res=>{
-                            let id = (<ICampanha[]>res).pop()?.id
-                            if(id){
+                            let id = (<ICampanha[]>res).pop()?.id||0
+                            console.log(id)
+                            if(id>0){
+                                console.log(Prateleira.prateleira)
                                 Prateleira.prateleira.forEach(posicao=>{
                                     posicao.campanhaId=id||0;
                                     pratRequest.postPosicoesProdutos(posicao).pipe(take(1)).subscribe()
                                 })
                             }
+                            Prateleira.prateleira=[]
+                            Prateleira.campanha={} as ICampanha
                         }
                     );
                 }
             )
         }
-        Prateleira.prateleira=[]
-        Prateleira.campanha={} as ICampanha
     }
 }

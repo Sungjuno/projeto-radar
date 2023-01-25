@@ -93,6 +93,7 @@ export class Carrinho{
                 .subscribe( res => {pedido = <IPedido[]>res
                     let pedidoLast=pedido.pop();
                     Carrinho.carrinho.forEach(pedidoProduto => {
+                        console.log(pedidoProduto)
                         pedidoProduto.pedidoId=pedidoLast ? pedidoLast.id : 0;
                         pedidoProdutoRequest.postPedidoProduto(pedidoProduto).subscribe();
                     });

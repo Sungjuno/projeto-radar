@@ -26,7 +26,7 @@ export class EditClientesModalComponent {
       id: this.clienteForm.value.id,
       nome: this.clienteForm.value.nome,
       enderecoId: this.enderecoId,
-      telefone: this.clienteForm.value.telefone,
+      telefone: this.clienteForm.value.telefone.toString(),
       email: this.clienteForm.value.email,
       cpf: this.clienteForm.value.cpf,
     } as IClientePost;
@@ -40,9 +40,8 @@ export class EditClientesModalComponent {
     this.endRequest.updateEndereco(endereco)
     .pipe(take(1))
     .subscribe()
-    setTimeout(function () {
-      window.location.replace("clientes"); //will redirect to your blog page (an ex: blog.html)
-   }, 500);
+    this.activeModal.dismiss();
+    window.location.replace("/clientes");
   }
   listaEstados = [
     'Acre',

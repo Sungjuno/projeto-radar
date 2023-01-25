@@ -66,7 +66,7 @@ export class PrateleiraComponent {
       if(event.container.id=="0"){
         moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);//id do container onde o item foi dropado
       }else{
-        this.moveItemInArray(Number.parseInt(event.container.id), event.previousIndex, event.currentIndex)
+        this.moveItemInArray(Number.parseInt(event.container.id)-1, event.previousIndex, event.currentIndex)
       }
     } else  if((containerId!=0)||containerId===0){
       this.transferArrayItem(
@@ -85,18 +85,34 @@ export class PrateleiraComponent {
     for (let i = 0; i < this.prateleiras.length; i++) {
       for (let j = 0; j < 4; j++) {
       this.prateleiras[i].push(produtoFalso);
+      }
     }
   }
-}
+
+  clear(){
+    let produtoFalso = {} as IProduto
+    produtoFalso.id=-1;
+    produtoFalso.photoUrl=" ";
+    for (let i = 0; i < this.prateleiras.length; i++) {
+      for (let j = 0; j < this.prateleiras[i].length; j++) {
+        if(this.prateleiras[i][j].id>-1){
+          this.estoque.push(this.prateleiras[i][j])
+          this.prateleiras[i][j]=produtoFalso
+        }
+      }
+    }
+  }
+
 
   moveItemInArray(id: number, previousIndex: number, currentIndex: number) {
+    console.log(id,previousIndex,currentIndex)
     let produto = this.prateleiras[id][previousIndex]
     this.prateleiras[id][previousIndex]=this.prateleiras[id][currentIndex]
     this.prateleiras[id][currentIndex]=produto
   }
 
   transferArrayItem(idPreviousContainer:number,idCurrentContainer:number,previousIndex: number, currentIndex: number){
-    console.log()
+    console.log(idPreviousContainer,idCurrentContainer,previousIndex,currentIndex)
     if(!idPreviousContainer){
       if(this.prateleiras[idCurrentContainer-1][currentIndex].id==-1){
         this.prateleiras[idCurrentContainer-1][currentIndex]=this.estoque[previousIndex];
@@ -107,11 +123,13 @@ export class PrateleiraComponent {
         this.prateleiras[idCurrentContainer-1][currentIndex]=produto
       }
     } else if(!idCurrentContainer){
-      let produtoFalso = {} as IProduto
-      produtoFalso.id=-1;
-      produtoFalso.photoUrl=" ";
-      this.estoque.push(this.prateleiras[idPreviousContainer-1][previousIndex])
-      this.prateleiras[idPreviousContainer-1][previousIndex]=produtoFalso
+      if(this.prateleiras[idPreviousContainer-1][previousIndex].id!=-1){
+        let produtoFalso = {} as IProduto
+        produtoFalso.id=-1;
+        produtoFalso.photoUrl=" ";
+        this.estoque.push(this.prateleiras[idPreviousContainer-1][previousIndex])
+        this.prateleiras[idPreviousContainer-1][previousIndex]=produtoFalso
+      }
     }else{
       let produto = this.prateleiras[idPreviousContainer-1][previousIndex]
       this.prateleiras[idPreviousContainer-1][previousIndex]=this.prateleiras[idCurrentContainer-1][currentIndex]
