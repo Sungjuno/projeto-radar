@@ -9,11 +9,19 @@
     <div class="container-carrinho">
       <div class="container">
         <div class="header">
+          
           <span>Carrinho</span>
+
+          <select class="form-select select text-center">
+            <option selected>Selecione o Cliente:</option>
+            <option value="1">Cliente 1</option>
+            <option value="2">Cliente 2</option>
+            <option value="3">Cliente 3</option>
+          </select>
           <button type="submit" (click)="comprar()" id="new">Comprar</button>
         </div>
 
-        <div class="divTable">
+        <div class="divTable ">
           <table>
             <thead>
               <tr>

@@ -40,6 +40,7 @@ export class EditClientesModalComponent {
     this.endRequest.updateEndereco(endereco)
     .pipe(take(1))
     .subscribe()
+    this.activeModal.dismiss();
     setTimeout(function () {
       window.location.replace("clientes"); //will redirect to your blog page (an ex: blog.html)
    }, 500);
