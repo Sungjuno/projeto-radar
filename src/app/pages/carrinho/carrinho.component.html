@@ -28,10 +28,10 @@
               <tr *ngFor="let pedidoProduto of getCarrinho();index as i">
                 <td>{{this.getProduto(pedidoProduto.produtoId).nome}}</td>
                 <td>{{pedidoProduto.valor}}</td>
-                <td><button id="retirar" type="button" class="btn btn-danger" style="margin-left: 10px;"
+                <td><button id="retirar" type="button" class="qtdEstoque subtraiEstoque" style="margin-left: 10px;"
                     (click)="Subtrair(i)">-</button>
                   {{pedidoProduto.quantidade}}
-                  <button id="adicionar" type="button" class="btn btn-primary" style="margin-right: 10px;"
+                  <button id="adicionar" type="button" class="qtdEstoque somaEstoque" style="margin-right: 10px;"
                     (click)="Adicionar(i)">+</button>
                 </td>
                 <td>{{pedidoProduto.valor*pedidoProduto.quantidade}}</td>

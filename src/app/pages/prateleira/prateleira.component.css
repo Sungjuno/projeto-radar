@@ -105,7 +105,11 @@
 
 /* CSS responsável pelo botão de Salvar */
 .btnSalvar {
-  padding-left: 400px;
+  padding-left: 500px;
   padding-top: 15px;
   width: 750px;
+}
+
+.limpar {
+  margin-left: 20px;
 }

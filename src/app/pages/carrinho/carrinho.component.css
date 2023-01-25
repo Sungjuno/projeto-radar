@@ -231,3 +231,21 @@ td button i:first-child {
   padding: 0 1rem 0 1rem;
   height: inherit;
 }
+
+.qtdEstoque {
+  border:thin !important;
+  outline:auto !important;
+  background:fixed !important;
+  padding: 2px;
+  width: 13px;
+  height: 28px;
+}
+
+.somaEstoque {
+  background-color: rgba(6, 255, 68, 0.699) !important;
+}
+
+.subtraiEstoque {
+  background-color: rgba(206, 91, 91, 0.623) !important;
+  size: 1rem;
+}
