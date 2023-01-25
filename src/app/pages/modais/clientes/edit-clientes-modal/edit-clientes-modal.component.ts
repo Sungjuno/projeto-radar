@@ -26,7 +26,7 @@ export class EditClientesModalComponent {
       id: this.clienteForm.value.id,
       nome: this.clienteForm.value.nome,
       enderecoId: this.enderecoId,
-      telefone: this.clienteForm.value.telefone,
+      telefone: this.clienteForm.value.telefone.toString(),
       email: this.clienteForm.value.email,
       cpf: this.clienteForm.value.cpf,
     } as IClientePost;

@@ -34,7 +34,7 @@ export class ClientesRequestService {
     } as IEndereco;
     this.endRequest.postEndereco(endereco)
     .pipe(take(1))
-    .subscribe();
+    .subscribe(rest=>{
     this.endRequest.getEndereco().pipe(take(1)).subscribe(res =>{
         let post={
           nome: cliente.nome,
@@ -46,9 +46,11 @@ export class ClientesRequestService {
         console.log(environment.url + 'clientes/',post,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})});
         this.http.post<ICliente>(environment.url + 'clientes/',post,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})}).pipe(take(1)).subscribe()
     });
+  })
   }
 
   updateCliente(cliente:IClientePost){
+    console.log(environment.url + 'clientes/'+cliente.id,cliente,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
     return this.http.put<IClientePost>(environment.url + 'clientes/'+cliente.id,cliente,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
   }
 

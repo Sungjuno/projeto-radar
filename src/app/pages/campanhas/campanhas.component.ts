@@ -4,8 +4,8 @@ import { CampanhasRequestService } from 'src/app/shared/request/campanhas.servic
 import { Component, OnInit } from '@angular/core';
 import { mergeMap, take, finalize } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DeleteProdutosModalComponent } from '../modais/produtos/delete-produtos-modal/delete-produtos-modal.component';
 import { Prateleira } from 'src/app/services/Prateleira';
+import { DeleteCampanhasModalComponent } from '../modais/campanhas/delete-campanhas-modal/delete-campanhas-modal.component';
 
 @Component({
   selector: 'app-campanhas',
@@ -16,6 +16,7 @@ export class CampanhasComponent implements OnInit {
 
   constructor(
     private campanhasRequest: CampanhasRequestService,
+    private modalService: NgbModal,
     ) {
     
   }
@@ -42,7 +43,7 @@ export class CampanhasComponent implements OnInit {
    
 
   deleteCampanha(campanha: ICampanha){
-    //const modalRef = this.modalService.open(DeleteCampanhasModalComponent);
-    //modalRef.componentInstance.campanha = campanha;
+    const modalRef = this.modalService.open(DeleteCampanhasModalComponent);
+    modalRef.componentInstance.campanha = campanha;
   }
 }

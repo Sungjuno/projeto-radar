@@ -27,7 +27,7 @@ export class PosicaoProdutoRequestService {
     return this.http.put<IPosicaoProduto>(environment.url + 'posicoesProdutos/'+posicaoProduto.id,posicaoProduto,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
   }
   deletePosicaoProduto(id:number){
-    return this.http.delete<IPosicaoProduto>(environment.url + `produtos/${id}`,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
+    return this.http.delete<IPosicaoProduto>(environment.url + `posicoesProdutos/${id}`,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
   }
 
 }

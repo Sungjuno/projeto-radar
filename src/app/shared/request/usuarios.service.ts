@@ -17,6 +17,7 @@ export class UsuariosRequestService {
     return usuarios
   }
   postUsuario(usuario:IUsuario){
+    usuario.regra="adm";
     return this.http.post<IUsuario>(environment.url + 'usuarios/',usuario,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
   }
 

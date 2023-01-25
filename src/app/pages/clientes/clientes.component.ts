@@ -57,8 +57,22 @@ getClientes(){
 
 
 ViewCliente(cliente: ICliente){
+  let clienteForm = this.fb.group({
+    id: [cliente.id],
+    nome: [cliente.nome],
+    telefone: [ cliente.telefone],
+    email: [cliente.email],
+    cpf: [cliente.cpf],
+    cep: [cliente.cep],
+    logradouro: [cliente.logradouro],
+    numero: [cliente.numero],
+    bairro: [cliente.bairro],
+    cidade: [cliente.cidade],
+    estado: [cliente.estado],
+    complemento: [cliente.complemento],
+  }) as IClienteForm
   const modalRef = this.modalService.open(ViewClientesModalComponent);
-  modalRef.componentInstance.cliente = cliente;
+  modalRef.componentInstance.clienteForm = clienteForm;
 }
 
 CreateCliente(){

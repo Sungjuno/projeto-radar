@@ -10,6 +10,7 @@ import { IPedidoProduto } from 'src/app/shared/models/pedido-produto.interface';
 import { Carrinho } from 'src/app/services/Carrinho';
 import { ICliente } from 'src/app/shared/models/cliente.interface';
 import { ClientesRequestService } from 'src/app/shared/request/clientes.service';
+import { DeletePedidosModalComponent } from '../modais/pedidos/delete-pedidos-modal/delete-pedidos-modal.component';
 
 @Component({
   selector: 'app-pedidos',
@@ -68,7 +69,7 @@ export class PedidosComponent implements OnInit {
   }
 
   deletePedido(pedido: IPedido){
-    const modalRef = this.modalService.open(DeleteProdutosModalComponent);
+    const modalRef = this.modalService.open(DeletePedidosModalComponent);
     modalRef.componentInstance.pedido = pedido;
   }
   viewPedido(pedido:IPedido){
