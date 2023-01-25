@@ -37,7 +37,7 @@ export class CarrinhoComponent implements OnInit {
   getCarrinho(){
     return Carrinho.listar();
   }
-iniciar(){
+  iniciar(){
     this.request.getProduto()
       .pipe(take(1))
       .subscribe(list => {

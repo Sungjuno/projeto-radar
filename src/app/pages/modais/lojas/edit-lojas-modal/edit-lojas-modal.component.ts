@@ -7,6 +7,7 @@ import { ILojaForm } from 'src/app/shared/models/loja.interface';
 import { ILojaPost } from 'src/app/shared/models/lojaPost.interface';
 import { EnderecoRequestService } from 'src/app/shared/request/endereco.service';
 import { LojasRequestService } from 'src/app/shared/request/lojas.service';
+import { constroiStaticMapWithMarkes } from 'src/app/shared/Utils/mapsStatic';
 
 @Component({
   selector: 'app-edit-lojas-modal',
@@ -16,6 +17,7 @@ import { LojasRequestService } from 'src/app/shared/request/lojas.service';
 export class EditLojasModalComponent {
   @Input() lojaForm!:ILojaForm;
   @Input() enderecoId!:number;
+  @Input() mapa!:string;
   constructor(
     public activeModal: NgbActiveModal,
     public lojaRequest:LojasRequestService,
@@ -43,14 +45,23 @@ export class EditLojasModalComponent {
   }
 
   buscaCEP() {
+    this.mapa=""
     cep(this.lojaForm.value.cep)
-      .then(res =>
+      .then(res =>{
         this.lojaForm.patchValue({
           logradouro: res.street,
           bairro: res.neighborhood,
           cidade: res.city,
           estado: res.state
-        }))
+        })
+      
+        let endereco = {} as IEndereco
+        endereco.logradouro= res.street,
+        endereco.bairro= res.neighborhood,
+        endereco.cidade= res.city,
+        endereco.estado= res.state
+        this.mapa = constroiStaticMapWithMarkes(endereco)
+      })
   }
 
 }

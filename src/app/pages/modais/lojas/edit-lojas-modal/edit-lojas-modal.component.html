@@ -39,6 +39,9 @@
           <label for="complemento" class="form-label">Complemento</label>
           <input id="complemento" formControlName="complemento" type="text" required class="form-control textbox" />
         </div>
+        <div class="mb-3">
+          <img *ngIf="mapa!=' '" [src]="mapa">
+        </div>
       </div>
     </form>
   </div>

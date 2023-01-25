@@ -12,6 +12,7 @@ import { DeleteLojasModalComponent } from '../modais/lojas/delete-lojas-modal/de
 import { EnderecoRequestService } from 'src/app/shared/request/endereco.service';
 import { ILojaPost } from 'src/app/shared/models/lojaPost.interface';
 import { IEndereco } from 'src/app/shared/models/endereco.interface';
+import { constroiStaticMapWithMarkes } from 'src/app/shared/Utils/mapsStatic';
 
 
 @Component({
@@ -70,6 +71,7 @@ export class LojasComponent implements OnInit {
     }) as ILojaForm
     const modalRef = this.modalService.open(ViewLojasModalComponent);
     modalRef.componentInstance.lojaForm = lojaForm;
+    modalRef.componentInstance.mapa = constroiStaticMapWithMarkes(<IEndereco>loja)
   }
 
   CreateLoja(){
@@ -91,7 +93,8 @@ export class LojasComponent implements OnInit {
     const modalRef = this.modalService.open(EditLojasModalComponent);
     modalRef.componentInstance.lojaForm = lojaForm;
     modalRef.componentInstance.enderecoId = loja.enderecoId;
-  }
+    modalRef.componentInstance.mapa = constroiStaticMapWithMarkes(<IEndereco>loja)
+   }
   
   DeleteLoja(loja: ILoja){
     const modalRef = this.modalService.open(DeleteLojasModalComponent);

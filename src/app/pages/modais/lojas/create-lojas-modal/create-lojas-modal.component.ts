@@ -5,6 +5,8 @@ import { take } from 'rxjs';
 import { ILojaForm } from 'src/app/shared/models/loja.interface';
 import { LojasRequestService } from 'src/app/shared/request/lojas.service';
 import cep from 'cep-promise'
+import { constroiStaticMapWithMarkes } from 'src/app/shared/Utils/mapsStatic';
+import { IEndereco } from 'src/app/shared/models/endereco.interface';
 
 @Component({
   selector: 'app-create-lojas-modal',
@@ -17,6 +19,7 @@ export class CreateLojasModalComponent {
     public activeModal: NgbActiveModal,
     public request: LojasRequestService,
   ) { }
+  mapa=""
   listaEstados = [
     'Acre',
     'Alagoas',
@@ -65,13 +68,21 @@ export class CreateLojasModalComponent {
 
 
   buscaCEP() {
+    this.mapa=""
     cep(this.lojaForm.value.cep)
-      .then(res =>
+      .then(res =>{
         this.lojaForm.patchValue({
           logradouro: res.street,
           bairro: res.neighborhood,
           cidade: res.city,
           estado: res.state
-        }))
+        })
+        let endereco = {} as IEndereco
+        endereco.logradouro= res.street,
+        endereco.bairro= res.neighborhood,
+        endereco.cidade= res.city,
+        endereco.estado= res.state
+        this.mapa = constroiStaticMapWithMarkes(endereco)
+      })
   }
 }

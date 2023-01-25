@@ -9,6 +9,7 @@ import { ILojaForm } from 'src/app/shared/models/loja.interface';
 })
 export class ViewLojasModalComponent {
   @Input() lojaForm!:ILojaForm;
+  @Input() mapa!:string;
   constructor(
     public activeModal: NgbActiveModal,
   ) { }

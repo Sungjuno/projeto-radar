@@ -12,8 +12,8 @@
           
           <span>Carrinho</span>
 
-          <select  class="form-select select text-center">
-            <option *ngFor="let cliente of clientes" value="{{cliente.id}}" aria-placeholder="Selecione o Cliente:">{{cliente.nome}}</option>
+          <select class="form-select select text-center">
+            <option *ngFor="let cliente of clientes; index as i" value="{{cliente.id}}"  aria-placeholder="Selecione o Cliente:">{{cliente.nome}}</option>
           </select>
           <button type="submit" (click)="comprar()" id="new">Comprar</button>
         </div>
