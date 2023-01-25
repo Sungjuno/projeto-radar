@@ -5,6 +5,7 @@ import cep from 'cep-promise';
 import { take } from 'rxjs';
 import { IClienteForm } from 'src/app/shared/models/cliente.interface';
 import { ClientesRequestService } from 'src/app/shared/request/clientes.service';
+import { verificaCPF } from 'src/app/shared/Utils/verificaCPF';
 
 @Component({
   selector: 'app-create-clientes-modal',
@@ -61,11 +62,16 @@ clienteForm :IClienteForm = this.fb.group({
   complemento: ['']
 }) as IClienteForm
 create(){
-  this.request.postCliente(this.clienteForm.value)
-  this.activeModal.dismiss();
-  setTimeout(function () {
-    window.location.replace("clientes"); //will redirect to your blog page (an ex: blog.html)
- }, 500);
+  let mes=verificaCPF(this.clienteForm.value.cpf.toString())
+  if(mes==""){
+    this.request.postCliente(this.clienteForm.value)
+    this.activeModal.dismiss();
+    setTimeout(function () {
+      window.location.replace("clientes"); //will redirect to your blog page (an ex: blog.html)
+  }, 500);
+  }else{
+    alert(mes);
+  }
 }
 buscaCEP() {
   cep(this.clienteForm.value.cep)
