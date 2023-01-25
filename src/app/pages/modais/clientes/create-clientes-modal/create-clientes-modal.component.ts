@@ -63,7 +63,9 @@ clienteForm :IClienteForm = this.fb.group({
 create(){
   this.request.postCliente(this.clienteForm.value)
   this.activeModal.dismiss();
-  window.location.replace("/clientes");
+  setTimeout(function () {
+    window.location.replace("clientes"); //will redirect to your blog page (an ex: blog.html)
+ }, 500);
 }
 buscaCEP() {
   cep(this.clienteForm.value.cep)

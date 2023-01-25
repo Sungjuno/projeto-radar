@@ -7,6 +7,11 @@ import { IPedidoProduto } from 'src/app/shared/models/pedido-produto.interface';
 import { ProdutosRequestService } from 'src/app/shared/request/produtos.service';
 import { IProduto } from 'src/app/shared/models/produto.interface';
 import { HttpClient } from '@angular/common/http';
+import { ClientesRequestService } from 'src/app/shared/request/clientes.service';
+import { ICliente } from 'src/app/shared/models/cliente.interface';
+import { IClientePost } from 'src/app/shared/models/clientePost.interface';
+import { IEndereco } from 'src/app/shared/models/endereco.interface';
+import { EnderecoRequestService } from 'src/app/shared/request/endereco.service';
 
 @Component({
   selector: 'app-carrinho',
@@ -17,12 +22,16 @@ export class CarrinhoComponent implements OnInit {
 
   constructor(
     private request: ProdutosRequestService,
+    private endRequest: EnderecoRequestService,
+    private requestc: ClientesRequestService,
     public auth: AuthService,
     private http:HttpClient
     ) { 
     }
   valor_total=0;
   produtos:IProduto[]=[];
+  clientes: ICliente[] = [];
+  selected:any;
   hashFindProduto:Map<number,number>=new Map<number,number>();
 
   getCarrinho(){
@@ -49,11 +58,29 @@ getProduto(index:number){
     let val = {} as IProduto;
     return val;
 }
+
+getClientes(){
+  this.requestc.getCliente().pipe(take(1)).subscribe(res=>{
+    this.endRequest.getEndereco().pipe(take(1)).subscribe(response=>{
+      let clientesPost = <IClientePost[]>res;
+      let hashFindEnd = new Map<number,number>();
+      let enderecos = <IEndereco[]>response;
+      for (let i = 0; i < enderecos.length; i++) {
+        const endereco = enderecos[i].id;
+        hashFindEnd.set(endereco,i);
+      }
+      clientesPost.forEach(cliente=>{
+        this.clientes.push({...enderecos[hashFindEnd.get(cliente.enderecoId||0)||0],...cliente})
+      })
+    })
+  })
+}
 delete(index:number){
 
 }
 ngOnInit(): void {
   this.iniciar();
+  this.getClientes();
 }
 calcularValorTotal() {
   this.valor_total=Carrinho.getValor_Total();

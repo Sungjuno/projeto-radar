@@ -249,3 +249,7 @@ td button i:first-child {
   background-color: rgba(206, 91, 91, 0.623) !important;
   size: 1rem;
 }
+
+.select {
+  width: 450px;
+}
