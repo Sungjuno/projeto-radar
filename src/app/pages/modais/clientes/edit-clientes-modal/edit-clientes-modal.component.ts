@@ -41,7 +41,9 @@ export class EditClientesModalComponent {
     .pipe(take(1))
     .subscribe()
     this.activeModal.dismiss();
-    window.location.replace("/clientes");
+    setTimeout(function () {
+      window.location.replace("clientes"); //will redirect to your blog page (an ex: blog.html)
+   }, 500);
   }
   listaEstados = [
     'Acre',
