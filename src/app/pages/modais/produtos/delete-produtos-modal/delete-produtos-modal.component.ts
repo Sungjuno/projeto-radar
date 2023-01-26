@@ -19,8 +19,7 @@ export class DeleteProdutosModalComponent {
   delete ():void{
     this.request.deleteProduto(this.produto.id)
       .pipe(take(1))
-      .subscribe()
-    this.activeModal.dismiss();
-    window.location.replace("produtos");
+      .subscribe(()=>
+      this.activeModal.dismiss());
   }
 }

@@ -18,8 +18,7 @@ export class DeletePedidosModalComponent {
   delete ():void{
     this.request.deletePedido(this.pedido.id)
       .pipe(take(1))
-      .subscribe()
-    this.activeModal.dismiss();
-    window.location.replace("pedidos");
+      .subscribe(()=>
+      this.activeModal.dismiss());
   }
 }

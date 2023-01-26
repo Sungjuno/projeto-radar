@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: "http://localhost:5122/"
+  url: "http://azure-api.luanftg.com.br/"
 };
 
 /*

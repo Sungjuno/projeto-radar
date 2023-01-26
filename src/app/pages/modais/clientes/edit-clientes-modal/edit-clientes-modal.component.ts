@@ -7,6 +7,7 @@ import { IClientePost } from 'src/app/shared/models/clientePost.interface';
 import { IEndereco } from 'src/app/shared/models/endereco.interface';
 import { ClientesRequestService } from 'src/app/shared/request/clientes.service';
 import { EnderecoRequestService } from 'src/app/shared/request/endereco.service';
+import { verificaCPF } from 'src/app/shared/Utils/verificaCPF';
 
 @Component({
   selector: 'app-edit-clientes-modal',
@@ -30,6 +31,9 @@ export class EditClientesModalComponent {
       email: this.clienteForm.value.email,
       cpf: this.clienteForm.value.cpf,
     } as IClientePost;
+    
+    let mes=verificaCPF(this.clienteForm.value.cpf.toString())
+    if(mes==""){
     this.clienteRequest.updateCliente(cliente)
     .pipe(take(1))
     .subscribe()
@@ -43,7 +47,10 @@ export class EditClientesModalComponent {
     this.activeModal.dismiss();
     setTimeout(function () {
       window.location.replace("clientes"); //will redirect to your blog page (an ex: blog.html)
-   }, 500);
+   }, 500);}
+   else {
+    alert(mes)
+   }
   }
   listaEstados = [
     'Acre',

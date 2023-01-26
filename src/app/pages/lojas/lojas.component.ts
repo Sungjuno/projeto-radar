@@ -4,7 +4,7 @@ import { LojasRequestService } from 'src/app/shared/request/lojas.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { take } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ViewLojasModalComponent } from '../modais/lojas/view-lojas-modal/view-lojas-modal.component';
 import { CreateLojasModalComponent } from '../modais/lojas/create-lojas-modal/create-lojas-modal.component';
 import { EditLojasModalComponent } from '../modais/lojas/edit-lojas-modal/edit-lojas-modal.component';
@@ -74,8 +74,12 @@ export class LojasComponent implements OnInit {
     modalRef.componentInstance.mapa = constroiStaticMapWithMarkes(<IEndereco>loja)
   }
 
-  CreateLoja(){
-    this.modalService.open(CreateLojasModalComponent);
+  async CreateLoja(){
+    const modal =this.modalService.open(CreateLojasModalComponent);
+    modal.dismissed.subscribe(
+      ()=>{this.lojas=[]
+        this.getLojas()}
+    )
   }
 
   EditLoja(loja: ILoja){
@@ -94,11 +98,19 @@ export class LojasComponent implements OnInit {
     modalRef.componentInstance.lojaForm = lojaForm;
     modalRef.componentInstance.enderecoId = loja.enderecoId;
     modalRef.componentInstance.mapa = constroiStaticMapWithMarkes(<IEndereco>loja)
+    modalRef.dismissed.subscribe(
+      ()=>{this.lojas=[]
+        this.getLojas()}
+    )
    }
   
   DeleteLoja(loja: ILoja){
     const modalRef = this.modalService.open(DeleteLojasModalComponent);
     modalRef.componentInstance.loja = loja;
+    modalRef.dismissed.subscribe(
+      ()=>{this.lojas=[]
+        this.getLojas()}
+    )
   }
 }
 

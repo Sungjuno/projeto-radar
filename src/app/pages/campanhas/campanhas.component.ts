@@ -45,5 +45,9 @@ export class CampanhasComponent implements OnInit {
   deleteCampanha(campanha: ICampanha){
     const modalRef = this.modalService.open(DeleteCampanhasModalComponent);
     modalRef.componentInstance.campanha = campanha;
+    modalRef.dismissed.subscribe(()=>{
+      this.campanhas=[]
+      this.carregarCampanhas();
+    })
   }
 }

@@ -61,9 +61,7 @@ export class CreateLojasModalComponent {
     complemento: ['']
   }) as ILojaForm
   create() {
-    this.request.postLoja(this.lojaForm.value);
-    this.activeModal.dismiss();
-    window.location.replace("/lojas");
+    this.request.postLoja(this.lojaForm.value,this.activeModal);
   }
 
 

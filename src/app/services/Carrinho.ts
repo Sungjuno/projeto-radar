@@ -12,9 +12,8 @@ export class Carrinho{
       Carrinho.pedido=pedido;
     }
 
-    private static carrinho: (IPedidoProduto)[]=[{"id":0,"pedidoId":2,"produtoId":1,"valor":10,"quantidade":2},
-    {"id":0,"pedidoId":2,"produtoId":2,"valor":10,"quantidade":2}];
-    private static pedido: IPedido={"id":0,"clienteId":3,"valorTotal":40,"dtCriacao":new Date((new Date()).getTime())};
+    private static carrinho: (IPedidoProduto)[]=[];
+    private static pedido: IPedido={} as IPedido;
     
     public static buscaTamanho():number{
         return Carrinho.carrinho.length;
@@ -93,13 +92,11 @@ export class Carrinho{
                 .subscribe( res => {pedido = <IPedido[]>res
                     let pedidoLast=pedido.pop();
                     Carrinho.carrinho.forEach(pedidoProduto => {
-                        console.log(pedidoProduto)
                         pedidoProduto.pedidoId=pedidoLast ? pedidoLast.id : 0;
                         pedidoProdutoRequest.postPedidoProduto(pedidoProduto).subscribe();
                     });
                     Carrinho.reset();
                 });});
-            
         }
     }
 

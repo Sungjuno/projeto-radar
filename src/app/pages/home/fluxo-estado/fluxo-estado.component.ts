@@ -82,7 +82,6 @@ export class FluxoEstadoComponent implements OnInit {
     this.pieChartDatasets[0].data=lista
     this.pieChartLabels=listaNome.sort();
     this.listaEstadoExistente=listaNome;
-    console.log(listaNome,lista)
     this.chart?.update();
   }
 

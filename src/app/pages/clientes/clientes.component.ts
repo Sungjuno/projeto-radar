@@ -76,7 +76,11 @@ ViewCliente(cliente: ICliente){
 }
 
 CreateCliente(){
-  this.modalService.open(CreateClientesModalComponent);
+  const modalRef = this.modalService.open(CreateClientesModalComponent);
+  modalRef.dismissed.subscribe(()=>{
+    this.clientes=[]
+    this.getClientes();
+  })
 }
 
 
@@ -98,11 +102,19 @@ EditCliente(cliente: ICliente){
   const modalRef = this.modalService.open(EditClientesModalComponent);
   modalRef.componentInstance.clienteForm = clienteForm;
   modalRef.componentInstance.enderecoId = cliente.enderecoId;
+  modalRef.dismissed.subscribe(()=>{
+    this.clientes=[]
+    this.getClientes();
+  })
 }
 
 DeleteCliente(cliente: ICliente){
   const modalRef = this.modalService.open(DeleteClientesModalComponent);
   modalRef.componentInstance.cliente = cliente;
+  modalRef.dismissed.subscribe(()=>{
+    this.clientes=[]
+    this.getClientes();
+  })
 }
 
 }

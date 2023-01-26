@@ -89,6 +89,7 @@ Excluir(id:number){
   Carrinho.excluirProduto(id);
   this.calcularValorTotal();
 }
+clienteSelecionado = ""
 Subtrair(i:number){
     let itemE=this.getCarrinho()[i];
     let quantidade=itemE.quantidade;
@@ -109,6 +110,7 @@ Subtrair(i:number){
     }
   }
   comprar(){
+    Carrinho.setCliente_Id(Number(this.clienteSelecionado))
     Carrinho.salvar(this.http);
   }
 }

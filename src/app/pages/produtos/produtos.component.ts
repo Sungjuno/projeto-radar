@@ -60,7 +60,11 @@ export class ProdutosComponent implements OnInit {
   }
 
   createProduto(){
-    this.modalService.open(CreateProdutosModalComponent);
+    const modalRef = this.modalService.open(CreateProdutosModalComponent);
+    modalRef.dismissed.subscribe(()=>{
+      this.produtos=[]
+      this.getProduto();
+    })
   }
 
   
@@ -75,11 +79,19 @@ export class ProdutosComponent implements OnInit {
     }) as IProdutoForm
     const modalRef = this.modalService.open(EditProdutosModalComponent);
     modalRef.componentInstance.produtoForm = produtoForm;
+    modalRef.dismissed.subscribe(()=>{
+      this.produtos=[]
+      this.getProduto();
+    })
   }
   
   deleteProduto(produto: IProduto){
     const modalRef = this.modalService.open(DeleteProdutosModalComponent);
     modalRef.componentInstance.produto = produto;
+    modalRef.dismissed.subscribe(()=>{
+      this.produtos=[]
+      this.getProduto();
+    })
   }
 
   

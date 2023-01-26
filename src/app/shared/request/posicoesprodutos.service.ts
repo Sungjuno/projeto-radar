@@ -20,7 +20,6 @@ export class PosicaoProdutoRequestService {
     return posicoesProdutos
   }
   postPosicoesProdutos(posicaoProduto:IPosicaoProduto){
-    console.log(environment.url + 'posicoesProdutos/',posicaoProduto,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
     return this.http.post<IPosicaoProduto>(environment.url + 'posicoesProdutos/',posicaoProduto,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
   }
   updatePosicoesProdutos(posicaoProduto:IPosicaoProduto){

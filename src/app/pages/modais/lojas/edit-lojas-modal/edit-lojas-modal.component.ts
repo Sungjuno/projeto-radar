@@ -31,17 +31,16 @@ export class EditLojasModalComponent {
     } as ILojaPost;
     this.lojaRequest.updateLoja(loja)
     .pipe(take(1))
-    .subscribe()
-    let endereco = {
-      ...this.lojaForm.value,
-      id: this.enderecoId,
-    } as IEndereco;
-    this.endRequest.updateEndereco(endereco)
-    .pipe(take(1))
-    .subscribe()
-    setTimeout(function () {
-      window.location.replace("lojas"); //will redirect to your blog page (an ex: blog.html)
-   }, 500);
+    .subscribe(()=>{
+      let endereco = {
+        ...this.lojaForm.value,
+        id: this.enderecoId,
+      } as IEndereco;
+      this.endRequest.updateEndereco(endereco)
+      .pipe(take(1))
+      .subscribe(()=>
+      this.activeModal.dismiss());
+    })
   }
 
   buscaCEP() {

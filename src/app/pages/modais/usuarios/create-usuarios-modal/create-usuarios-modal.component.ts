@@ -24,10 +24,7 @@ export class CreateUsuariosModalComponent {
   }) as IUsuarioForm;
   create() {
     this.request.postUsuario(this.usuarioForm.value)
-      .subscribe();
-    this.activeModal.dismiss();
-    setTimeout(function () {
-      window.location.replace("usuarios"); //will redirect to your blog page (an ex: blog.html)
-   }, 500);
+      .subscribe(()=>
+      this.activeModal.dismiss());
   }
 }

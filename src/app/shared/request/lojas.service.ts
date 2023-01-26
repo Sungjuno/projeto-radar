@@ -7,6 +7,8 @@ import { EnderecoRequestService } from './endereco.service';
 import { ILojaPost } from '../models/lojaPost.interface';
 import { Observable, take } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +17,15 @@ export class LojasRequestService {
 
   constructor( private http: HttpClient,
     private auth:AuthService,
-    private endRequest:EnderecoRequestService ) { }
+    private endRequest:EnderecoRequestService,
+    private router: Router, ) { }
 
   getLoja(){
     let lojas = this.http.get(environment.url + 'lojas', { headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
 
     return lojas;
   }
-  postLoja(loja:ILoja){
+  postLoja(loja:ILoja, modal:NgbActiveModal){
     let endereco={
       bairro:loja.bairro,
       cep: loja.cep.toString(),
@@ -34,14 +37,14 @@ export class LojasRequestService {
     } as IEndereco;
     this.endRequest.postEndereco(endereco)
     .pipe(take(1))
-    .subscribe();
+    .subscribe(resp=>{
     this.endRequest.getEndereco().pipe(take(1)).subscribe(res =>{
         let post={
           nome: loja.nome
         } as ILojaPost;
         post.enderecoId=(<IEndereco[]>res).pop()?.id;
-        this.http.post<ILoja>(environment.url + 'lojas/',post,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})}).pipe(take(1)).subscribe()
-    });
+        this.http.post<ILoja>(environment.url + 'lojas/',post,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})}).pipe(take(1)).subscribe(()=>modal.dismiss())
+    });})
   }
 
   updateLoja(loja:ILojaPost){

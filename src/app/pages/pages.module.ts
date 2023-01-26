@@ -28,7 +28,6 @@ import { DeleteClientesModalComponent } from './modais/clientes/delete-clientes-
 import { CreateClientesModalComponent } from './modais/clientes/create-clientes-modal/create-clientes-modal.component';
 import { ViewClientesModalComponent } from './modais/clientes/view-clientes-modal/view-clientes-modal.component';
 import { EditClientesModalComponent } from './modais/clientes/edit-clientes-modal/edit-clientes-modal.component';
-import { ViewPedidosModalComponent } from './modais/pedidos/view-pedidos-modal/view-pedidos-modal.component';
 import { DeletePedidosModalComponent } from './modais/pedidos/delete-pedidos-modal/delete-pedidos-modal.component';
 import { DeleteLojasModalComponent } from './modais/lojas/delete-lojas-modal/delete-lojas-modal.component';
 import { CreateLojasModalComponent } from './modais/lojas/create-lojas-modal/create-lojas-modal.component';
@@ -69,7 +68,6 @@ import { EditUsuariosModalComponent } from './modais/usuarios/edit-usuarios-moda
     CreateClientesModalComponent,
     ViewClientesModalComponent,
     EditClientesModalComponent,
-    ViewPedidosModalComponent,
     DeletePedidosModalComponent,
     DeleteLojasModalComponent,
     CreateLojasModalComponent,

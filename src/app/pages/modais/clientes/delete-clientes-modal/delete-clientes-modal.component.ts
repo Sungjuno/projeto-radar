@@ -18,8 +18,7 @@ export class DeleteClientesModalComponent {
   delete ():void{
     this.request.deleteCliente(this.cliente.id)
       .pipe(take(1))
-      .subscribe()
-    this.activeModal.dismiss();
-    window.location.replace("/clientes");
+      .subscribe(()=>
+      this.activeModal.dismiss());
   }
 }

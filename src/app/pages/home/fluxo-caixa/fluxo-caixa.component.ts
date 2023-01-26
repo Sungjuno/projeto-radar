@@ -88,14 +88,14 @@ export class FluxoCaixaComponent implements OnInit {
   };
   lineChartLegend = false;
 
-  objetoApi: any
+  objetoApi: IPedido[]=[]
 
   fluxoPedidoClienteApi() {
 
     this.pedidoReq.getPedido()
       .pipe(
         take(1),
-        tap(res => {this.objetoApi = res;}))
+        tap(res => {this.objetoApi = <IPedido[]>res;}))
       .subscribe(res => {
         this.filtraPorMes(<IPedido[]>res);
       })
@@ -119,8 +119,13 @@ export class FluxoCaixaComponent implements OnInit {
     this.comparaMes()
     let receitaDia = 0
     for (let i = 0; i < this.objetoApi.length; i++) {
-      if(this.objetoApi[i].data == this.dateSelected){
-        receitaDia += this.objetoApi[i].valor_total
+      this.objetoApi[i].dtCriacao.getDay()
+      let dataAtual = 
+      this.objetoApi[i].dtCriacao.getFullYear().toString()+"-"+
+      (this.objetoApi[i].dtCriacao.getMonth()+1).toString() + "-"+
+      this.objetoApi[i].dtCriacao.getDay().toString()
+      if(this.dateSelected==dataAtual){
+        receitaDia += this.objetoApi[i].valorTotal
         this.valorDiario = receitaDia
       }
     }
@@ -131,7 +136,6 @@ export class FluxoCaixaComponent implements OnInit {
   }
 
   comparaMes() {
-      console.log(this.dateSelected)
       let mes = Number(this.dateSelected.toString().slice(5, -3));
       this.valorMes = this.fluxo[mes-1]
   }

@@ -37,10 +37,7 @@ export class CreateProdutosModalComponent {
   }
   create() {
     this.request.postProduto(this.produtoForm.value)
-      .subscribe();
-    this.activeModal.dismiss();
-    setTimeout(function () {
-      window.location.replace("produtos"); //will redirect to your blog page (an ex: blog.html)
-   }, 500);
+      .subscribe(()=>
+      this.activeModal.dismiss());
   }
 }

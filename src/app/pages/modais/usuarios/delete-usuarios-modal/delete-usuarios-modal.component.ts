@@ -18,8 +18,7 @@ export class DeleteUsuariosModalComponent {
   delete ():void{
     this.request.deleteUsuario(this.usuario.id)
       .pipe(take(1))
-      .subscribe()
-    this.activeModal.dismiss();
-    window.location.replace("usuarios");
+      .subscribe(()=>
+      this.activeModal.dismiss());
   }
 }

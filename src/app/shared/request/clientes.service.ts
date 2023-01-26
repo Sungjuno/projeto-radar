@@ -8,6 +8,7 @@ import { IClientePost } from '../models/clientePost.interface';
 import { take } from 'rxjs';
 import { EnderecoRequestService } from './endereco.service';
 import { AuthService } from '../auth/auth.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class ClientesRequestService {
     return this.http.get(environment.url + 'clientes',{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
 
   }
-  postCliente(cliente:ICliente){
+  postCliente(cliente:ICliente, modal:NgbActiveModal){
     let endereco={
       bairro:cliente.bairro,
       cep: cliente.cep.toString(),
@@ -43,14 +44,12 @@ export class ClientesRequestService {
           telefone: cliente.telefone
         } as IClientePost;
         post.enderecoId=(<IEndereco[]>res).pop()?.id;
-        console.log(environment.url + 'clientes/',post,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})});
-        this.http.post<ICliente>(environment.url + 'clientes/',post,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})}).pipe(take(1)).subscribe()
+        this.http.post<ICliente>(environment.url + 'clientes/',post,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})}).pipe(take(1)).subscribe(()=>modal.dismiss())
     });
   })
   }
 
   updateCliente(cliente:IClientePost){
-    console.log(environment.url + 'clientes/'+cliente.id,cliente,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
     return this.http.put<IClientePost>(environment.url + 'clientes/'+cliente.id,cliente,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
   }
 

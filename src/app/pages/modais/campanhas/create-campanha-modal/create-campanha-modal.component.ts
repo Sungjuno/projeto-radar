@@ -48,5 +48,6 @@ export class CreateCampanhaModalComponent implements OnInit{
     Prateleira.campanha.nome=this.campanhaForm.value.nome
     Prateleira.campanha.photoUrl=""
     Prateleira.save(this.http)
+    this.activeModal.dismiss()
   }
 }

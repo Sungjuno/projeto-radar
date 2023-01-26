@@ -19,8 +19,7 @@ export class DeleteCampanhasModalComponent {
   delete ():void{
     this.request.deleteCampanha(this.campanha.id)
       .pipe(take(1))
-      .subscribe()
-    this.activeModal.dismiss();
-    window.location.replace("campanhas");
+      .subscribe(()=>
+      this.activeModal.dismiss());
   }
 }

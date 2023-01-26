@@ -18,12 +18,10 @@ export class CampanhasRequestService {
 
   }
   postCampanha(campanha:ICampanha){
-    console.log(environment.url + 'campanhas/',campanha,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
     return this.http.post<ICampanha>(environment.url + 'campanhas/',campanha,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
   }
 
   updateCampanha(campanha:ICampanha){
-    console.log(environment.url + 'campanhas/'+campanha.id,campanha,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
     return this.http.put<ICampanha>(environment.url + 'campanhas/'+campanha.id,campanha,{ headers: new HttpHeaders({authorization: `${this.auth.getToken()}`})})
   }
 

@@ -34,10 +34,7 @@ export class EditProdutosModalComponent {
   edit(){
     this.request.updateProduto(this.produtoForm.value)
     .pipe(take(1))
-    .subscribe()
-    this.activeModal.dismiss();
-    setTimeout(function () {
-      window.location.replace("produtos"); //will redirect to your blog page (an ex: blog.html)
-   }, 500);
+    .subscribe(()=>
+    this.activeModal.dismiss());
   }
 }

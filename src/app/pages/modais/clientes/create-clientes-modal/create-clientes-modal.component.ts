@@ -64,11 +64,7 @@ clienteForm :IClienteForm = this.fb.group({
 create(){
   let mes=verificaCPF(this.clienteForm.value.cpf.toString())
   if(mes==""){
-    this.request.postCliente(this.clienteForm.value)
-    this.activeModal.dismiss();
-    setTimeout(function () {
-      window.location.replace("clientes"); //will redirect to your blog page (an ex: blog.html)
-  }, 500);
+    this.request.postCliente(this.clienteForm.value, this.activeModal)
   }else{
     alert(mes);
   }

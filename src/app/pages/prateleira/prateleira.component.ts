@@ -105,14 +105,13 @@ export class PrateleiraComponent {
 
 
   moveItemInArray(id: number, previousIndex: number, currentIndex: number) {
-    console.log(id,previousIndex,currentIndex)
     let produto = this.prateleiras[id][previousIndex]
     this.prateleiras[id][previousIndex]=this.prateleiras[id][currentIndex]
     this.prateleiras[id][currentIndex]=produto
   }
 
   transferArrayItem(idPreviousContainer:number,idCurrentContainer:number,previousIndex: number, currentIndex: number){
-    console.log(idPreviousContainer,idCurrentContainer,previousIndex,currentIndex)
+    
     if(!idPreviousContainer){
       if(this.prateleiras[idCurrentContainer-1][currentIndex].id==-1){
         this.prateleiras[idCurrentContainer-1][currentIndex]=this.estoque[previousIndex];

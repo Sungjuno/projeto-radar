@@ -18,8 +18,7 @@ export class DeleteLojasModalComponent {
   delete ():void{
     this.request.deleteLoja(this.loja.id)
       .pipe(take(1))
-      .subscribe()
-    this.activeModal.dismiss();
-    window.location.replace("/lojas");
+      .subscribe(()=>
+      this.activeModal.dismiss());
   }
 }

@@ -46,9 +46,7 @@ export  class  Prateleira{
                     campRequest.getCampanha().pipe(take(1)).subscribe(
                         res=>{
                             let id = (<ICampanha[]>res).pop()?.id||0
-                            console.log(id)
                             if(id>0){
-                                console.log(Prateleira.prateleira)
                                 Prateleira.prateleira.forEach(posicao=>{
                                     posicao.campanhaId=id||0;
                                     pratRequest.postPosicoesProdutos(posicao).pipe(take(1)).subscribe()
